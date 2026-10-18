@@ -1,7 +1,15 @@
 """Exercise the ASGI endpoints using the standard library (no HTTP test dependency)."""
 import asyncio
 import json
+import os
+from pathlib import Path
+import tempfile
 import unittest
+
+# Importing main creates the station store; isolate it before import so tests cannot
+# interrupt or modify real assessment records on the developer's computer.
+_test_database = tempfile.TemporaryDirectory()
+os.environ["ASSESSMENT_DB_PATH"] = str(Path(_test_database.name) / "wire-api-test.sqlite3")
 import main
 from wire import WireMonitor
 

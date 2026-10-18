@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { waveSample, waveSpec } from '../lib/simulation';
+import { waveSample, waveSpec } from '../lib/monitor';
 
 export default function Waveform({ channel, values, active }) {
   const canvas = useRef(null), latest = useRef({ values, active });

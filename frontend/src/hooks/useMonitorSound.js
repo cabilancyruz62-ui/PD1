@@ -15,7 +15,7 @@ export function useMonitorSound(active, heartRate) {
     try {
       const Audio = window.AudioContext || window.webkitAudioContext;
       if (!Audio) throw Error('Audio is unavailable in this browser.');
-      context.current ||= new Audio();
+      if (!context.current || context.current.state === 'closed') context.current = new Audio();
       await context.current.resume();
       if (context.current.state !== 'running') throw Error('Browser audio is paused. Try enabling sound again.');
       setError(''); setEnabled(true);
