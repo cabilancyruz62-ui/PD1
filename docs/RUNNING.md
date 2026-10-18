@@ -79,7 +79,7 @@ For later launches, you normally only need to run `npm.cmd run dev` from `fronte
 ## 4. Try the interface without hardware
 
 1. Click **Start Camera** and allow the browser to access your camera.
-2. For a USB webcam, open **Settings**, choose it under **Camera device**, and click **Apply / Restart**.
+2. For a USB webcam, open **Settings → Camera selection**, choose it under **Camera device**, and click **Apply / Restart**. Detected cameras show app IDs such as **0x001 — Integrated Webcam** or **0x002 — USB Camera**, with the active device marked. IDs are assigned to both built-in and peripheral cameras; the browser supplies the names. The numbering depends on discovery order, not on camera type.
 3. Press **Start Simulation**. Open **Patient Info**, review the assigned patient, and press **Confirm patient reviewed**. There is no patient picker; the patient stays fixed during this simulation.
 4. Open **Vitals**. Values change with scripted demo conditions. Click **Enable beep** for a heartbeat sound. Open **Simulation controls** to test lower/higher RR and other values; the waveforms respond to the simulated parameters.
 5. In **Wire activation settings** (or Settings), enable **Require wire connection for vitals**. Keep **Simulated wire (no ESP32 needed)** selected.
@@ -90,6 +90,10 @@ For later launches, you normally only need to run `npm.cmd run dev` from `fronte
 10. Press **End Simulation**. A different patient is randomly assigned for the next student, whose checklist starts empty. The previous student's feedback report stays available until the next simulation ends.
 
 Assessment tracks recorded workflow actions; it does not clinically grade drug choices or interventions. Patient assignment, wire toggles, and reports are in memory only and reset on page reload. See [simulation instructions](SIMULATION.md) for the full flow and waveform behavior.
+
+Camera IDs such as `0x001` are friendly labels assigned by this app, not USB vendor/product IDs. They remain stable for identified devices during the mounted app session, including list reordering and reconnecting the same browser device ID. Refreshing the page starts a new numbering session; browser permission/privacy changes can also change device identifiers. Camera names and the complete selectable list may require camera permission first; see [browser device enumeration](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices).
+
+To test selection, connect two cameras, allow access, and press **Refresh camera list**. Select each camera and apply it, confirming the displayed view and Active camera indicator change. Disconnect the selected camera; a message should appear and the app should not silently choose another. Reconnect it and refresh the list; its app ID should be retained for the current session if the browser reports the same device ID.
 
 ## 5. Start the backend (optional)
 

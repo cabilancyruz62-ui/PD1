@@ -130,6 +130,9 @@ All paths below are relative to the project root (the folder containing this REA
 | `frontend/src/App.jsx` | AR workspace, panels, and optional backend status |
 | `frontend/src/style.css` | Glass panels, camera layers, and responsive layout |
 | `frontend/src/hooks/useCamera.js` | Camera permission, selection, stream lifecycle, and errors |
+| `frontend/src/lib/cameras.js` | Session camera IDs such as 0x001, preserving browser device IDs for selection |
+| `frontend/src/components/CameraSettings.jsx` | Detected-camera list, active indicator, and camera selection |
+| `frontend/tests/cameras.test.js` | Camera ID continuity, reconnect, and permission-hidden device tests |
 | `frontend/src/components/HandOverlay.jsx` | Worker lifecycle and aligned landmark drawing |
 | `frontend/src/workers/hands.js` | Local MediaPipe hand inference |
 | `frontend/src/components/ModelViewer.jsx` | Optional Three.js GLB viewer |

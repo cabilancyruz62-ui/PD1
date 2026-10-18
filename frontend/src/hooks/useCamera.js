@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createCameraRegistry, cameraOptionLabel } from '../lib/cameras';
 
 const errors = {
   NotAllowedError: 'Camera permission was denied. Allow camera access in your browser site settings.',
@@ -11,18 +12,27 @@ export function useCamera(videoRef) {
   const stream = useRef(null);
   const generation = useRef(0);
   const mounted = useRef(true);
+  const registry = useRef(null);
+  if (!registry.current) registry.current = createCameraRegistry();
+  const scan = useRef(0);
   const [devices, setDevices] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [activeDeviceId, setActiveDeviceId] = useState('');
   const [deviceId, setDeviceId] = useState('');
   const [status, setStatus] = useState('off');
   const [error, setError] = useState('');
   const [label, setLabel] = useState('No camera connected');
 
   const refreshDevices = useCallback(async () => {
+    const request = ++scan.current;
+    if (mounted.current) setRefreshing(true);
     try {
       const list = await navigator.mediaDevices?.enumerateDevices();
-      if (mounted.current) setDevices((list || []).filter(device => device.kind === 'videoinput'));
+      if (mounted.current && request === scan.current) setDevices(registry.current.list(list));
     } catch {
-      if (mounted.current) setError('Could not refresh cameras. Check browser permissions.');
+      if (mounted.current && request === scan.current) setError('Could not refresh cameras. Check browser permissions.');
+    } finally {
+      if (mounted.current && request === scan.current) setRefreshing(false);
     }
   }, []);
 
@@ -35,12 +45,13 @@ export function useCamera(videoRef) {
   const stop = useCallback(() => {
     generation.current += 1;
     release();
-    if (mounted.current) { setStatus('off'); setLabel('Camera stopped'); }
+    if (mounted.current) { setStatus('off'); setLabel('Camera stopped'); setActiveDeviceId(''); }
   }, [release]);
 
   const start = useCallback(async () => {
     const request = ++generation.current;
     release();
+    setActiveDeviceId('');
     setError('');
     setStatus('starting');
     try {
@@ -60,7 +71,10 @@ export function useCamera(videoRef) {
       await videoRef.current.play();
       if (!mounted.current || request !== generation.current) return;
       setStatus('on');
-      setLabel(track.label || 'Active camera');
+      const actualId = track.getSettings?.().deviceId || deviceId;
+      setActiveDeviceId(actualId);
+      const appId = registry.current.identify(actualId);
+      setLabel(appId ? cameraOptionLabel({ appId, label: track.label || 'Active camera' }) : track.label || 'Active camera');
       await refreshDevices();
     } catch (cause) {
       if (mounted.current && request === generation.current) {
@@ -77,10 +91,11 @@ export function useCamera(videoRef) {
     return () => {
       mounted.current = false;
       generation.current += 1;
+      scan.current += 1;
       release();
       navigator.mediaDevices?.removeEventListener('devicechange', refreshDevices);
     };
   }, [refreshDevices, release]);
 
-  return { devices, deviceId, setDeviceId, status, label, error, setError, start, stop, refreshDevices };
+  return { devices, deviceId, setDeviceId, activeDeviceId, refreshing, status, label, error, setError, start, stop, refreshDevices };
 }
