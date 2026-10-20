@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { Camera, HeartPulse, PawPrint, Settings, ClipboardCheck, X, Box, Maximize, Eye, ArrowUpRight, Radio, Activity } from 'lucide-react';
+import { Camera, HeartPulse, PawPrint, Settings, ClipboardCheck, X, Maximize, Eye, ArrowUpRight, Radio, Activity } from 'lucide-react';
 import { useCamera } from './hooks/useCamera';
 import { useAssessment } from './hooks/useAssessment';
 import { useMonitorSound } from './hooks/useMonitorSound';
@@ -21,7 +21,7 @@ import DummyOverlay, { defaultPlacement, DummyOverlayControls } from './componen
 
 import { getDummyPose } from './lib/dummyOverlay';
 const ModelViewer = lazy(() => import('./components/ModelViewer'));
-const tabs = [['patient', PawPrint, 'Patient Info'], ['vitals', HeartPulse, 'Vitals'], ['scenario', Activity, 'Scenario'], ['hardware', Radio, 'Hardware'], ['assessment', ClipboardCheck, 'Assessment'], ['model', Box, '3D Patient'], ['settings', Settings, 'Settings']];
+const tabs = [['patient', PawPrint, 'Patient Info'], ['vitals', HeartPulse, 'Vitals'], ['scenario', Activity, 'Scenario'], ['assessment', ClipboardCheck, 'Assessment'], ['settings', Settings, 'Settings']];
 
 function Toggle({ label, checked, onChange }) {
   return <label className="toggle-row"><span>{label}</span><input type="checkbox" checked={checked} onChange={e => onChange(e.target.checked)}/><span className="switch" aria-hidden="true"/></label>;
@@ -33,6 +33,7 @@ export default function App() {
   const [panel, setPanel] = useState(''), [overlays, setOverlays] = useState(true);
   const [mirrored, setMirrored] = useState(false), [modelVisible, setModelVisible] = useState(true);
   const [fullscreen, setFullscreen] = useState(false);
+  const [hardwareSettingsOpen, setHardwareSettingsOpen] = useState(false), [modelSettingsOpen, setModelSettingsOpen] = useState(false);
   const [placement, setPlacement] = useState({ ...defaultPlacement }), [previewDummy, setPreviewDummy] = useState(false);
   const dummyPose = getDummyPose(state);
   useEffect(() => { setPreviewDummy(false); }, [state?.session_id, state?.scenario_id]);
@@ -54,15 +55,17 @@ export default function App() {
     const result = await assessment.command(action, fields);
     if (!result) return null;
     if (action === 'select_mode') { setPanel('patient'); setOverlays(true); }
-    if (action === 'begin_injection') { setPanel('hardware'); setOverlays(true); }
+    if (action === 'begin_injection') { setPanel('scenario'); setOverlays(true); }
     if (action === 'start_scenario' || action === 'complete_injection' || action === 'complete_non_injectable_intervention') { setPanel(result.phase === 'evaluated' ? 'assessment' : 'vitals'); setOverlays(true); }
     if (action === 'end') { setSimulatedConnected(false); setPanel('assessment'); setOverlays(true); }
     return result;
   }
 
   useEffect(() => {
-    if (state?.phase === 'intervention_injection') { setPanel('hardware'); setOverlays(true); }
+    if (['injection', 'intervention_injection'].includes(state?.phase)) { setPanel('scenario'); setOverlays(true); }
   }, [state?.phase, state?.injection_stage_id]);
+
+  useEffect(() => { if (panel !== 'settings') { setPreviewDummy(false); setHardwareSettingsOpen(false); setModelSettingsOpen(false); } }, [panel]);
 
   useEffect(() => { const timer = setInterval(() => setNow(Date.now()), 500); return () => clearInterval(timer); }, []);
   useEffect(() => {
@@ -91,17 +94,15 @@ export default function App() {
       {!menu && <aside className="patient-chip"><span className="patient-avatar"><PawPrint size={20}/></span><span><strong>{patient.Name}<span>ASSIGNED PATIENT</span></strong><small>{patient.Breed} · {patient.Sex} · {patient.Weight}</small></span><span className="patient-condition">SIMULATED</span></aside>}
       {panel && <section className="panel" aria-label={tabs.find(t => t[0] === panel)?.[2]}><div className="panel-header"><div><span className="eyebrow">SIMULATION WORKSPACE</span><h2>{tabs.find(t => t[0] === panel)?.[2]}</h2></div><button className="icon-button" aria-label="Collapse panel" onClick={() => setPanel('')}><X size={18}/></button></div>
         {panel === 'patient' && (menu ? <p className="notice">Choose a mode to view the patient.</p> : <><span className="badge">ASSIGNED PATIENT · STUDENT {state.student}</span><div className="patient-heading"><span className="patient-avatar large"><PawPrint size={30}/></span><div><h3>Meet {patient.Name}</h3><p>Your fictional training patient</p></div></div><dl className="detail-list">{Object.entries(patient).filter(([key]) => key !== 'id').map(([name,value]) => <div key={name}><dt>{name === 'Condition' ? 'Baseline condition' : name}</dt><dd>{value}</dd></div>)}</dl><button className="secondary full-width" disabled={disabled || state.checklist.patient || state.phase === 'evaluated'} onClick={() => act('review')}>{state.checklist.patient ? 'Patient review recorded' : 'Confirm patient reviewed'}</button></>)}
-        {panel === 'vitals' && <><details className="demo-controls wire-settings"><summary>Optional wire activation settings</summary><VitalsControls {...wireControls}/></details><MonitorPanel state={state} values={values} active={monitorActive} sound={sound}/></>}
-        {panel === 'scenario' && <ScenarioPanel state={state} command={act} disabled={disabled}/>}
-        {panel === 'hardware' && <HardwarePanel state={state} command={act} disabled={disabled}/>}
+        {panel === 'vitals' && <><MonitorPanel state={state} values={values} active={monitorActive} sound={sound}/></>}
+        {panel === 'scenario' && <><div className="student-angle"><InjectionAngle state={state}/></div><ScenarioPanel state={state} command={act} disabled={disabled}/></>}
         {panel === 'assessment' && <AssessmentPanel key={state?.session_id || `menu-${state?.student}`} state={state} command={act} disabled={disabled}/>}
-        {panel === 'model' && <><DummyOverlayControls placement={placement} setPlacement={setPlacement} preview={previewDummy} setPreview={setPreviewDummy} pose={dummyPose}/><Toggle label="3D model visibility" checked={modelVisible} onChange={setModelVisible}/>{modelVisible && <Suspense fallback={<p className="notice">Loading 3D viewer…</p>}><ModelViewer/></Suspense>}<p className="notice">Model preview only. Camera alignment is manual.</p></>}
-        {panel === 'settings' && <><h3 className="settings-subtitle">Monitor sound</h3><button className="secondary full-width" aria-pressed={sound.enabled} onClick={sound.toggle}>{sound.enabled ? 'Mute heartbeat beep' : 'Enable heartbeat beep'}</button>{sound.error && <p className="notice" role="status">{sound.error}</p>}<h3 className="settings-subtitle sound-settings">Optional wire activation</h3><VitalsControls {...wireControls}/><CameraSettings camera={camera}/><h3 className="settings-subtitle">Overlay controls</h3><Toggle label="Mirror camera" checked={mirrored} onChange={setMirrored}/><Toggle label="AR overlays" checked={overlays} onChange={setOverlays}/><Toggle label="3D model visibility" checked={modelVisible} onChange={setModelVisible}/><button className="secondary full-width" onClick={toggleFullscreen}><Maximize size={16}/>{fullscreen ? 'Exit full screen' : 'Enter full screen'}</button><div className="connection-card"><Radio size={20}/><div><strong>{assessment.connected ? 'Backend online' : 'Backend offline'}</strong><small>Assessment and sensor connection</small></div></div><p className="notice">Choose the input source in Hardware before starting.</p></>}
+        {panel === 'settings' && <><h3 className="settings-subtitle">Monitor sound</h3><button className="secondary full-width" aria-pressed={sound.enabled} onClick={sound.toggle}>{sound.enabled ? 'Mute heartbeat beep' : 'Enable heartbeat beep'}</button>{sound.error && <p className="notice" role="status">{sound.error}</p>}<CameraSettings camera={camera}/><h3 className="settings-subtitle">Overlay controls</h3><Toggle label="Mirror camera" checked={mirrored} onChange={setMirrored}/><Toggle label="AR overlays" checked={overlays} onChange={setOverlays}/><button className="secondary full-width" onClick={toggleFullscreen}><Maximize size={16}/>{fullscreen ? 'Exit full screen' : 'Enter full screen'}</button><div className="connection-card"><Radio size={20}/><div><strong>{assessment.connected ? 'Backend online' : 'Backend offline'}</strong><small>Assessment and sensor connection</small></div></div><details className="settings-section" onToggle={e => setHardwareSettingsOpen(e.currentTarget.open)}><summary>Hardware</summary>{hardwareSettingsOpen && <><HardwarePanel state={state} command={act} disabled={disabled}/><h3 className="settings-subtitle">Wire activation</h3><VitalsControls {...wireControls}/></>}</details><details className="settings-section" onToggle={e => { setModelSettingsOpen(e.currentTarget.open); if (!e.currentTarget.open) setPreviewDummy(false); }}><summary>3D Patient</summary>{modelSettingsOpen && <><DummyOverlayControls placement={placement} setPlacement={setPlacement} preview={previewDummy} setPreview={setPreviewDummy} pose={dummyPose}/><Toggle label="3D model visibility" checked={modelVisible} onChange={setModelVisible}/>{modelVisible && <Suspense fallback={<p className="notice">Loading 3D viewer…</p>}><ModelViewer/></Suspense>}<p className="notice">Model preview only. Camera alignment is manual.</p></>}</details></>}
       </section>}
     </>}
-    {notice && <InterventionNotice key={notice.id} notice={notice} state={state} onDismiss={() => setDismissedNotice(notice.id)} onContinue={() => { setDismissedNotice(notice.id); setPanel(state.phase === 'intervention_injection' ? 'hardware' : state.phase === 'intervention_review' || state.phase === 'intervention_non_injectable' ? 'scenario' : 'assessment'); setOverlays(true); }}/>}
+    {notice && <InterventionNotice key={notice.id} notice={notice} state={state} onDismiss={() => setDismissedNotice(notice.id)} onContinue={() => { setDismissedNotice(notice.id); setPanel(state.phase === 'intervention_injection' ? 'scenario' : state.phase === 'intervention_review' || state.phase === 'intervention_non_injectable' ? 'scenario' : 'assessment'); setOverlays(true); }}/>}
     {(camera.error || assessment.error) && <div className="error" role="alert"><span>{[camera.error, assessment.error].filter(Boolean).join(' ')}</span><button className="icon-button" aria-label="Dismiss error" onClick={() => { camera.setError(''); assessment.setError(''); }}><X size={18}/></button></div>}
-    <footer><span><span className={`dot ${cameraOn ? 'live-dot' : ''}`}/>{cameraOn ? camera.label : 'CAMERA REQUIRED'}</span><span>{assessment.connected ? 'Backend online' : 'Backend offline'}<span className="footer-divider">/</span>{state?.input_source === 'esp32' ? state.hardware.esp32_connected ? 'ESP32 connected' : 'ESP32 disconnected' : 'Simulated hardware'}</span></footer>
+    <footer><span><span className={`dot ${cameraOn ? 'live-dot' : ''}`}/>{cameraOn ? 'Camera connected' : 'Camera required'}</span><span>{assessment.connected ? 'Backend online' : 'Backend offline'}<span className="footer-divider">/</span>{state?.input_source === 'esp32' ? state.hardware.esp32_connected ? 'ESP32 connected' : 'ESP32 disconnected' : 'Simulated hardware'}</span></footer>
     </div>
     {!cameraOn && <section className="camera-required-screen" role="dialog" aria-modal="true" aria-labelledby="camera-required-title"><div className="camera-required-card"><Camera size={32}/><h1 id="camera-required-title">{camera.status === 'starting' ? 'Connecting to your camera' : 'Camera required'}</h1><p>Allow camera access to continue.</p>{camera.error && <p className="notice" role="alert">{camera.error}</p>}<CameraSettings camera={camera}/>{state?.mode && <p className="notice">Reconnect to continue. Assessment timers are still running.</p>}</div></section>}
   </main>;

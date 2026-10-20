@@ -77,10 +77,10 @@ Read **[the full two-mode guide](TWO_MODES.md)** for step-by-step tests, message
 For a quick check:
 
 1. Choose Option 1, review the patient, and select a complication in Scenario.
-2. Begin Injection, then choose Hardware → Valid angle · 22°.
+2. Begin Injection, then choose Settings > Hardware → Valid angle · 22°.
 3. Press Complete Injection within five seconds of that sample. The complication starts.
 4. Record the complication in Assessment → Checklist.
-5. In Hardware, try Incorrect RFID tag, then Correct RFID tag. **Drug Verified** unlocks intervention injection and automatically opens the angle panel. Record a **new** valid/invalid angle, then press **Complete Intervention Injection**. RFID selection alone does not finish the assessment.
+5. In Settings > Hardware, try Incorrect RFID tag, then Correct RFID tag. **Drug Verified** unlocks intervention injection and automatically opens the angle panel. Record a **new** valid/invalid angle, then press **Complete Intervention Injection**. RFID selection alone does not finish the assessment.
 6. Review both angle results and timing in Feedback. End Assessment, choose Option 2 for the next patient, then Start Scenario. Option 2 skips the initial anesthesia injection, but after Drug Verified it still requires the shared intervention angle check and completion confirmation in the simulated injectable exercise.
 
 Only one complication is active. There is no automatic complication cycle. Drug 1–3, angle rules, and scoring are demonstration placeholders awaiting licensed veterinary review.
@@ -97,11 +97,11 @@ Version 3 removes hand tracking. Syringe angle comes from calibrated ESP32 senso
 
 Click **Enable beep** in Vitals or **Enable heartbeat beep** in Settings. Sound is off by default and follows simulated HR while the monitor is active. Browser audio needs a user click. Hiding the tab or pausing monitor display stops beeps.
 
-For the dog viewer, place the Blender export at `frontend/public/models/canine.glb` and open 3D Patient. Without it the placeholder is expected. Drag to rotate and scroll to zoom. Physical-dummy anchoring is not yet implemented.
+For the dog viewer, place the Blender export at `frontend/public/models/canine.glb` and open Settings > 3D Patient. Without it the placeholder is expected. Drag to rotate and scroll to zoom. Physical-dummy anchoring is not yet implemented.
 
 ### Version 3 dummy placeholder
 
-Open **3D Patient**, enable **Preview for alignment**, and use position, size, rotation, and opacity sliders to align the procedural dog with a stationary dummy. The required camera starts automatically. No GLB file is needed for this placeholder. Alignment settings last for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
+Open **Settings > 3D Patient**, enable **Preview for alignment**, and use position, size, rotation, and opacity sliders to align the procedural dog with a stationary dummy. The required camera starts automatically. Hardware and 3D Patient configuration are collapsed sections in Settings, rather than student navigation tabs. No GLB file is needed for this placeholder. Alignment settings last for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
 
 The placeholder appears when an assessment mode is selected. Option 1 starts standing and transitions to lying down after confirmed initial anesthesia injection. Option 2 starts lying down. Correct RFID verification alone does not make the dog stand: correct drug verification and completed intervention are both required. It then transitions back to standing for results and hides on End Assessment. Alignment preview is cleared when a new session or scenario begins. **AR overlays** and **3D model visibility** also control this placeholder. Reduced-motion preferences switch poses immediately instead of animating the transition. This is manual screen alignment, not ArUco, ORB, optical flow, or clinical breathing simulation. The separate GLB viewer remains available below the placement controls.
 

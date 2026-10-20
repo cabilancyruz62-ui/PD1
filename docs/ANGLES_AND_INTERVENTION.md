@@ -13,17 +13,17 @@ This update supersedes the original RFID-only completion flow. Start both server
 | Intervention angle | New reading, separate from the initial angle | Same shared module and target |
 | Completion | Explicit confirmation, never inferred from angle/RFID | Same explicit confirmation |
 
-Incorrect and unknown tags stay at the complication/RFID stage. Correct RFID displays **Drug Verified**, records the selection/time, and unlocks `intervention_injection`. The score remains provisional. The Hardware angle panel opens automatically without restarting the webcam. On a desktop-sized window, a separate live angle card also appears over the camera; on narrower layouts the Hardware panel contains that card.
+Incorrect and unknown tags stay at the complication/RFID stage. Correct RFID displays **Drug Verified**, records the selection/time, and unlocks `intervention_injection`. The score remains provisional. The Scenario panel opens automatically with student angle feedback, without restarting the webcam. Hardware setup and testing controls are available only in Settings > Hardware. On a desktop-sized window, a separate live angle card also appears over the camera; on narrower layouts the Scenario panel contains that card.
 
 An acceptable angle alone does not complete either injection. A fresh out-of-range angle can still be manually confirmed: it is recorded as a failed angle criterion, rather than forcing every student to achieve a passing result before ending the exercise.
 
 ## Test Option 1 without hardware
 
-1. Select Option 1 and a complication during preparation. Keep Hardware input source **SIMULATED**.
-2. Begin Initial Injection. Click **Valid angle · 22°** (or Invalid angle · 45°) in Hardware.
+1. Select Option 1 and a complication during preparation. Keep Settings > Hardware input source **SIMULATED**.
+2. Begin Initial Injection. Click **Valid angle · 22°** (or Invalid angle · 45°) in Settings > Hardware.
 3. Within five seconds, press **Complete Initial Injection**. The initial angle/result is frozen and the complication starts.
 4. Record recognition in Assessment. Try an incorrect RFID first if desired; it must not unlock injection.
-5. Submit Correct RFID tag. The Drug Verified popup appears; continue to the automatically opened Hardware panel.
+5. Submit Correct RFID tag. The Drug Verified popup appears; continue to the automatically opened Scenario panel. Open Settings > Hardware for simulated test inputs.
 6. Confirm the live angle initially shows no sample for this new stage. The initial angle cannot be reused.
 7. Generate a new angle and press **Complete Intervention Injection**. Only now are final results available.
 8. In Feedback, check initial angle, intervention angle, both completion statuses, first RFID response, intervention duration, total time to intervention completion, and score.
