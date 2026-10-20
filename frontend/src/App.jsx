@@ -1,12 +1,11 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
-import { Camera, HeartPulse, PawPrint, Settings, Hand, ClipboardCheck, X, Box, Maximize, Eye, ArrowUpRight, Radio, Activity } from 'lucide-react';
+import { Camera, HeartPulse, PawPrint, Settings, ClipboardCheck, X, Box, Maximize, Eye, ArrowUpRight, Radio, Activity } from 'lucide-react';
 import { useCamera } from './hooks/useCamera';
 import { useAssessment } from './hooks/useAssessment';
 import { useMonitorSound } from './hooks/useMonitorSound';
 import { patients } from './data/patients';
 import { getVitalsState } from './lib/vitals';
 import { phaseNames, scenarioName, formatSeconds } from './lib/assessmentView';
-import HandOverlay from './components/HandOverlay';
 import VitalsControls from './components/VitalsControls';
 import CameraSettings from './components/CameraSettings';
 import SimulationControls from './components/SimulationControls';
@@ -18,8 +17,11 @@ import HardwarePanel from './components/HardwarePanel';
 import InjectionAngle from './components/InjectionAngle';
 import InterventionNotice from './components/InterventionNotice';
 
+import DummyOverlay, { defaultPlacement, DummyOverlayControls } from './components/DummyOverlay';
+
+import { getDummyPose } from './lib/dummyOverlay';
 const ModelViewer = lazy(() => import('./components/ModelViewer'));
-const tabs = [['patient', PawPrint, 'Patient Info'], ['vitals', HeartPulse, 'Vitals'], ['scenario', Activity, 'Scenario'], ['hardware', Radio, 'Hardware'], ['assessment', ClipboardCheck, 'Assessment'], ['tracking', Hand, 'Tracking'], ['model', Box, '3D Patient'], ['settings', Settings, 'Settings']];
+const tabs = [['patient', PawPrint, 'Patient Info'], ['vitals', HeartPulse, 'Vitals'], ['scenario', Activity, 'Scenario'], ['hardware', Radio, 'Hardware'], ['assessment', ClipboardCheck, 'Assessment'], ['model', Box, '3D Patient'], ['settings', Settings, 'Settings']];
 
 function Toggle({ label, checked, onChange }) {
   return <label className="toggle-row"><span>{label}</span><input type="checkbox" checked={checked} onChange={e => onChange(e.target.checked)}/><span className="switch" aria-hidden="true"/></label>;
@@ -29,8 +31,11 @@ export default function App() {
   const video = useRef(null), camera = useCamera(video), assessment = useAssessment();
   const state = assessment.state;
   const [panel, setPanel] = useState(''), [overlays, setOverlays] = useState(true);
-  const [tracking, setTracking] = useState(false), [mirrored, setMirrored] = useState(false), [modelVisible, setModelVisible] = useState(true);
-  const [handStatus, setHandStatus] = useState('Off'), [fullscreen, setFullscreen] = useState(false);
+  const [mirrored, setMirrored] = useState(false), [modelVisible, setModelVisible] = useState(true);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [placement, setPlacement] = useState({ ...defaultPlacement }), [previewDummy, setPreviewDummy] = useState(false);
+  const dummyPose = getDummyPose(state);
+  useEffect(() => { setPreviewDummy(false); }, [state?.session_id, state?.scenario_id]);
   const [triggerEnabled, setTriggerEnabled] = useState(false), [wireSource, setWireSource] = useState('simulation'), [simulatedConnected, setSimulatedConnected] = useState(false);
   const [now, setNow] = useState(Date.now), [dismissedNotice, setDismissedNotice] = useState(null);
   const patient = patients.find(item => item.id === state?.patient_id) || patients[0];
@@ -72,7 +77,7 @@ export default function App() {
 
   return <main className={`app ${cameraOn ? 'is-live' : ''} ${menu ? 'menu-workspace' : ''}`}>
     <video ref={video} className={`camera-feed ${mirrored ? 'mirrored' : ''}`} playsInline muted autoPlay aria-label="Live real-world camera"/>
-    <HandOverlay videoRef={video} enabled={cameraOn && tracking && overlays} mirrored={mirrored} onStatus={setHandStatus}/>
+    {overlays && modelVisible && (dummyPose || previewDummy) && <Suspense fallback={null}><DummyOverlay key={state?.session_id || 'preview'} placement={placement} pose={dummyPose || 'standing'}/></Suspense>}
     <div className="edge-shade" aria-hidden="true"/>
     <header className="header"><a className="brand" href="#" onClick={e => { e.preventDefault(); openPanel('patient'); }} aria-label="Open patient information"><span className="brand-mark"><PawPrint size={24}/></span><span><strong>VET<span className="mint-text">/</span>AR</strong><small>ANESTHESIA SIMULATION LAB</small></span></a><div className="session-label"><span className="tiny-label">TWO-MODE ASSESSMENT STATION</span><span>Canine procedure & intervention <ArrowUpRight size={13}/></span></div><div className={`status-pill ${cameraOn ? 'live' : ''}`} role="status"><span className="dot"/>{cameraOn ? 'LIVE CAMERA' : camera.status === 'starting' ? 'CONNECTING' : 'CAMERA OFF'}</div></header>
     <nav className="navigation" aria-label="Workspace panels">{tabs.map(([id,Icon,label]) => <button key={id} className={panel === id && overlays ? 'nav-active' : ''} onClick={() => openPanel(id)} aria-pressed={panel === id && overlays}><Icon size={17}/><span>{label}</span></button>)}<div className="nav-spacer"/><button title="Toggle AR overlays" aria-label="Toggle AR overlays" aria-pressed={overlays} onClick={() => setOverlays(x => !x)}><Eye size={18}/></button><button title="Toggle full screen" aria-label="Toggle full screen" onClick={toggleFullscreen}><Maximize size={18}/></button></nav>
@@ -89,13 +94,12 @@ export default function App() {
         {panel === 'scenario' && <ScenarioPanel state={state} command={act} disabled={disabled}/>}
         {panel === 'hardware' && <HardwarePanel state={state} command={act} disabled={disabled}/>}
         {panel === 'assessment' && <AssessmentPanel key={state?.session_id || `menu-${state?.student}`} state={state} command={act} disabled={disabled}/>}
-        {panel === 'tracking' && <><p className="notice">Pretrained MediaPipe hand tracking runs locally in a browser worker, up to two hands and 21 landmarks per hand.</p><Toggle label="Hand skeleton overlay" checked={tracking} onChange={setTracking}/><div className="connection-card"><Hand size={21}/><div><strong>{handStatus}</strong><small>{cameraOn ? 'Camera is ready' : 'Start the camera in Settings'}</small></div></div><p className="notice">Hands visualize motion only; they do not measure syringe angle or injection completion. Internet is needed for the model/runtime download.</p></>}
-        {panel === 'model' && <><Toggle label="3D model visibility" checked={modelVisible} onChange={setModelVisible}/>{modelVisible && <Suspense fallback={<p className="notice">Loading 3D viewer…</p>}><ModelViewer/></Suspense>}<p className="notice">Optional GLB viewer. Physical dummy anchoring is not implemented yet.</p></>}
-        {panel === 'settings' && <><h3 className="settings-subtitle">Monitor sound</h3><button className="secondary full-width" aria-pressed={sound.enabled} onClick={sound.toggle}>{sound.enabled ? 'Mute heartbeat beep' : 'Enable heartbeat beep'}</button>{sound.error && <p className="notice" role="status">{sound.error}</p>}<h3 className="settings-subtitle sound-settings">Optional wire activation</h3><VitalsControls {...wireControls}/><CameraSettings camera={camera}/><h3 className="settings-subtitle">Overlay controls</h3><Toggle label="Mirror camera & skeleton" checked={mirrored} onChange={setMirrored}/><Toggle label="Hand skeleton overlay" checked={tracking} onChange={setTracking}/><Toggle label="AR overlays" checked={overlays} onChange={setOverlays}/><Toggle label="3D model visibility" checked={modelVisible} onChange={setModelVisible}/><button className="secondary full-width" onClick={toggleFullscreen}><Maximize size={16}/>{fullscreen ? 'Exit full screen' : 'Enter full screen'}</button><div className="connection-card"><Radio size={20}/><div><strong>{assessment.connected ? 'Backend online' : 'Backend offline'}</strong><small>Assessment state / RFID / timing are managed by FastAPI.</small></div></div><p className="notice">Use Hardware to choose simulated or ESP32 input before starting a procedure. Calibration transforms and real interventions require validation.</p></>}
+        {panel === 'model' && <><DummyOverlayControls placement={placement} setPlacement={setPlacement} preview={previewDummy} setPreview={setPreviewDummy} pose={dummyPose}/><Toggle label="3D model visibility" checked={modelVisible} onChange={setModelVisible}/>{modelVisible && <Suspense fallback={<p className="notice">Loading 3D viewer…</p>}><ModelViewer/></Suspense>}<p className="notice">The GLB viewer above is separate from the camera placeholder. Automatic visual tracking is not implemented yet.</p></>}
+        {panel === 'settings' && <><h3 className="settings-subtitle">Monitor sound</h3><button className="secondary full-width" aria-pressed={sound.enabled} onClick={sound.toggle}>{sound.enabled ? 'Mute heartbeat beep' : 'Enable heartbeat beep'}</button>{sound.error && <p className="notice" role="status">{sound.error}</p>}<h3 className="settings-subtitle sound-settings">Optional wire activation</h3><VitalsControls {...wireControls}/><CameraSettings camera={camera}/><h3 className="settings-subtitle">Overlay controls</h3><Toggle label="Mirror camera" checked={mirrored} onChange={setMirrored}/><Toggle label="AR overlays" checked={overlays} onChange={setOverlays}/><Toggle label="3D model visibility" checked={modelVisible} onChange={setModelVisible}/><button className="secondary full-width" onClick={toggleFullscreen}><Maximize size={16}/>{fullscreen ? 'Exit full screen' : 'Enter full screen'}</button><div className="connection-card"><Radio size={20}/><div><strong>{assessment.connected ? 'Backend online' : 'Backend offline'}</strong><small>Assessment state / RFID / timing are managed by FastAPI.</small></div></div><p className="notice">Use Hardware to choose simulated or ESP32 input before starting a procedure. Calibration transforms and real interventions require validation.</p></>}
       </section>}
     </>}
     {notice && <InterventionNotice key={notice.id} notice={notice} state={state} onDismiss={() => setDismissedNotice(notice.id)} onContinue={() => { setDismissedNotice(notice.id); setPanel(state.phase === 'intervention_injection' ? 'hardware' : state.phase === 'intervention_review' || state.phase === 'intervention_non_injectable' ? 'scenario' : 'assessment'); setOverlays(true); }}/>}
     {(camera.error || assessment.error) && <div className="error" role="alert"><span>{[camera.error, assessment.error].filter(Boolean).join(' ')}</span><button className="icon-button" aria-label="Dismiss error" onClick={() => { camera.setError(''); assessment.setError(''); }}><X size={18}/></button></div>}
-    <footer><span><span className={`dot ${cameraOn ? 'live-dot' : ''}`}/>{cameraOn ? camera.label : 'CAMERA STANDBY'}</span><span className="footer-tracking"><Hand size={13}/> {handStatus}</span><span>{assessment.connected ? 'Backend online' : 'Backend offline'}<span className="footer-divider">/</span>{state?.input_source === 'esp32' ? state.hardware.esp32_connected ? 'ESP32 connected' : 'ESP32 disconnected' : 'Simulated hardware'}</span>{cameraOn && <button className="text-button" onClick={camera.stop}>Stop Camera</button>}</footer>
+    <footer><span><span className={`dot ${cameraOn ? 'live-dot' : ''}`}/>{cameraOn ? camera.label : 'CAMERA STANDBY'}</span><span>{assessment.connected ? 'Backend online' : 'Backend offline'}<span className="footer-divider">/</span>{state?.input_source === 'esp32' ? state.hardware.esp32_connected ? 'ESP32 connected' : 'ESP32 disconnected' : 'Simulated hardware'}</span>{cameraOn && <button className="text-button" onClick={camera.stop}>Stop Camera</button>}</footer>
   </main>;
 }

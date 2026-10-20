@@ -2,7 +2,7 @@
 
 Repository: [gabrieltaala-eng/PD1](https://github.com/gabrieltaala-eng/PD1).
 
-A web-based **Anesthesia Assessment Simulation System for Veterinary Students**. A full-window webcam sits behind AR-style controls, pretrained hand tracking, simulated patient monitoring, and two assessment modes. This is a capstone prototype; interventions, angle targets, and scoring are not clinically validated.
+A web-based **Anesthesia Assessment Simulation System for Veterinary Students**. A full-window webcam sits behind AR-style controls, simulated patient monitoring, and two assessment modes. This is a capstone prototype; interventions, angle targets, and scoring are not clinically validated.
 
 ## Groupmates: start here
 
@@ -55,12 +55,11 @@ One of 10 fictional patients is assigned and locked for the current student. **E
 
 - Full-window webcam, USB/built-in selection, start/stop, mirror and full-screen controls.
 - Camera IDs such as `0x001` and `0x002`, active-device indicator, refresh and disconnect handling. These are app labels, not USB hardware IDs.
-- Local MediaPipe hand skeleton: two hands, 21 landmarks per hand. Internet is currently needed for model/WASM downloads; camera frames never go to Python.
 - Animated simulated ECG, respiratory, pleth, MAP, CO₂, and temperature traces; optional locally generated heartbeat beep.
 - Optional wire-connection gate for monitor display. It is separate from injection confirmation and RFID input. See [wire controls](docs/patients-and-wire.md).
 - Optional GLB viewer: place `canine.glb` in `frontend/public/models/`; drag to rotate and scroll to zoom. Missing models show a placeholder. Blender sources can go in `AR model/`.
 
-The interface is a screen overlay, not a spatially anchored model on the dummy. Marker/camera calibration, validated sensor transforms, real firmware, and licensed veterinary review remain future integration work. MPU6050 orientations and hand landmarks do not prove injection completion. No Electron conversion has been made.
+The interface is a screen overlay, not a spatially anchored model on the dummy. Marker/camera calibration, validated sensor transforms, real firmware, and licensed veterinary review remain future integration work. MPU6050 orientations do not prove injection completion. No Electron conversion has been made.
 
 ## Validation commands
 
@@ -76,7 +75,7 @@ This runs wire, assessment, persistence, and actual HTTP/WebSocket transport tes
 
 ```text
 Veterinary-Anesthesia-AR/
-├── frontend/            # React, webcam, hand tracking, UI and waveforms
+├── frontend/            # React, webcam, UI and waveforms
 ├── backend/             # FastAPI, WebSocket, assessment and hardware events
 │   ├── config/          # Placeholder scenario / UID / scoring configuration
 │   └── data/            # Local generated assessment records (not committed)

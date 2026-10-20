@@ -8,7 +8,7 @@ This guide is for groupmates downloading [gabrieltaala-eng/PD1](https://github.c
 | --- | --- |
 | Node.js 22 or newer, including npm | React frontend |
 | Python 3.10 or newer | FastAPI assessment backend |
-| A recent Chrome or Edge browser | Web interface, camera, hand tracking and sound |
+| A recent Chrome or Edge browser | Web interface, camera and sound |
 | Git (optional) | Clone and update the repository; Download ZIP also works |
 
 Close/reopen your terminal after installing software. In PowerShell:
@@ -19,7 +19,7 @@ npm.cmd --version
 py --version
 ```
 
-These print installed versions. If `py` is unavailable but `python --version` works, replace `py` with `python` when creating the environment below. Internet is needed for dependency installation and the current hand-tracker model/runtime downloads. Inference itself runs locally, without sending camera frames to an API.
+These print installed versions. If `py` is unavailable but `python --version` works, replace `py` with `python` when creating the environment below. Internet is needed for dependency installation. Camera frames stay in the browser.
 
 ## 2. Download the repository
 
@@ -68,7 +68,7 @@ npm.cmd run dev
 
 Open the printed **Local** URL, usually **http://127.0.0.1:5173**. If a port is occupied, use the actual URL printed by Vite. Do not open `index.html` directly or use the GitHub repository page as the running application.
 
-The two assessment cards should be selectable. If they are disabled, start/check FastAPI on port 8000. Camera and hand tracking can run without FastAPI, but assessment, RFID matching, timing, and scoring require it.
+The two assessment cards should be selectable. If they are disabled, start/check FastAPI on port 8000. The camera can run without FastAPI, but assessment, RFID matching, timing, and scoring require it.
 
 ## 5. Test both modes without hardware
 
@@ -87,17 +87,23 @@ Only one complication is active. There is no automatic complication cycle. Drug 
 
 See [the updated angle/injection guide](ANGLES_AND_INTERVENTION.md) for stage IDs, smoothing, quaternion calibration, and route approval. Configured non-injectable interventions do not require an injection; real unapproved injectable routes wait for veterinary review.
 
-## 6. Camera, hands, sound, and dog model
+## 6. Camera, sound, and dog model
 
 Open **Settings → Camera selection**, press Start Camera and allow permission. Choose your webcam and Apply / Restart. Examples such as **0x001 — Integrated Webcam** and **0x002 — USB Camera** are session labels assigned by the app, not USB hardware IDs. Camera names may only appear after browser permission. The same identified camera keeps its label during a mounted app session, including reordering/reconnection; page reload starts a new numbering session.
 
 Camera access needs localhost or HTTPS. The app requests no microphone access. Switching panels or displaying RFID feedback keeps the video mounted. Use Refresh camera list after connecting another webcam. A disconnected selection does not silently switch to a different camera.
 
-Enable **Hand skeleton overlay** in Tracking or Settings, with internet available for the model download. It tracks hands only; syringe angle comes from calibrated hardware or explicit simulation controls.
+Version 3 removes hand tracking. Syringe angle comes from calibrated ESP32 sensor readings or explicit simulation controls for testing.
 
 Click **Enable beep** in Vitals or **Enable heartbeat beep** in Settings. Sound is off by default and follows simulated HR while the monitor is active. Browser audio needs a user click. Hiding the tab or pausing monitor display stops beeps.
 
 For the dog viewer, place the Blender export at `frontend/public/models/canine.glb` and open 3D Patient. Without it the placeholder is expected. Drag to rotate and scroll to zoom. Physical-dummy anchoring is not yet implemented.
+
+### Version 3 dummy placeholder
+
+Open **3D Patient**, enable **Preview for alignment**, and use position, size, rotation, and opacity sliders to align the procedural dog with a stationary dummy. Start the camera in Settings if desired. No GLB file is needed for this placeholder. Alignment settings last for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
+
+The placeholder appears when an assessment mode is selected. Option 1 starts standing and transitions to lying down after confirmed initial anesthesia injection. Option 2 starts lying down. Correct RFID verification alone does not make the dog stand: correct drug verification and completed intervention are both required. It then transitions back to standing for results and hides on End Assessment. Alignment preview is cleared when a new session or scenario begins. **AR overlays** and **3D model visibility** also control this placeholder. Reduced-motion preferences switch poses immediately instead of animating the transition. This is manual screen alignment, not ArUco, ORB, optical flow, or clinical breathing simulation. The separate GLB viewer remains available below the placement controls.
 
 ## 7. Optional wire gate
 
@@ -138,7 +144,6 @@ For Git updates, save/commit your own work, stop the servers, and run `git pull`
 | Assessment cards disabled / backend offline | Check the FastAPI terminal, port 8000, and frontend `/api` proxy. The assessment needs both servers. |
 | Port 8000 occupied | Stop the other process only if it belongs to you. Changing this port also requires updating the Vite proxy target. |
 | Camera unavailable / denied | Allow browser/Windows camera access, close other webcam apps, reconnect the selected device, and refresh the list. |
-| Hand tracker cannot load | Check connectivity to Google Storage and jsDelivr; disable/re-enable tracking. FastAPI is not used for hand inference. |
 | Complete Injection rejected | Begin the initial injection (Option 1) or verify the RFID drug to unlock intervention injection (both options). Supply a new fresh calibrated sample for that stage. Samples expire after five seconds and cannot be reused across stages. |
 | Correct tag test ignored | Start the scenario, ensure it is active, and reconnect simulated sensors if disconnected. Allow 1.5 seconds for same-tag debounce. |
 | Real ESP32 scan rejected | Check current `session_id`, status heartbeat, input source, UID registry, and event schema in the two-mode guide. |

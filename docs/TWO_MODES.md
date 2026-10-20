@@ -2,7 +2,7 @@
 
 Both modes now require intervention injection after correct drug verification when the configured route is injectable. See [Angles and intervention workflow](ANGLES_AND_INTERVENTION.md) for calibration, stage tokens, route approval, and the shared angle module.
 
-This version extends the existing camera/hand-tracking application. It uses **React + Vite** for the interface and **FastAPI + WebSocket** for the assessment state. Both servers must run for assessment; no physical sensors are required in simulation mode. No Electron code is included.
+This version extends the existing camera application. It uses **React + Vite** for the interface and **FastAPI + WebSocket** for the assessment state. Both servers must run for assessment; no physical sensors are required in simulation mode. No Electron code is included.
 
 ## 1. Start both servers (Windows PowerShell)
 
@@ -27,7 +27,7 @@ npm.cmd run dev
 
 `cd` selects React. `npm.cmd ci` installs the locked frontend packages; skip it on later launches unless dependencies changed. `npm.cmd run dev` starts Vite. Open its printed **Local** URL, usually `http://127.0.0.1:5173`. Keep both terminals running. Press Ctrl+C in each to stop the servers.
 
-The main menu has two assessment cards. If they are disabled, check the backend connection. Camera selection, pretrained hand tracking, and the optional GLB viewer remain independent browser features; open Settings to start/select a camera. Camera frames never go to FastAPI.
+The main menu has two assessment cards. If they are disabled, check the backend connection. Camera selection and the optional GLB viewer remain independent browser features; open Settings to start/select a camera. Camera frames never go to FastAPI.
 
 ## 2. Shared setup
 
@@ -194,6 +194,6 @@ All paths are relative to the repository root:
 | `frontend/vite.config.js` | HTTP/WebSocket development and preview proxy |
 | `frontend/tests/assessment.test.js` | Checklist and monitor view checks |
 
-The previous browser-only simulation reducer and auto-cycling tests were replaced by backend assessment rules and their tests. Existing camera IDs, hand tracking, optional wire gate, monitor beep, and GLB support are retained.
+The previous browser-only simulation reducer and auto-cycling tests were replaced by backend assessment rules and their tests. Existing camera IDs, optional wire gate, monitor beep, and GLB support are retained.
 
 Implementation references: [FastAPI WebSockets](https://fastapi.tiangolo.com/advanced/websockets/) and [Uvicorn WebSocket installation](https://uvicorn.dev/installation/).

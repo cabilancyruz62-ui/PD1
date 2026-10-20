@@ -11,4 +11,4 @@ The browser-only, automatically cycling demo has been replaced by **two backend-
 - End Assessment saves the report locally and assigns a different patient for the next student.
 - Refreshing the browser reconnects to backend state. Restarting the backend interrupts unfinished sessions and retains records in SQLite.
 
-Both frontend and backend are required for the assessment, with no physical hardware required in simulation mode. See [Windows setup](RUNNING.md) and [optional wire gate](patients-and-wire.md). Camera, hand tracking, monitor beeps, and the optional GLB viewer remain supported. No clinical validation or Electron packaging is claimed.
+Both frontend and backend are required for the assessment, with no physical hardware required in simulation mode. See [Windows setup](RUNNING.md) and [optional wire gate](patients-and-wire.md). Camera, monitor beeps, and the optional GLB viewer remain supported. No clinical validation or Electron packaging is claimed.
