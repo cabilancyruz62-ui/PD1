@@ -68,7 +68,7 @@ npm.cmd run dev
 
 Open the printed **Local** URL, usually **http://127.0.0.1:5173**. If a port is occupied, use the actual URL printed by Vite. Do not open `index.html` directly or use the GitHub repository page as the running application.
 
-The two assessment cards should be selectable. If they are disabled, start/check FastAPI on port 8000. The camera can run without FastAPI, but assessment, RFID matching, timing, and scoring require it.
+Allow the automatically requested browser camera permission first. A live camera is mandatory in v4; assessment controls remain blocked until the feed is ready. Once connected, the two assessment cards should be selectable. If they are disabled, start/check FastAPI on port 8000. Assessment, RFID matching, timing, and scoring require the backend.
 
 ## 5. Test both modes without hardware
 
@@ -89,7 +89,7 @@ See [the updated angle/injection guide](ANGLES_AND_INTERVENTION.md) for stage ID
 
 ## 6. Camera, sound, and dog model
 
-Open **Settings → Camera selection**, press Start Camera and allow permission. Choose your webcam and Apply / Restart. Examples such as **0x001 — Integrated Webcam** and **0x002 — USB Camera** are session labels assigned by the app, not USB hardware IDs. Camera names may only appear after browser permission. The same identified camera keeps its label during a mounted app session, including reordering/reconnection; page reload starts a new numbering session.
+Version 4 requests camera access automatically when the app opens. Allow the browser permission to enter the assessment. There are no camera on/off controls. Select a camera on the connection screen or in Settings to switch automatically. If the camera is denied or disconnected, restore permission or reconnect the webcam and choose Retry camera connection. Assessment controls remain blocked until the feed is ready. Existing backend timers and incoming hardware events continue during interruptions. Camera IDs such as 0x001 and 0x002 are app labels, not USB hardware IDs.
 
 Camera access needs localhost or HTTPS. The app requests no microphone access. Switching panels or displaying RFID feedback keeps the video mounted. Use Refresh camera list after connecting another webcam. A disconnected selection does not silently switch to a different camera.
 
@@ -101,7 +101,7 @@ For the dog viewer, place the Blender export at `frontend/public/models/canine.g
 
 ### Version 3 dummy placeholder
 
-Open **3D Patient**, enable **Preview for alignment**, and use position, size, rotation, and opacity sliders to align the procedural dog with a stationary dummy. Start the camera in Settings if desired. No GLB file is needed for this placeholder. Alignment settings last for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
+Open **3D Patient**, enable **Preview for alignment**, and use position, size, rotation, and opacity sliders to align the procedural dog with a stationary dummy. The required camera starts automatically. No GLB file is needed for this placeholder. Alignment settings last for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
 
 The placeholder appears when an assessment mode is selected. Option 1 starts standing and transitions to lying down after confirmed initial anesthesia injection. Option 2 starts lying down. Correct RFID verification alone does not make the dog stand: correct drug verification and completed intervention are both required. It then transitions back to standing for results and hides on End Assessment. Alignment preview is cleared when a new session or scenario begins. **AR overlays** and **3D model visibility** also control this placeholder. Reduced-motion preferences switch poses immediately instead of animating the transition. This is manual screen alignment, not ArUco, ORB, optical flow, or clinical breathing simulation. The separate GLB viewer remains available below the placement controls.
 
@@ -128,7 +128,7 @@ From `backend`:
 
 This tests wire handling, assessment rules, SQLite records, HTTP validation, and live WebSocket communication using temporary records. It does not verify physical sensors or browser visuals.
 
-Press **Ctrl+C** in each server terminal to stop it. Stop Camera releases the webcam independently. After ending a student's session, saved records remain in `backend/data/assessments.sqlite3`; this directory is excluded from Git.
+Press **Ctrl+C** in each server terminal to stop it. Closing the app tab releases its camera stream. After ending a student's session, saved records remain in `backend/data/assessments.sqlite3`; this directory is excluded from Git.
 
 For Git updates, save/commit your own work, stop the servers, and run `git pull` from the project root. Resolve conflicts with your group. Run `npm.cmd ci` again if frontend dependencies changed, and rerun the backend pip command if requirements changed. Restart both servers. ZIP users should extract a new copy separately while preserving local edits and assessment data.
 
@@ -143,7 +143,7 @@ For Git updates, save/commit your own work, stop the servers, and run `git pull`
 | Unsupported WebSocket upgrade | Rerun the backend pip-install command to install `websockets`, then restart FastAPI. |
 | Assessment cards disabled / backend offline | Check the FastAPI terminal, port 8000, and frontend `/api` proxy. The assessment needs both servers. |
 | Port 8000 occupied | Stop the other process only if it belongs to you. Changing this port also requires updating the Vite proxy target. |
-| Camera unavailable / denied | Allow browser/Windows camera access, close other webcam apps, reconnect the selected device, and refresh the list. |
+| Camera unavailable / denied | Assessment controls are blocked. Allow browser/Windows camera access, close other webcam apps, reconnect the selected device, then choose Retry camera connection. Select a different camera if needed. |
 | Complete Injection rejected | Begin the initial injection (Option 1) or verify the RFID drug to unlock intervention injection (both options). Supply a new fresh calibrated sample for that stage. Samples expire after five seconds and cannot be reused across stages. |
 | Correct tag test ignored | Start the scenario, ensure it is active, and reconnect simulated sensors if disconnected. Allow 1.5 seconds for same-tag debounce. |
 | Real ESP32 scan rejected | Check current `session_id`, status heartbeat, input source, UID registry, and event schema in the two-mode guide. |

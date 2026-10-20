@@ -19,7 +19,7 @@ export function useCamera(videoRef) {
   const [refreshing, setRefreshing] = useState(false);
   const [activeDeviceId, setActiveDeviceId] = useState('');
   const [deviceId, setDeviceId] = useState('');
-  const [status, setStatus] = useState('off');
+  const [status, setStatus] = useState('starting');
   const [error, setError] = useState('');
   const [label, setLabel] = useState('No camera connected');
 
@@ -65,7 +65,7 @@ export function useCamera(videoRef) {
       const track = media.getVideoTracks()[0];
       track.onended = () => {
         stop();
-        setError('Camera disconnected or access was revoked. Reconnect it and press Start Camera.');
+        setError('Camera disconnected or access was revoked. Reconnect it or restore permission, then retry the camera connection.');
       };
       videoRef.current.srcObject = media;
       await videoRef.current.play();
@@ -97,5 +97,9 @@ export function useCamera(videoRef) {
     };
   }, [refreshDevices, release]);
 
-  return { devices, deviceId, setDeviceId, activeDeviceId, refreshing, status, label, error, setError, start, stop, refreshDevices };
+  // Request access on entry and automatically apply a newly selected camera.
+  // Failed permission requests wait for an explicit retry instead of prompting in a loop.
+  useEffect(() => { start(); }, [start]);
+
+  return { devices, deviceId, setDeviceId, activeDeviceId, refreshing, status, label, error, setError, start, refreshDevices };
 }

@@ -27,7 +27,7 @@ npm.cmd run dev
 
 `cd` selects React. `npm.cmd ci` installs the locked frontend packages; skip it on later launches unless dependencies changed. `npm.cmd run dev` starts Vite. Open its printed **Local** URL, usually `http://127.0.0.1:5173`. Keep both terminals running. Press Ctrl+C in each to stop the servers.
 
-The main menu has two assessment cards. If they are disabled, check the backend connection. Camera selection and the optional GLB viewer remain independent browser features; open Settings to start/select a camera. Camera frames never go to FastAPI.
+The main menu has two assessment cards. Version 4 requires a live camera before assessment controls become available and requests camera permission automatically. If the cards are disabled after camera connection, check the backend. Select a camera on the connection screen or in Settings; selection switches automatically. Camera frames never go to FastAPI. Camera loss blocks frontend controls but does not pause backend timers or incoming hardware events.
 
 ## 2. Shared setup
 

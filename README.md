@@ -53,7 +53,7 @@ One of 10 fictional patients is assigned and locked for the current student. **E
 
 ## Retained AR interface
 
-- Full-window webcam, USB/built-in selection, start/stop, mirror and full-screen controls.
+- Required full-window webcam with automatic startup, USB/built-in selection, mirror and full-screen controls. Browser camera permission is required; assessment controls stay blocked until the live feed is ready.
 - Camera IDs such as `0x001` and `0x002`, active-device indicator, refresh and disconnect handling. These are app labels, not USB hardware IDs.
 - Animated simulated ECG, respiratory, pleth, MAP, CO₂, and temperature traces; optional locally generated heartbeat beep.
 - Optional wire-connection gate for monitor display. It is separate from injection confirmation and RFID input. See [wire controls](docs/patients-and-wire.md).

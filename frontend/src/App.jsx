@@ -40,16 +40,17 @@ export default function App() {
   const [now, setNow] = useState(Date.now), [dismissedNotice, setDismissedNotice] = useState(null);
   const patient = patients.find(item => item.id === state?.patient_id) || patients[0];
   const menu = !state || state.phase === 'mode_selection';
-  const disabled = assessment.busy || !assessment.connected;
+  const cameraOn = camera.status === 'on';
+  const disabled = assessment.busy || !assessment.connected || !cameraOn;
   const gate = getVitalsState({ triggerEnabled, source: wireSource, simulatedConnected, wire: state?.wire, now, receivedAt: assessment.receivedAt });
   const wireControls = { enabled: triggerEnabled, setEnabled: setTriggerEnabled, source: wireSource, setSource: setWireSource, connected: simulatedConnected, setConnected: setSimulatedConnected, message: gate.message };
-  const monitorActive = Boolean(state?.mode && assessment.connected && gate.active);
+  const monitorActive = Boolean(state?.mode && assessment.connected && cameraOn && gate.active);
   const values = state?.vitals || { hr: 0, rr: 0, spo2: 0, map: 0, etco2: 0, temp: 0 };
   const sound = useMonitorSound(monitorActive, values.hr);
   const notice = state?.notification && state.notification.id !== dismissedNotice ? state.notification : null;
-  const cameraOn = camera.status === 'on';
 
   async function act(action, fields) {
+    if (!cameraOn) return null;
     const result = await assessment.command(action, fields);
     if (!result) return null;
     if (action === 'select_mode') { setPanel('patient'); setOverlays(true); }
@@ -77,14 +78,14 @@ export default function App() {
 
   return <main className={`app ${cameraOn ? 'is-live' : ''} ${menu ? 'menu-workspace' : ''}`}>
     <video ref={video} className={`camera-feed ${mirrored ? 'mirrored' : ''}`} playsInline muted autoPlay aria-label="Live real-world camera"/>
-    {overlays && modelVisible && (dummyPose || previewDummy) && <Suspense fallback={null}><DummyOverlay key={state?.session_id || 'preview'} placement={placement} pose={dummyPose || 'standing'}/></Suspense>}
+    {cameraOn && overlays && modelVisible && (dummyPose || previewDummy) && <Suspense fallback={null}><DummyOverlay key={state?.session_id || 'preview'} placement={placement} pose={dummyPose || 'standing'}/></Suspense>}
+    <div inert={cameraOn ? undefined : ''}>
     <div className="edge-shade" aria-hidden="true"/>
-    <header className="header"><a className="brand" href="#" onClick={e => { e.preventDefault(); openPanel('patient'); }} aria-label="Open patient information"><span className="brand-mark"><PawPrint size={24}/></span><span><strong>VET<span className="mint-text">/</span>AR</strong><small>ANESTHESIA SIMULATION LAB</small></span></a><div className="session-label"><span className="tiny-label">TWO-MODE ASSESSMENT STATION</span><span>Canine procedure & intervention <ArrowUpRight size={13}/></span></div><div className={`status-pill ${cameraOn ? 'live' : ''}`} role="status"><span className="dot"/>{cameraOn ? 'LIVE CAMERA' : camera.status === 'starting' ? 'CONNECTING' : 'CAMERA OFF'}</div></header>
+    <header className="header"><a className="brand" href="#" onClick={e => { e.preventDefault(); openPanel('patient'); }} aria-label="Open patient information"><span className="brand-mark"><PawPrint size={24}/></span><span><strong>VET<span className="mint-text">/</span>AR</strong><small>ANESTHESIA SIMULATION LAB</small></span></a><div className="session-label"><span className="tiny-label">TWO-MODE ASSESSMENT STATION</span><span>Canine procedure & intervention <ArrowUpRight size={13}/></span></div><div className={`status-pill ${cameraOn ? 'live' : ''}`} role="status"><span className="dot"/>{cameraOn ? 'LIVE CAMERA' : camera.status === 'starting' ? 'CONNECTING' : 'CAMERA REQUIRED'}</div></header>
     <nav className="navigation" aria-label="Workspace panels">{tabs.map(([id,Icon,label]) => <button key={id} className={panel === id && overlays ? 'nav-active' : ''} onClick={() => openPanel(id)} aria-pressed={panel === id && overlays}><Icon size={17}/><span>{label}</span></button>)}<div className="nav-spacer"/><button title="Toggle AR overlays" aria-label="Toggle AR overlays" aria-pressed={overlays} onClick={() => setOverlays(x => !x)}><Eye size={18}/></button><button title="Toggle full screen" aria-label="Toggle full screen" onClick={toggleFullscreen}><Maximize size={18}/></button></nav>
-    <SimulationControls state={state} patient={patient} busy={assessment.busy} connected={assessment.connected} onAction={act}/>
+    <SimulationControls state={state} patient={patient} busy={assessment.busy} connected={assessment.connected && cameraOn} onAction={act}/>
     {state?.scenario_id && <section className="active-scenario-banner" aria-label="Visible complication"><span><b>{scenarioName(state)}</b><small>{phaseNames[state.phase]} · SIMULATED</small></span><span>HR {monitorActive ? values.hr : '—'} · MAP {monitorActive ? values.map : '—'} · RR {monitorActive ? values.rr : '—'} · EtCO₂ {monitorActive ? values.etco2 : '—'}</span><span>{state.first_response_seconds == null ? state.scenario_elapsed == null ? 'Preparing response timer' : `Response timer ${formatSeconds(state.scenario_elapsed)}` : `First response ${formatSeconds(state.first_response_seconds)}`}</span></section>}
     {menu && <ModeSelection connected={assessment.connected} busy={assessment.busy} onSelect={mode => act('select_mode', { mode })} onRetry={assessment.retryConnection} withPanel={Boolean(panel && overlays)}/>}
-    {!menu && !cameraOn && !state?.injection_stage_id && <div className={`camera-placeholder ${panel && overlays ? 'with-panel' : ''}`}><div className="camera-emblem"><Camera size={32}/></div><span className="eyebrow">YOUR REAL WORLD. AUGMENTED.</span><h1>Your training space.<br/>Your next response.</h1><p>The assessment works without a webcam.<br/>Enable it for the AR overlay experience.</p><button className="primary" disabled={camera.status === 'starting'} onClick={camera.start}><Camera size={17}/>{camera.status === 'starting' ? 'Waiting for camera…' : 'Start Camera'}</button></div>}
     {overlays && <>
       <InjectionAngle state={state} floating/>
       {!menu && <aside className="patient-chip"><span className="patient-avatar"><PawPrint size={20}/></span><span><strong>{patient.Name}<span>ASSIGNED PATIENT</span></strong><small>{patient.Breed} · {patient.Sex} · {patient.Weight}</small></span><span className="patient-condition">SIMULATED</span></aside>}
@@ -100,6 +101,8 @@ export default function App() {
     </>}
     {notice && <InterventionNotice key={notice.id} notice={notice} state={state} onDismiss={() => setDismissedNotice(notice.id)} onContinue={() => { setDismissedNotice(notice.id); setPanel(state.phase === 'intervention_injection' ? 'hardware' : state.phase === 'intervention_review' || state.phase === 'intervention_non_injectable' ? 'scenario' : 'assessment'); setOverlays(true); }}/>}
     {(camera.error || assessment.error) && <div className="error" role="alert"><span>{[camera.error, assessment.error].filter(Boolean).join(' ')}</span><button className="icon-button" aria-label="Dismiss error" onClick={() => { camera.setError(''); assessment.setError(''); }}><X size={18}/></button></div>}
-    <footer><span><span className={`dot ${cameraOn ? 'live-dot' : ''}`}/>{cameraOn ? camera.label : 'CAMERA STANDBY'}</span><span>{assessment.connected ? 'Backend online' : 'Backend offline'}<span className="footer-divider">/</span>{state?.input_source === 'esp32' ? state.hardware.esp32_connected ? 'ESP32 connected' : 'ESP32 disconnected' : 'Simulated hardware'}</span>{cameraOn && <button className="text-button" onClick={camera.stop}>Stop Camera</button>}</footer>
+    <footer><span><span className={`dot ${cameraOn ? 'live-dot' : ''}`}/>{cameraOn ? camera.label : 'CAMERA REQUIRED'}</span><span>{assessment.connected ? 'Backend online' : 'Backend offline'}<span className="footer-divider">/</span>{state?.input_source === 'esp32' ? state.hardware.esp32_connected ? 'ESP32 connected' : 'ESP32 disconnected' : 'Simulated hardware'}</span></footer>
+    </div>
+    {!cameraOn && <section className="camera-required-screen" role="dialog" aria-modal="true" aria-labelledby="camera-required-title"><div className="camera-required-card"><Camera size={32}/><h1 id="camera-required-title">{camera.status === 'starting' ? 'Connecting to your camera' : 'Camera required'}</h1><p>The camera connects automatically. Allow camera access in your browser to enter the assessment.</p>{camera.error && <p className="notice" role="alert">{camera.error}</p>}<CameraSettings camera={camera}/>{state?.mode && <p className="notice">Assessment controls are unavailable until the camera reconnects. The current assessment and its timers remain active.</p>}</div></section>}
   </main>;
 }
