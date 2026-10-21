@@ -17,10 +17,18 @@ Incorrect and unknown tags stay at the complication/RFID stage. Correct RFID dis
 
 An acceptable angle alone does not complete either injection. A fresh out-of-range angle can still be manually confirmed: it is recorded as a failed angle criterion, rather than forcing every student to achieve a passing result before ending the exercise.
 
+## During-assessment feedback
+
+Open **Assessment > During Feedback** while an assessment is running. A wrong registered RFID drug displays a warning icon and a concise message such as **Wrong drug: Drug 2 for Hypotension.** The warning remains available after dismissing the scan popup, and clears when the correct drug is verified. An unknown RFID tag is identified separately, without inferring a drug name. Completed reports retain all recorded attempts.
+
+During either injection stage, the same section and the live angle card display **Angle too low**, **Angle too high**, or **Within prototype target** using the configured inclusive range. A stale, uncalibrated, missing, or prior-stage reading shows a waiting message. When raw and smoothed readings differ, feedback identifies which one is outside the target; the backend still requires both readings to pass.
+
+To try it with simulated inputs, start a scenario, open **Settings > Hardware**, and submit **Incorrect RFID tag**. Dismiss the popup and inspect **Assessment > During Feedback**. Then scan **Correct RFID tag**, continue to the intervention, and try the **Low angle**, **High angle**, and **Valid angle** buttons. With the default 15°–30° range, these generate 10°, 45°, and 22.5° respectively. Refresh each sample before the five-second freshness window expires. Both injection stages use the same feedback rules; injection completion remains a separate manual action.
+
 ## Test Option 1 without hardware
 
 1. Select Option 1 and a complication during preparation. Keep Settings > Hardware input source **SIMULATED**.
-2. Begin Initial Injection. Click **Valid angle · 22°** (or Invalid angle · 45°) in Settings > Hardware.
+2. Begin Initial Injection. Click **Valid angle · 22.5°**, **Low angle · 10°**, or **High angle · 45°** in Settings > Hardware.
 3. Within five seconds, press **Complete Initial Injection**. The initial angle/result is frozen and the complication starts.
 4. Record recognition in Assessment. Try an incorrect RFID first if desired; it must not unlock injection.
 5. Submit Correct RFID tag. The Drug Verified popup appears; continue to the automatically opened Scenario panel. Open Settings > Hardware for simulated test inputs.

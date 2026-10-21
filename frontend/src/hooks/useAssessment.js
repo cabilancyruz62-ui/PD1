@@ -67,5 +67,8 @@ export function useAssessment() {
     return () => { clearTimeout(timer); cancelAnimationFrame(first); cancelAnimationFrame(second); document.removeEventListener('visibilitychange', acknowledge); };
   }, [state?.phase, state?.session_id, state?.scenario_id, busy, connected, command]);
 
-  return { state, connected, busy, error, setError, command, retryConnection, receivedAt: receivedAt.current };
+  // A retained snapshot is useful during reconnects, but its live angle must
+  // stop being assessable as soon as the backend connection is lost.
+  const displayState = !connected && state?.angle ? { ...state, angle: { ...state.angle, fresh: false } } : state;
+  return { state: displayState, connected, busy, error, setError, command, retryConnection, receivedAt: receivedAt.current };
 }

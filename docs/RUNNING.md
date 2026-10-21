@@ -77,7 +77,7 @@ Read **[the full two-mode guide](TWO_MODES.md)** for step-by-step tests, message
 For a quick check:
 
 1. Choose Option 1, review the patient, and select a complication in Scenario.
-2. Begin Injection, then choose Settings > Hardware → Valid angle · 22°.
+2. Begin Injection, then choose Settings > Hardware → Valid angle · 22.5°.
 3. Press Complete Injection within five seconds of that sample. The complication starts.
 4. Record the complication in Assessment → Checklist.
 5. In Settings > Hardware, try Incorrect RFID tag, then Correct RFID tag. **Drug Verified** unlocks intervention injection and automatically opens the angle panel. Record a **new** valid/invalid angle, then press **Complete Intervention Injection**. RFID selection alone does not finish the assessment.

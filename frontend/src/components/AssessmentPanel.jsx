@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { patients } from '../data/patients';
 import { assessmentChecklist, modeNames, scenarioName, formatSeconds } from '../lib/assessmentView';
 import { formatDuration } from './SimulationControls';
+import DuringFeedback from './DuringFeedback';
 
 function angleSummary(sample) {
   return sample ? `${Number(sample.angle_deg).toFixed(1)}° smoothed / ${Number(sample.raw_angle_deg ?? sample.angle_deg).toFixed(1)}° raw · ${sample.within_target ? 'target met' : 'outside target'}` : 'Not recorded';
@@ -41,7 +42,7 @@ export default function AssessmentPanel({ state, command, disabled }) {
   if (!state) return <p className="notice">Waiting for the backend.</p>;
   const tasks = assessmentChecklist(state);
   const previous = state.last_report;
-  return <><div className="assessment-tabs" role="group" aria-label="Assessment view"><button className={tab === 'checklist' ? 'selected' : ''} aria-pressed={tab === 'checklist'} onClick={() => setTab('checklist')}>Checklist</button><button className={tab === 'feedback' ? 'selected' : ''} aria-pressed={tab === 'feedback'} onClick={() => setTab('feedback')}>Feedback</button></div>
+  return <><div className="assessment-tabs" role="group" aria-label="Assessment view"><button className={tab === 'checklist' ? 'selected' : ''} aria-pressed={tab === 'checklist'} onClick={() => setTab('checklist')}>Checklist</button><button className={tab === 'feedback' ? 'selected' : ''} aria-pressed={tab === 'feedback'} onClick={() => setTab('feedback')}>{state.mode && !['evaluated', 'ended', 'interrupted'].includes(state.phase) ? 'During Feedback' : 'Feedback'}</button></div>
     {tab === 'checklist' ? <>
       {!state.mode ? <p className="notice">Choose a mode to start the checklist.</p> : <><h3 className="assessment-title">Student {state.student} · remaining tasks</h3><ul className="task-list">{tasks.map(task => <li className={task.done ? 'done' : ''} key={task.id}><span className="task-symbol" aria-hidden="true">{task.done ? '✓' : '○'}</span><span>{task.label}<small>{task.done ? 'Recorded' : 'To do / unmet'}</small></span></li>)}</ul><p className="notice">{state.mode === 'direct' ? 'Initial injection skipped. Intervention assessment required.' : 'Initial and intervention angles are recorded separately.'}</p>
         <label className="field">Recognize the active complication<select value={recognition} disabled={disabled || state.phase !== 'scenario_active'} onChange={e => setRecognition(e.target.value)}><option value="">Select the complication</option>{Object.entries(state.catalog.scenarios).map(([id,scenario]) => <option key={id} value={id}>{scenario.name}</option>)}</select></label><button className="secondary" disabled={disabled || !recognition || state.phase !== 'scenario_active'} onClick={() => command('recognize', { scenario_id: recognition })}>Record recognition</button>
@@ -49,6 +50,7 @@ export default function AssessmentPanel({ state, command, disabled }) {
         <label className="field intervention-field">Intervention note<textarea rows="3" maxLength={2000} value={note} onChange={e => setNote(e.target.value)} disabled={disabled} placeholder="Describe what you did and why…"/></label><button className="secondary" disabled={disabled || !note.trim()} onClick={async () => { if (await command('note', { text: note })) setTab('feedback'); }}>Record note & view feedback</button>
       </>}
     </> : <>
+      <DuringFeedback state={state}/>
       {state.mode && <Report state={state} title={`Student ${state.student} · ${patients.find(p => p.id === state.patient_id)?.Name || 'Assigned patient'}`}/>}
       {previous && <details className="completed-report" open={!state.mode}><summary>Previous student · saved result</summary><Report state={previous} title={`Student ${previous.student} · ${patients.find(p => p.id === previous.patient_id)?.Name || previous.patient_id}`}/></details>}
       {!state.mode && !previous && <p className="notice">No saved assessment yet. Choose an option to begin.</p>}

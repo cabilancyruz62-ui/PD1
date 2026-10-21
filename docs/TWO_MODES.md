@@ -43,15 +43,15 @@ The assigned patient stays fixed. **End Assessment** closes the report and rando
 
 1. Choose **Option 1** and select a complication during preparation.
 2. Click **Begin Injection**. The Hardware panel opens.
-3. Under **Simulation controls**, click **Valid angle · 22°**. The panel should display the synthetic angle, simulated calibration ID, and Within target.
+3. Under **Simulation controls**, click **Valid angle · 22.5°**. The panel should display the synthetic angle, simulated calibration ID, and Within prototype target.
 4. Within five seconds, press **Complete Injection**. If the sample expires, press the angle button again. The confirmation requires a fresh calibrated sample taken during this injection step; a sample from before Begin Injection is not sufficient.
 5. The one selected complication appears, vital targets change, and the response timer starts after the browser acknowledges displaying it.
 6. Open **Assessment → Checklist**, select the observed complication, and press **Record recognition**.
 7. Open Hardware and press **Incorrect RFID tag**. A popup shows the detected placeholder drug, active scenario, and incorrect status. The attempt is saved. Both Try Again and Continue Assessment dismiss the popup; Continue opens Assessment. The scenario and vital targets stay unchanged, and another attempt is still possible.
-8. Press **Correct RFID tag**. The Drug Verified popup appears and a new intervention injection stage opens. Submit a fresh **Valid angle · 22°** sample, then press **Complete Intervention Injection**. Results become final only after this confirmation.
+8. Press **Correct RFID tag**. The Drug Verified popup appears and a new intervention injection stage opens. Submit a fresh **Valid angle · 22.5°** sample, then press **Complete Intervention Injection**. Results become final only after this confirmation.
 9. Press **End Assessment**. Check the saved report and next patient's assignment.
 
-Repeat with **Invalid angle · 45°**. A fresh calibrated angle outside the target still allows the explicit injection confirmation; its failed angle criterion is retained and loses the configured angle points. The device orientation itself never confirms administration. Complete Injection without a fresh calibrated angle produces a clear error.
+Repeat with **Low angle · 10°** or **High angle · 45°**. A fresh calibrated angle outside the target still allows the explicit injection confirmation; its failed angle criterion is retained and loses the configured angle points. The device orientation itself never confirms administration. Complete Injection without a fresh calibrated angle produces a clear error.
 
 The inclusive 15°–30° rule is a configurable prototype target pending veterinary-expert review. A hardware calibration flag is a device assertion, not proof of clinical validation.
 
