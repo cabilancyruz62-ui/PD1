@@ -1,0 +1,3 @@
+.venv/
+# Generated marker images can be reproduced with run.py --generate-marker.
+design-1-aruco/marker-*.png

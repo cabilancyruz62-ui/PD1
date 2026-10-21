@@ -1,7 +1,38 @@
-# Design 3: Optical-flow tracking
+# Design 3: Sparse optical-flow tracking
 
-Approach: Track the dummy limb's motion between frames using optical flow. Select and document the exact algorithm, initialization, drift checks, and recovery strategy during implementation.
+Initial standalone OpenCV prototype: manually select a textured region on the
+dummy, then follow Shi–Tomasi features with pyramidal Lucas–Kanade optical flow.
+No training dataset or reference photograph is required. This is sparse optical
+flow, rather than a full direct photometric pose-estimation implementation.
 
-Store this design's source code, reference assets, configuration, and experiment notes here.
+From the repository root, install the shared dependencies and run:
 
-Status: Folder prepared; implementation pending.
+```powershell
+python -m pip install -r designs/requirements.txt
+python designs/run.py --design optical-flow
+```
+
+Press **s** to select the target region (confirm the selection with Enter),
+**r** to clear it, and **q** to quit. Select the physical dummy's textured surface
+and exclude background and hands. Blank, smooth regions cannot provide enough
+features. Both the dummy and camera may stay stationary: near-zero flow is valid.
+
+The tracker checks forward/backward consistency and estimates a 2D similarity
+transform with RANSAC to reject inconsistent points. It supports modest image
+translation, rotation, and scale changes. A selected rectangle and its tracked
+points are diagnostic overlays; this is not a calibrated 3D dog placement system.
+Perspective changes, limb bending, occlusion, and accumulated drift remain limits.
+
+When tracking fails, the target outline is removed. It stays lost until the
+operator selects the target again; it does not automatically seed background
+points. These checks do **not** recognize the dummy or prove it is present.
+Features on a moving hand or background can still give a plausible transform.
+
+Run the synthetic regression checks from the repository root:
+
+```powershell
+python -m unittest discover -s designs/tests -p test_optical_flow.py
+```
+
+Next validation: real webcam recordings with a stationary dummy, small camera
+movement, student-hand occlusion, target removal, and manual reacquisition.

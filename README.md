@@ -61,6 +61,8 @@ One of 10 fictional patients is assigned and locked for the current student. **E
 
 The interface is a screen overlay, not a spatially anchored model on the dummy. Marker/camera calibration, validated sensor transforms, real firmware, and licensed veterinary review remain future integration work. MPU6050 orientations do not prove injection completion. No Electron conversion has been made.
 
+Initial standalone OpenCV experiments for ArUco, ORB + RANSAC, and optical flow are available in **[designs/](designs/README.md)**. They can preview 2D tracking without a Blender model and are not yet connected to the website overlay.
+
 ## Validation commands
 
 From `frontend`, `npm.cmd test` runs frontend logic checks; `npm.cmd run build` compiles production assets. `npm.cmd run preview` serves that built frontend locally. From `backend`:
