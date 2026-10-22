@@ -8,6 +8,5 @@ export default function ModeSelection({ connected, busy, onSelect, onRetry, with
       <button disabled={!connected || busy} onClick={() => onSelect('direct')}><span className="mode-icon"><ClipboardCheck size={26}/></span><small>OPTION 2</small><h2>Direct scenario<br/>assessment</h2><p>Start with a complication, then complete the intervention.</p><span className="mode-action">Begin scenario assessment <ArrowUpRight size={17}/></span></button>
     </div>
     {!connected && <div className="backend-required" role="status"><strong>Backend offline</strong><p>Start the backend to continue.</p><details><summary>Connection help</summary><p>Run this command from the backend folder:</p><pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}> .\.venv\Scripts\python.exe -m uvicorn main:app --reload --host 127.0.0.1 --port 8000</pre></details><button className="secondary" onClick={onRetry}>Retry connection</button></div>}
-    <p className="notice">Training prototype. Drugs and scoring require expert review.</p>
   </section>;
 }
