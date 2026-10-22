@@ -2,9 +2,9 @@ export const monitorChannels = [
   { key: 'hr', label: 'HR / ECG', unit: 'bpm', color: 'mint', min: 0, max: 200 },
   { key: 'spo2', label: 'SpO₂ / Pleth', unit: '%', color: 'blue', min: 0, max: 100 },
   { key: 'rr', label: 'Respiratory rate', unit: '/min', color: 'mint', min: 0, max: 60 },
-  { key: 'map', label: 'Blood pressure / MAP', unit: 'mmHg', color: 'blue', min: 0, max: 160 },
-  { key: 'etco2', label: 'EtCO₂ / Capnogram', unit: 'mmHg', color: 'amber', min: 0, max: 80 },
-  { key: 'temp', label: 'Temperature trend', unit: '°C', color: 'amber', min: 34, max: 42, step: .1 },
+  { key: 'map', label: 'Blood pressure', unit: 'mmHg', color: 'blue', min: 0, max: 160 },
+  { key: 'etco2', label: 'EtCO₂', unit: 'mmHg', color: 'amber', min: 0, max: 80 },
+  { key: 'temp', label: 'Temperature', unit: '°C', color: 'amber', min: 34, max: 42, step: .1 },
 ];
 
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n));

@@ -15,7 +15,7 @@ EtCO₂ (end-tidal carbon dioxide) represents CO₂ at the end of exhalation and
 
 Edit `baseline_vital_ranges` in `backend/config/assessment.json` to adjust the four limits. Units are bpm, breaths/min, °C, and mmHg respectively. Limits must be finite, positive, ordered, and match the displayed precision: integers except one decimal place for temperature. Restart the backend after changing configuration.
 
-The backend retains patient variation and small time-dependent fluctuations, then clamps rounded baseline readings to the configured limits. An active scenario's affected channels use their scripted targets; other channels retain the baseline limits. The API exposes these limits in `catalog.baseline_vital_ranges`, and the Vitals panel shows them beside the corresponding readings.
+The backend retains patient variation and small time-dependent fluctuations, then clamps rounded baseline readings to the configured limits. An active scenario's affected channels use their scripted targets; other channels retain the baseline limits. The API exposes these limits in `catalog.baseline_vital_ranges`. The Vitals panel shows the patient's readings and waveforms; reference ranges are documented here.
 
 Run the baseline checks from `backend`:
 
