@@ -1,6 +1,12 @@
 {
   "clinical_validation": false,
   "patient_ids": ["bella", "charlie", "spot"],
+  "baseline_vital_ranges": {
+    "hr": {"min": 80, "max": 120},
+    "rr": {"min": 18, "max": 24},
+    "temp": {"min": 38.1, "max": 39.1},
+    "etco2": {"min": 35, "max": 45}
+  },
   "angle_min_deg": 15,
   "angle_max_deg": 30,
   "angle_smoothing_alpha": 0.35,

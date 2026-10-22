@@ -49,6 +49,16 @@ class AssessmentService:
             raise ValueError("Attempt penalty cannot be negative")
         if not 0 < c["angle_smoothing_alpha"] <= 1:
             raise ValueError("Angle smoothing alpha must be greater than 0 and at most 1")
+        ranges = c.get("baseline_vital_ranges", {})
+        if not isinstance(ranges, dict) or set(ranges) != {"hr", "rr", "temp", "etco2"}:
+            raise ValueError("Configure resting baseline ranges for HR, RR, temperature, and EtCO2")
+        for key, limits in ranges.items():
+            precision = 1 if key == "temp" else 0
+            if not isinstance(limits, dict) or set(limits) != {"min", "max"}:
+                raise ValueError(f"Invalid baseline range for {key}")
+            bounds = (limits["min"], limits["max"])
+            if any(isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or round(value, precision) != value for value in bounds) or not 0 < bounds[0] <= bounds[1]:
+                raise ValueError(f"Baseline range for {key} must be finite, positive, ordered, and match monitor precision")
         for scenario in c["scenarios"].values():
             if scenario["intervention_route"] not in ("injection", "non_injectable") or not isinstance(scenario["injectable_expert_approved"], bool):
                 raise ValueError("Configure the intervention route and explicit injectable approval")
@@ -146,16 +156,22 @@ class AssessmentService:
     def _vitals(self):
         index = self.config["patient_ids"].index(self.state["patient_id"])
         values = {"hr": 86 + index*2, "rr": 18 + index % 5, "spo2": 98, "map": 88 + index, "etco2": 37 + index % 3, "temp": 38.3 + (index % 3)*.1}
-        if self.state["scenario_id"]:
-            values.update(self.config["scenarios"][self.state["scenario_id"]]["target"])
+        targets = self.config["scenarios"][self.state["scenario_id"]]["target"] if self.state["scenario_id"] else {}
+        values.update(targets)
         seconds = 0 if self._started is None else self.clock() - self._started
         if self.state["phase"] == "mode_selection":
             seconds = 0
-        return {key: round(value + math.sin(seconds*.6+index) * (.06 if key == "temp" else .4), 1 if key == "temp" else 0) for key, value in values.items()}
+        readings = {key: round(value + math.sin(seconds*.6+index) * (.06 if key == "temp" else .4), 1 if key == "temp" else 0) for key, value in values.items()}
+        # Apply resting limits after rounding; scripted complications keep their targets.
+        for key, limits in self.config["baseline_vital_ranges"].items():
+            if key not in targets:
+                readings[key] = max(limits["min"], min(limits["max"], readings[key]))
+        return readings
 
     def _snapshot(self, include_report=True):
         result = deepcopy(self.state)
         result.update({"intervention_policy": self._intervention_policy(), "injection_stage": "initial" if self.state["phase"] == "injection" else "intervention" if self.state["phase"] == "intervention_injection" else None, "instance_id": self.instance_id, "revision": self.revision, "elapsed": round(max(0, self.clock()-self._started), 3) if self._started is not None else 0, "scenario_elapsed": round(max(0, self.clock()-self._scenario_started), 3) if self._scenario_started is not None else None, "vitals": self._vitals(), "hardware": self._hardware_state(self.state["input_source"]), "angle": self._angle_state(), "score": self._score(), "catalog": {"scenarios": self.config["scenarios"], "drugs": [{"uid": uid, **drug} for uid, drug in self.config["rfid_registry"].items()], "angle_min_deg": self.config["angle_min_deg"], "angle_max_deg": self.config["angle_max_deg"]}})
+        result["catalog"]["baseline_vital_ranges"] = deepcopy(self.config["baseline_vital_ranges"])
         if include_report:
             result["last_report"] = deepcopy(self.last_report)
         return result

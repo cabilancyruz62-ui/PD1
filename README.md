@@ -47,6 +47,8 @@ This selects React, installs the locked dependencies, and starts Vite. Open the 
 
 The three complications are Hypotension (MAP decreases), Hypoventilation (RR decreases / EtCO₂ increases), and Bradycardia (HR decreases). The selected complication stays fixed; incorrect RFID attempts are retained and do not change vital targets. Drug 1, Drug 2, and Drug 3 are placeholder exercise mappings, not actual medications.
 
+The initial resting readings stay within configurable limits shown in the Vitals panel. See [baseline ranges and temperature conversion](docs/BASELINE_VITALS.md).
+
 **[Two-mode workflow, edge-case tests, API messages, and exact code paths](docs/TWO_MODES.md)** covers the complete implementation. Choose simulated input in Hardware to test valid/invalid angles, correct/incorrect/unknown RFID tags, duplicate events, and disconnection without physical devices.
 
 One of three fictional patients is assigned and locked for the current student: Bella (Labrador Retriever), Charlie (Beagle), or Spot (Dalmatian). **End Assessment** saves that report and prepares a different patient. Browser refresh reconnects to the backend session. Reports are stored locally in `backend/data/assessments.sqlite3` (ignored by Git); a backend restart retains reports and marks unfinished sessions interrupted. Previous patient names remain available in saved reports. One backend worker serves one training station.
