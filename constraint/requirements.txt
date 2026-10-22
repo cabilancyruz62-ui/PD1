@@ -1,0 +1,2 @@
+-r ../designs/requirements.txt
+psutil>=7,<8

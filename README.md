@@ -63,6 +63,8 @@ The interface is a screen overlay, not a spatially anchored model on the dummy. 
 
 Initial standalone OpenCV experiments for ArUco, ORB + RANSAC, and optical flow are available in **[designs/](designs/README.md)**. They can preview 2D tracking without a Blender model and are not yet connected to the website overlay.
 
+**[Constraint benchmarks](constraint/README.md)** measure the three trackers' RAM, CPU, processing time, and correctness against synthetic ground truth. Each design has its own results folder; 3D rendering FPS remains unmeasured until renderer integration.
+
 ## Validation commands
 
 From `frontend`, `npm.cmd test` runs frontend logic checks; `npm.cmd run build` compiles production assets. `npm.cmd run preview` serves that built frontend locally. From `backend`:

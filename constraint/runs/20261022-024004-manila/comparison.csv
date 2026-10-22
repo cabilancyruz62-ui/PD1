@@ -1,0 +1,4 @@
+﻿design,peak_memory_gb,processing_p95_ms,correct_tracking_pct,false_tracking_pct,cpu_normalized_pct,rendering_fps,rendering_status,memory_status,response_time_status,tracking_status,cpu_status,total_scored_frames
+aruco,0.069844992,8.741329999999996,100.0,0.0,6.08019341868424,,not_applicable,pass,pass,pass,pass,2700
+orb,0.18325504,44.40078,100.0,0.0,26.96424959737419,,not_applicable,pass,fail,pass,pass,2700
+optical-flow,0.0733184,15.131139999999995,63.63636363636363,0.0,11.17688670524065,,not_applicable,pass,pass,fail,pass,2700

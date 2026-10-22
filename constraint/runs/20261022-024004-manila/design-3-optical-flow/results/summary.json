@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "design": "optical-flow",
+  "folder": "design-3-optical-flow",
+  "source_type": "deterministic_synthetic",
+  "measured_at_utc": "2026-10-21T18:40:05+00:00",
+  "source_sha256": {
+    "constraint/run.py": "fb4a8d724e41eeaec0689def09391581d2a80f4b3a92b2117406265c7bf8c2b4",
+    "constraint/scenes.py": "57a1e7643eeaa1a14424354f7d66ec90a84565a1a2933e74ddeaf6dc9456f998",
+    "constraint/metrics.py": "e3bb047d46a4efb0166f00880d23d2415fedf401929d2b9626d220a86e484744",
+    "constraint/profiling.py": "cd344ab24ec7c551af32490a7e378fcbbc4ce8de48fe91c4661762f73de5be2b",
+    "designs/design-3-optical-flow/tracker.py": "6cd146e12e919149408fecce47bcf20e53d6be351646f4678079f2b238fcd551",
+    "designs/tracking_common.py": "d9b0e6a203d28d2ccdbc3bf5f6121f2fb8855655c65d23b79669f699b508727f"
+  },
+  "configuration": {
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "paced": true,
+    "frames_per_condition": 180,
+    "repeats": 3,
+    "warmup_frames": 10,
+    "conditions": [
+      "stationary",
+      "camera_motion",
+      "dim_light",
+      "occlusion_recovery",
+      "target_absent"
+    ],
+    "seed": 42,
+    "opencv_threads": [
+      16
+    ]
+  },
+  "limits": {
+    "memory_gb": 1.0,
+    "response_p95_ms": 33.0,
+    "tracking_success_pct": 95.0,
+    "false_positive_pct": 1.0,
+    "cpu_pct": 60.0,
+    "rendering_min_fps": 30.0,
+    "corner_tolerance_px": 5.0
+  },
+  "environment": {
+    "platform": "Windows",
+    "platform_release": "11",
+    "python_version": "3.12.10",
+    "opencv_version": "4.14.0",
+    "numpy_version": "2.5.4",
+    "psutil_version": "7.2.2",
+    "cpu_model": "AMD64 Family 23 Model 104 Stepping 1, AuthenticAMD",
+    "logical_cpu_count": 16,
+    "physical_cpu_count": 8,
+    "total_ram_gb": 16.469532672,
+    "gpu": null,
+    "gpu_note": "GPU inventory and GPU rendering are not measured."
+  },
+  "resources": {
+    "peak_memory_gb": 0.0733184,
+    "cpu_normalized_pct": 11.17688670524065,
+    "largest_trial_cpu_normalized_pct": 26.75124061193566,
+    "measurement_errors": []
+  },
+  "metrics": {
+    "total_frames": 2700,
+    "visible_frames": 1980,
+    "absent_frames": 720,
+    "tracked_frames": 1260,
+    "correct_frames": 1260,
+    "false_positive_frames": 0,
+    "valid_tracking_pct": 63.63636363636363,
+    "false_positive_pct": 0.0,
+    "corner_error_median_px": 0.0,
+    "corner_error_p95_px": 0.022203057024596858,
+    "tracking_error_jitter_rms_px": 0.005364385115411248,
+    "processing_median_ms": 0.033049999999999996,
+    "processing_p95_ms": 15.131139999999995,
+    "processing_max_ms": 49.2628,
+    "tracking_throughput_fps": 166.40901722883711,
+    "source_fps": 30.0,
+    "tolerance_px": 5.0
+  },
+  "by_condition": {
+    "stationary": {
+      "total_frames": 540,
+      "visible_frames": 540,
+      "absent_frames": 0,
+      "tracked_frames": 540,
+      "correct_frames": 540,
+      "false_positive_frames": 0,
+      "valid_tracking_pct": 100.0,
+      "false_positive_pct": null,
+      "corner_error_median_px": 0.0,
+      "corner_error_p95_px": 0.0,
+      "tracking_error_jitter_rms_px": 0.0,
+      "processing_median_ms": 11.90365,
+      "processing_p95_ms": 18.317614999999996,
+      "processing_max_ms": 45.5504,
+      "tracking_throughput_fps": 78.54845709593087,
+      "source_fps": 30.0,
+      "tolerance_px": 5.0
+    },
+    "camera_motion": {
+      "total_frames": 540,
+      "visible_frames": 540,
+      "absent_frames": 0,
+      "tracked_frames": 540,
+      "correct_frames": 540,
+      "false_positive_frames": 0,
+      "valid_tracking_pct": 100.0,
+      "false_positive_pct": null,
+      "corner_error_median_px": 0.017387756837752816,
+      "corner_error_p95_px": 0.023285696033182597,
+      "tracking_error_jitter_rms_px": 0.007935850243070301,
+      "processing_median_ms": 12.407,
+      "processing_p95_ms": 16.270754999999998,
+      "processing_max_ms": 22.9273,
+      "tracking_throughput_fps": 78.76379350933833,
+      "source_fps": 30.0,
+      "tolerance_px": 5.0
+    },
+    "dim_light": {
+      "total_frames": 540,
+      "visible_frames": 540,
+      "absent_frames": 0,
+      "tracked_frames": 0,
+      "correct_frames": 0,
+      "false_positive_frames": 0,
+      "valid_tracking_pct": 0.0,
+      "false_positive_pct": null,
+      "corner_error_median_px": null,
+      "corner_error_p95_px": null,
+      "tracking_error_jitter_rms_px": null,
+      "processing_median_ms": 0.0146,
+      "processing_p95_ms": 0.03270999999999999,
+      "processing_max_ms": 49.2628,
+      "tracking_throughput_fps": 4973.465639799513,
+      "source_fps": 30.0,
+      "tolerance_px": 5.0
+    },
+    "occlusion_recovery": {
+      "total_frames": 540,
+      "visible_frames": 360,
+      "absent_frames": 180,
+      "tracked_frames": 180,
+      "correct_frames": 180,
+      "false_positive_frames": 0,
+      "valid_tracking_pct": 50.0,
+      "false_positive_pct": 0.0,
+      "corner_error_median_px": 0.0,
+      "corner_error_p95_px": 0.0,
+      "tracking_error_jitter_rms_px": 0.0,
+      "processing_median_ms": 0.02345,
+      "processing_p95_ms": 14.174619999999994,
+      "processing_max_ms": 26.0692,
+      "tracking_throughput_fps": 233.48680767107936,
+      "source_fps": 30.0,
+      "tolerance_px": 5.0
+    },
+    "target_absent": {
+      "total_frames": 540,
+      "visible_frames": 0,
+      "absent_frames": 540,
+      "tracked_frames": 0,
+      "correct_frames": 0,
+      "false_positive_frames": 0,
+      "valid_tracking_pct": null,
+      "false_positive_pct": 0.0,
+      "corner_error_median_px": null,
+      "corner_error_p95_px": null,
+      "tracking_error_jitter_rms_px": null,
+      "processing_median_ms": 0.0157,
+      "processing_p95_ms": 0.03001999999999998,
+      "processing_max_ms": 23.0082,
+      "tracking_throughput_fps": 7390.9425367904705,
+      "source_fps": 30.0,
+      "tolerance_px": 5.0
+    }
+  },
+  "constraints": {
+    "memory": {
+      "status": "pass",
+      "observed": 0.0733184,
+      "target": 1.0,
+      "unit": "GB",
+      "reason": "Peak sampled resident memory of the benchmark process (decimal GB)."
+    },
+    "response_time": {
+      "status": "pass",
+      "observed": 15.131139999999995,
+      "target": 33.0,
+      "unit": "ms",
+      "reason": "95th-percentile tracker processing time; excludes capture and display."
+    },
+    "tracking_performance": {
+      "status": "fail",
+      "observed": 63.63636363636363,
+      "target": 95.0,
+      "unit": "%",
+      "false_positive_pct": 0.0,
+      "false_positive_limit_pct": 1.0,
+      "reason": "Correct visible-target frames within the corner-error tolerance; false-positive rate must also meet its limit."
+    },
+    "rendering_fps": {
+      "status": "not_applicable",
+      "observed": null,
+      "target": 30.0,
+      "unit": "FPS",
+      "reason": "No shared 3D renderer is integrated into these prototypes."
+    },
+    "cpu": {
+      "status": "pass",
+      "observed": 11.17688670524065,
+      "target": 60.0,
+      "unit": "%",
+      "reason": "Process CPU utilization normalized across all logical CPU cores."
+    }
+  },
+  "notes": [
+    "The existing production tracker modules are imported without algorithm changes; each trial runs in a fresh isolated process.",
+    "All designs use the same resolution, conditions, seed, pacing, and repeat count. ArUco requires a marker; ORB/flow use a textured patch, not the marker pattern.",
+    "Correctness requires a tracked, valid quadrilateral with mean ordered-corner error within the configured tolerance; tracker status alone is insufficient.",
+    "Initialization and warmup are excluded from scored frames, processing latency, and interval CPU. Reference/ROI preparation is supplied automatically; human setup time is not measured.",
+    "RAM is peak observed process RSS in decimal GB, sampled every 50 ms and after each frame. Includes Python, OpenCV, target fixtures, tracker, and growing measurement rows; short peaks may be missed.",
+    "CPU covers the complete worker window, including synthetic-frame preparation, scoring, sampling, and pacing. It is normalized across logical cores. It does not describe the browser/backend or the whole computer's background load.",
+    "Processing time covers tracker.update only; excludes capture, frame generation, scoring, display, network, and camera-to-overlay latency. CPU/memory and processing time therefore have different measurement boundaries.",
+    "No camera, video decoder, website, or 3D renderer is running in this test. Rendering FPS is N/A, not zero or a passing result; final-model rendering must be measured after integration.",
+    "Camera-motion frames are synthetic similarity warps. Dim-light frames step from bright initialization to alpha=0.42, beta=10; this also tests an illumination change.",
+    "Occlusion removes the complete target for the middle third. Optical flow is not automatically reselected; missing a returned visible target counts as failure. No human recovery time is inferred.",
+    "A cheap lost-state update can lower processing time/CPU while accuracy fails. Interpret resource and correctness results together; these tests do not prove dummy identity or realistic hand-occlusion robustness."
+  ]
+}

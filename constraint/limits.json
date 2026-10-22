@@ -1,0 +1,9 @@
+{
+  "memory_gb": 1.0,
+  "response_p95_ms": 33.0,
+  "tracking_success_pct": 95.0,
+  "false_positive_pct": 1.0,
+  "cpu_pct": 60.0,
+  "rendering_min_fps": 30.0,
+  "corner_tolerance_px": 5.0
+}
