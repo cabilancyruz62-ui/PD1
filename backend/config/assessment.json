@@ -1,6 +1,6 @@
 {
   "clinical_validation": false,
-  "patient_ids": ["max", "bella", "charlie", "luna", "cooper", "daisy", "milo", "coco", "rocky", "nala"],
+  "patient_ids": ["bella", "charlie", "spot"],
   "angle_min_deg": 15,
   "angle_max_deg": 30,
   "angle_smoothing_alpha": 0.35,

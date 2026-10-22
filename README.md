@@ -49,7 +49,7 @@ The three complications are Hypotension (MAP decreases), Hypoventilation (RR dec
 
 **[Two-mode workflow, edge-case tests, API messages, and exact code paths](docs/TWO_MODES.md)** covers the complete implementation. Choose simulated input in Hardware to test valid/invalid angles, correct/incorrect/unknown RFID tags, duplicate events, and disconnection without physical devices.
 
-One of 10 fictional patients is assigned and locked for the current student. **End Assessment** saves that report and prepares a different patient. Browser refresh reconnects to the backend session. Reports are stored locally in `backend/data/assessments.sqlite3` (ignored by Git); a backend restart retains reports and marks unfinished sessions interrupted. One backend worker serves one training station.
+One of three fictional patients is assigned and locked for the current student: Bella (Labrador Retriever), Charlie (Beagle), or Spot (Dalmatian). **End Assessment** saves that report and prepares a different patient. Browser refresh reconnects to the backend session. Reports are stored locally in `backend/data/assessments.sqlite3` (ignored by Git); a backend restart retains reports and marks unfinished sessions interrupted. Previous patient names remain available in saved reports. One backend worker serves one training station.
 
 ## Retained AR interface
 
@@ -57,7 +57,7 @@ One of 10 fictional patients is assigned and locked for the current student. **E
 - Camera IDs such as `0x001` and `0x002`, active-device indicator, refresh and disconnect handling. These are app labels, not USB hardware IDs.
 - Animated simulated ECG, respiratory, pleth, MAP, CO₂, and temperature traces; optional locally generated heartbeat beep.
 - Optional wire-connection gate for monitor display. It is separate from injection confirmation and RFID input. See [wire controls](docs/patients-and-wire.md).
-- Optional GLB viewer: place `canine.glb` in `frontend/public/models/`; drag to rotate and scroll to zoom. Missing models show a placeholder. Blender sources can go in `AR model/`.
+- Three built-in breed models share a rig with standing/lying poses, breed-specific proportions and coat markings. Each breed keeps separate manual placement settings for the page session. The rotatable inspector also accepts optional breed-specific GLB exports. See [model and alignment instructions](docs/DOG_MODELS.md). Blender sources can go in `AR model/`.
 
 The interface is a screen overlay, not a spatially anchored model on the dummy. Marker/camera calibration, validated sensor transforms, real firmware, and licensed veterinary review remain future integration work. MPU6050 orientations do not prove injection completion. No Electron conversion has been made.
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { patients } from '../data/patients';
+import { getPatientById } from '../data/patients';
 import { assessmentChecklist, modeNames, scenarioName, formatSeconds } from '../lib/assessmentView';
 import { formatDuration } from './SimulationControls';
 import DuringFeedback from './DuringFeedback';
@@ -51,8 +51,8 @@ export default function AssessmentPanel({ state, command, disabled }) {
       </>}
     </> : <>
       <DuringFeedback state={state}/>
-      {state.mode && <Report state={state} title={`Student ${state.student} · ${patients.find(p => p.id === state.patient_id)?.Name || 'Assigned patient'}`}/>}
-      {previous && <details className="completed-report" open={!state.mode}><summary>Previous student · saved result</summary><Report state={previous} title={`Student ${previous.student} · ${patients.find(p => p.id === previous.patient_id)?.Name || previous.patient_id}`}/></details>}
+      {state.mode && <Report state={state} title={`Student ${state.student} · ${getPatientById(state.patient_id)?.Name || 'Assigned patient'}`}/>}
+      {previous && <details className="completed-report" open={!state.mode}><summary>Previous student · saved result</summary><Report state={previous} title={`Student ${previous.student} · ${getPatientById(previous.patient_id)?.Name || previous.patient_id}`}/></details>}
       {!state.mode && !previous && <p className="notice">No saved assessment yet. Choose an option to begin.</p>}
       <a className="text-button" href="/api/assessment/results" target="_blank" rel="noreferrer">Open saved assessment records (JSON)</a>
     </>}

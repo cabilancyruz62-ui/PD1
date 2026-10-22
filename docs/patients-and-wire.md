@@ -2,7 +2,7 @@
 
 ## Assigned patients
 
-One of 10 fictional canine profiles is assigned by FastAPI. Choose an assessment mode to view it. There is no patient selector. Patient information stays fixed until **End Assessment**, which saves the completed report and prepares a different patient for the next student.
+One of three fictional canine profiles is assigned by FastAPI: Bella (Labrador Retriever), Charlie (Beagle), or Spot (Dalmatian). Choose an assessment mode to view it. There is no patient selector. Patient information stays fixed until **End Assessment**, which saves the completed report and prepares a different patient for the next student. Retired patient names remain available in historical reports. The three breeds have matching built-in 3D models; see [model and alignment instructions](DOG_MODELS.md).
 
 The browser reconnects to the same running backend assessment after a page refresh. Backend restart marks unfinished records interrupted and creates a new station session; saved records remain in `backend/data/assessments.sqlite3`. See [the two-mode guide](TWO_MODES.md).
 

@@ -97,13 +97,13 @@ Version 3 removes hand tracking. Syringe angle comes from calibrated ESP32 senso
 
 Click **Enable beep** in Vitals or **Enable heartbeat beep** in Settings. Sound is off by default and follows simulated HR while the monitor is active. Browser audio needs a user click. Hiding the tab or pausing monitor display stops beeps.
 
-For the dog viewer, place the Blender export at `frontend/public/models/canine.glb` and open Settings > 3D Patient. Without it the placeholder is expected. Drag to rotate and scroll to zoom. Physical-dummy anchoring is not yet implemented.
+Open Settings > 3D Patient to inspect the built-in Labrador, Beagle, and Dalmatian models. Use **Inspect a breed** to view each one without changing the assigned patient. Drag to rotate and scroll to zoom. Optional Blender exports are `frontend/public/models/labrador.glb`, `beagle.glb`, and `dalmatian.glb`; the inspector uses the matching export when available. Physical-dummy anchoring is not yet implemented. See [dog models and alignment](DOG_MODELS.md).
 
-### Version 3 dummy placeholder
+### Manual dummy alignment
 
-Open **Settings > 3D Patient**, enable **Preview for alignment**, and use position, size, rotation, and opacity sliders to align the procedural dog with a stationary dummy. The required camera starts automatically. Hardware and 3D Patient configuration are collapsed sections in Settings, rather than student navigation tabs. No GLB file is needed for this placeholder. Alignment settings last for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
+Open **Settings > 3D Patient**, enable **Preview for alignment**, and use position, size, screen rotation, left/right turn, tilt, and opacity sliders to align the assigned breed with a stationary dummy. The required camera starts automatically. Hardware and 3D Patient configuration are collapsed sections in Settings, rather than student navigation tabs. No GLB file is needed. Each breed keeps separate alignment settings for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
 
-The placeholder appears when an assessment mode is selected. Option 1 starts standing and transitions to lying down after confirmed initial anesthesia injection. Option 2 starts lying down. Correct RFID verification alone does not make the dog stand: correct drug verification and completed intervention are both required. It then transitions back to standing for results and hides on End Assessment. Alignment preview is cleared when a new session or scenario begins. **AR overlays** and **3D model visibility** also control this placeholder. Reduced-motion preferences switch poses immediately instead of animating the transition. This is manual screen alignment, not ArUco, ORB, optical flow, or clinical breathing simulation. The separate GLB viewer remains available below the placement controls.
+The dog appears when an assessment mode is selected. Option 1 starts standing and transitions to lying down after confirmed initial anesthesia injection. Option 2 starts lying down. Correct RFID verification alone does not make the dog stand: correct drug verification and completed intervention are both required. It then transitions back to standing for results and hides on End Assessment. Alignment preview is cleared when a new session or scenario begins. **AR overlays** and **3D model visibility** also control this dog. Reduced-motion preferences switch poses immediately instead of animating the transition. This is manual screen alignment, not ArUco, ORB, optical flow, or clinical breathing simulation. The separate rotatable inspector remains available below the placement controls.
 
 ## 7. Optional wire gate
 
@@ -148,6 +148,6 @@ For Git updates, save/commit your own work, stop the servers, and run `git pull`
 | Correct tag test ignored | Start the scenario, ensure it is active, and reconnect simulated sensors if disconnected. Allow 1.5 seconds for same-tag debounce. |
 | Real ESP32 scan rejected | Check current `session_id`, status heartbeat, input source, UID registry, and event schema in the two-mode guide. |
 | Vitals show dashes | Choose a mode, verify backend connection, then check the optional wire gate. |
-| Missing model | Add `canine.glb` at the exact path; the placeholder is otherwise normal. |
+| Missing Blender model | Add `labrador.glb`, `beagle.glb`, or `dalmatian.glb` in `frontend/public/models/` for the inspector. The matching built-in breed model appears while an export is absent. |
 
 Keep source, docs, dependency lockfiles, and `.gitignore` in Git. Do not commit `node_modules`, `.venv`, local records, `.env` secrets, or Wi-Fi credentials. Each groupmate installs their own environment. GitHub stores the source; it does not launch Vite or FastAPI, and GitHub Pages cannot run this Python backend.

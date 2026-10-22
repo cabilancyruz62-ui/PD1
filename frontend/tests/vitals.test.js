@@ -1,15 +1,53 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { patients, randomPatientId } from '../src/data/patients.js';
+import { readFileSync } from 'node:fs';
+import { patients, getPatientById, randomPatientId } from '../src/data/patients.js';
 import { getVitalsState } from '../src/lib/vitals.js';
 
-test('ten complete patients and random selection excludes the current one', () => {
-  assert.equal(patients.length, 10);
-  assert.equal(new Set(patients.map(p => p.id)).size, 10);
+test('three complete patient profiles use the supported demonstration breeds', () => {
+  assert.equal(patients.length, 3);
+  assert.equal(new Set(patients.map(p => p.id)).size, 3);
+  assert.deepEqual(patients.map(({ id, breedId, Breed }) => ({ id, breedId, Breed })), [
+    { id: 'bella', breedId: 'labrador', Breed: 'Labrador Retriever' },
+    { id: 'charlie', breedId: 'beagle', Breed: 'Beagle' },
+    { id: 'spot', breedId: 'dalmatian', Breed: 'Dalmatian' },
+  ]);
   for (const patient of patients) {
     for (const key of ['Name','Breed','Age','Sex','Weight','Procedure','Condition']) assert.ok(patient[key]);
-    for (let i = 0; i < 9; i++) assert.notEqual(randomPatientId(patient.id, () => i / 9), patient.id);
   }
+});
+
+test('frontend profiles match the backend assignment pool', () => {
+  const config = JSON.parse(readFileSync(new URL('../../backend/config/assessment.json', import.meta.url), 'utf8'));
+  assert.deepEqual(config.patient_ids, patients.map(patient => patient.id));
+});
+
+test('random assignment selects only active profiles and excludes the current patient', () => {
+  const activeIds = new Set(patients.map(patient => patient.id));
+  for (const currentId of [...activeIds, 'max', undefined]) {
+    for (const fraction of [0, 0.25, 0.5, 0.75, 0.999]) {
+      const assigned = randomPatientId(currentId, () => fraction);
+      assert.ok(activeIds.has(assigned));
+      assert.notEqual(assigned, currentId);
+    }
+  }
+});
+
+test('inactive patients remain available by ID for historical report names', () => {
+  const historical = {
+    max: ['Max', 'Golden Retriever'], luna: ['Luna', 'Shih Tzu'],
+    cooper: ['Cooper', 'German Shepherd'], daisy: ['Daisy', 'Poodle'],
+    milo: ['Milo', 'Aspin'], coco: ['Coco', 'Dachshund'],
+    rocky: ['Rocky', 'Siberian Husky'], nala: ['Nala', 'Border Collie'],
+  };
+  for (const [id, [name, breed]] of Object.entries(historical)) {
+    const patient = getPatientById(id);
+    assert.equal(patient.Name, name);
+    assert.equal(patient.Breed, breed);
+    assert.equal(patients.some(active => active.id === id), false);
+  }
+  for (const active of patients) assert.equal(getPatientById(active.id), active);
+  assert.equal(getPatientById('unknown-patient'), undefined);
 });
 
 test('disabled trigger always allows baseline vitals', () => {
