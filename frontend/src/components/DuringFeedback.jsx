@@ -1,16 +1,38 @@
+import { useEffect, useRef, useState } from 'react';
 import { CheckCircle2, CircleAlert, Clock3 } from 'lucide-react';
-import { getAngleFeedback, getDrugFeedback } from '../lib/feedback';
+import { getAngleFeedbackPopup } from '../lib/feedback';
+import InterventionNotice from './InterventionNotice';
 
-export default function DuringFeedback({ state }) {
-  if (!state?.mode || ['evaluated', 'ended', 'interrupted'].includes(state.phase)) return null;
-  const drug = getDrugFeedback(state), angle = getAngleFeedback(state);
-  const messages = [drug && { ...drug, id: 'drug' }, angle && { ...angle, id: 'angle' }].filter(Boolean);
-  return <section className="during-feedback" aria-label="During feedback">
-    <h3>During Feedback</h3>
-    <span className="feedback-announcement" role="status" aria-live="polite">{messages.map(item => item.id === 'drug' ? item.message : item.title).join(' ')}</span>
-    {messages.length ? messages.map(item => {
-      const Icon = item.status === 'valid' ? CheckCircle2 : item.status === 'waiting' ? Clock3 : CircleAlert;
-      return <p className={`feedback-message feedback-${item.status}`} key={item.id}><Icon size={18} aria-hidden="true"/><span>{item.message}</span></p>;
-    }) : <p className="notice">Feedback will appear here after a drug scan or during an injection.</p>}
-  </section>;
+function AngleFeedbackPopup({ feedback, onDismiss }) {
+  const dialog = useRef(null);
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element.open) element.showModal();
+    return () => { if (element.open) element.close(); };
+  }, []);
+  const Icon = feedback.status === 'valid' ? CheckCircle2 : feedback.status === 'waiting' ? Clock3 : CircleAlert;
+  return <dialog ref={dialog} className={`intervention-dialog during-feedback-dialog ${feedback.status === 'valid' ? 'success' : ''}`} onCancel={event => { event.preventDefault(); onDismiss(); }} aria-labelledby="during-feedback-title" aria-describedby="during-feedback-message">
+    <span className="eyebrow">During Feedback</span>
+    <h2 id="during-feedback-title" className="feedback-dialog-title"><Icon size={25} aria-hidden="true"/>{feedback.title}</h2>
+    <p id="during-feedback-message">{feedback.message}</p>
+    <div className="action-row"><button className="primary" onClick={onDismiss}>Continue</button></div>
+  </dialog>;
+}
+
+export default function DuringFeedback({ state, notice, onDismissNotice, onContinueNotice, enabled = true }) {
+  const feedback = getAngleFeedbackPopup(state);
+  const lastSeen = useRef(null);
+  const [openKey, setOpenKey] = useState(null);
+  const key = feedback?.key || null;
+  useEffect(() => {
+    if (!key) { lastSeen.current = null; setOpenKey(null); return; }
+    // Backend notices (RFID, recognition, completion) have priority so native
+    // dialogs never stack. The latest angle result is shown after dismissal.
+    if (!enabled || notice) return;
+    if (lastSeen.current !== key) { lastSeen.current = key; setOpenKey(key); }
+  }, [key, notice, enabled]);
+  if (!enabled) return null;
+  if (notice) return <InterventionNotice key={notice.id} notice={notice} state={state} onDismiss={onDismissNotice} onContinue={onContinueNotice}/>;
+  if (!feedback || openKey !== key) return null;
+  return <AngleFeedbackPopup feedback={feedback} onDismiss={() => setOpenKey(null)}/>;
 }

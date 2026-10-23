@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getAngleFeedback, getDrugFeedback } from '../src/lib/feedback.js';
+import { getAngleFeedback, getAngleFeedbackPopup, getDrugFeedback } from '../src/lib/feedback.js';
 
 function angleState(overrides = {}) {
   return {
@@ -38,7 +38,9 @@ test('angle feedback identifies low, high and a finite zero reading', () => {
 
 test('angle target boundaries are inclusive and use configured targets', () => {
   for (const value of [15, 30]) {
-    assert.equal(getAngleFeedback(angleState({ angle_deg: value, raw_angle_deg: value })).status, 'valid');
+    const feedback = getAngleFeedback(angleState({ angle_deg: value, raw_angle_deg: value }));
+    assert.equal(feedback.status, 'valid');
+    assert.equal(feedback.title, 'Angle within accepted range');
   }
   const state = angleState({ angle_deg: 35, raw_angle_deg: 35 });
   state.catalog = { angle_min_deg: 32, angle_max_deg: 40 };
@@ -100,6 +102,56 @@ test('invalid target configuration never rates a sample', () => {
     { angle_min_deg: 40, angle_max_deg: 30 }, { angle_min_deg: 0, angle_max_deg: Infinity }]) {
     assert.equal(getAngleFeedback({ ...angleState(), catalog }).status, 'waiting');
   }
+});
+
+test('unavailable inputs explain whether a reading is missing, stale or uncalibrated', () => {
+  const state = angleState();
+  state.angle = null;
+  assert.match(getAngleFeedback(state).message, /No angle received/);
+  assert.match(getAngleFeedback(angleState({ fresh: false })).message, /expired or the sensor is disconnected/);
+  assert.match(getAngleFeedback(angleState({ calibrated: false })).message, /Calibrate.*dummy surface/);
+  assert.match(getAngleFeedback(angleState({ calibration_id: '' })).title, /calibration required/);
+  assert.match(getAngleFeedback(angleState({ injection_stage_id: 'old-stage' })).message, /another injection/);
+});
+
+const popupState = (overrides = {}) => ({ ...angleState(overrides), mode: 'full', session_id: 'session-1' });
+
+test('live feedback popup waits for actual input and stays hidden outside injection stages', () => {
+  assert.equal(getAngleFeedbackPopup({ ...popupState(), angle: null }), null);
+  assert.equal(getAngleFeedbackPopup({ ...popupState(), mode: null }), null);
+  for (const phase of ['preparation', 'scenario_active', 'evaluated', 'ended', 'interrupted']) {
+    assert.equal(getAngleFeedbackPopup({ ...popupState(), phase }), null);
+  }
+  assert.equal(getAngleFeedbackPopup(null), null);
+});
+
+test('continuous readings with the same result do not request another popup', () => {
+  for (const values of [[16, 22, 29], [1, 5, 10], [35, 45, 90]]) {
+    const events = values.map(value => getAngleFeedbackPopup(popupState({
+      angle_deg: value, raw_angle_deg: value, within_target: value >= 15 && value <= 30,
+    })));
+    assert.ok(events.every(event => event.key === events[0].key));
+    assert.notEqual(events[0].message, events[1].message, 'the visible reading can still update');
+  }
+});
+
+test('corrections, excursions, stale readings and calibration problems request distinct popups', () => {
+  const events = [
+    popupState({ angle_deg: 10, raw_angle_deg: 10, within_target: false }), popupState(),
+    popupState({ raw_angle_deg: 45, within_target: false }), popupState({ fresh: false }),
+    popupState({ calibrated: false }),
+  ].map(getAngleFeedbackPopup);
+  assert.deepEqual(events.map(event => event.status), ['low', 'valid', 'high', 'waiting', 'waiting']);
+  assert.equal(new Set(events.map(event => event.key)).size, events.length);
+});
+
+test('new sessions and intervention stages get their own feedback popup', () => {
+  const initial = popupState();
+  const intervention = { ...initial, mode: 'direct', phase: 'intervention_injection', injection_stage_id: 'intervention-2',
+    angle: { ...initial.angle, injection_stage_id: 'intervention-2' } };
+  const keys = [initial, { ...initial, session_id: 'session-2' }, intervention]
+    .map(state => getAngleFeedbackPopup(state).key);
+  assert.equal(new Set(keys).size, keys.length);
 });
 
 test('both injection stages show feedback and a new stage requires its own fresh reading', () => {

@@ -53,6 +53,10 @@ The assigned patient stays fixed. **End Assessment** closes the report and rando
 
 Repeat with **Low angle · 10°** or **High angle · 45°**. A fresh calibrated angle outside the target still allows the explicit injection confirmation; its failed angle criterion is retained and loses the configured angle points. The device orientation itself never confirms administration. Complete Injection without a fresh calibrated angle produces a clear error.
 
+The live angle card reports **Angle too low**, **Angle within accepted range**, or **Angle too high**. Its large value is the reading responsible for that result; the latest raw and smoothed readings remain listed underneath. Missing, stale, and uncalibrated inputs explain why they cannot be assessed. **During Feedback** appears in a popup when an angle input changes result, including low/high/accepted, stale, or uncalibrated readings. Continue or Escape dismisses it; readings with the same result update without repeatedly reopening it. Drug/recognition notices take priority so only one feedback popup is open at a time. Starting an intervention injection requires its own fresh reading; an earlier sample cannot pass that new stage.
+
+**Assessment** contains **Checklist** and **Post Feedback** tabs. The current report becomes available after completion or End Assessment; scores, timing, recorded angles, and RFID attempts stay there. During Feedback is not embedded in either tab. Saved feedback from the previous student remains available during a new assessment. Recording an intervention note keeps the checklist open.
+
 The inclusive 15°–30° rule is a configurable prototype target pending veterinary-expert review. A hardware calibration flag is a device assertion, not proof of clinical validation.
 
 ## 4. Test Option 2: Direct scenario
