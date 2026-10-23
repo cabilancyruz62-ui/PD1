@@ -76,11 +76,13 @@ Read **[the full two-mode guide](TWO_MODES.md)** for step-by-step tests, message
 
 For a quick check:
 
+Choose **SIMULATED** or **REAL · ESP32 hardware** on the main menu before selecting an option, or change it in the **Hardware** tab after selecting an option. Both orders work until the exercise starts. The choice carries into the next assessment while the backend stays running; it defaults to simulation after a backend restart.
+
 1. Choose Option 1, review the patient, and select a complication in Scenario.
-2. Begin Injection, then choose Settings > Hardware → Valid angle · 22.5°.
+2. Begin Injection, then choose Hardware → Valid angle · 22.5°. Dismiss the feedback popup.
 3. Press Complete Injection within five seconds of that sample. The complication starts.
 4. Record the complication in Assessment → Checklist.
-5. In Settings > Hardware, try Incorrect RFID tag, then Correct RFID tag. **Drug Verified** unlocks intervention injection and automatically opens the angle panel. Record a **new** valid/invalid angle, then press **Complete Intervention Injection**. RFID selection alone does not finish the assessment.
+5. In Hardware, try Incorrect RFID tag, then Correct RFID tag. **Drug Verified** unlocks intervention injection and automatically opens the angle panel. Record a **new** valid/invalid angle, then press **Complete Intervention Injection**. RFID selection alone does not finish the assessment.
 6. Review both angle results and timing in Feedback. End Assessment, choose Option 2 for the next patient, then Start Scenario. Option 2 skips the initial anesthesia injection, but after Drug Verified it still requires the shared intervention angle check and completion confirmation in the simulated injectable exercise.
 
 Only one complication is active. There is no automatic complication cycle. Drug 1–3, angle rules, and scoring are demonstration placeholders awaiting licensed veterinary review.
@@ -101,13 +103,13 @@ Open Settings > 3D Patient to inspect the built-in Labrador, Beagle, and Dalmati
 
 ### Manual dummy alignment
 
-Open **Settings > 3D Patient**, enable **Preview for alignment**, and use position, size, screen rotation, left/right turn, tilt, and opacity sliders to align the assigned breed with a stationary dummy. The required camera starts automatically. Hardware and 3D Patient configuration are collapsed sections in Settings, rather than student navigation tabs. No GLB file is needed. Each breed keeps separate alignment settings for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
+Open **Settings > 3D Patient**, enable **Preview for alignment**, and use position, size, screen rotation, left/right turn, tilt, and opacity sliders to align the assigned breed with a stationary dummy. The required camera starts automatically. Hardware has its own navigation tab; 3D Patient configuration is a collapsed section in Settings. No GLB file is needed. Each breed keeps separate alignment settings for the current page session; resizing the window, mirroring the camera, or moving the dummy may require realignment.
 
 The dog appears when an assessment mode is selected. Option 1 starts standing and transitions to lying down after confirmed initial anesthesia injection. Option 2 starts lying down. Correct RFID verification alone does not make the dog stand: correct drug verification and completed intervention are both required. It then transitions back to standing for results and hides on End Assessment. Alignment preview is cleared when a new session or scenario begins. **AR overlays** and **3D model visibility** also control this dog. Reduced-motion preferences switch poses immediately instead of animating the transition. This is manual screen alignment, not ArUco, ORB, optical flow, or clinical breathing simulation. The separate rotatable inspector remains available below the placement controls.
 
 ## 7. Optional wire gate
 
-Vitals → Optional wire activation settings, or Settings, can require a separate wire signal to show the monitor. Keep this off for initial assessment tests. For a hardware-free demonstration, choose Simulated wire and toggle Simulate wire connected. It controls monitor visibility/audio only; it is not injection completion, drug selection, or a heart-rate measurement. It does not reset the backend response timer. See [wire instructions](patients-and-wire.md).
+Open **Hardware > Monitor activation**, or use **Monitor controls** in Vitals, to require a separate wire signal to show the monitor. Keep this off for initial assessment tests. For a hardware-free demonstration, choose Simulated wire and toggle Simulate wire connected. It controls monitor visibility/audio only; it is not injection completion, drug selection, or a heart-rate measurement. It does not reset the backend response timer. See [wire instructions](patients-and-wire.md).
 
 ## 8. Checks, stopping, and updates
 

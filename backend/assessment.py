@@ -71,8 +71,15 @@ class AssessmentService:
         if any(s["expected_drug"] not in ids for s in c["scenarios"].values()):
             raise ValueError("Every expected drug must have an explicitly registered UID")
 
-    def _new_state(self, student, exclude=None):
-        return {"session_id": None, "student": student, "patient_id": random.choice([p for p in self.config["patient_ids"] if p != exclude]), "mode": None, "phase": "mode_selection", "planned_scenario": "hypotension", "scenario_id": None, "scenario_started_at": None, "input_source": "simulation", "checklist": {key: False for key in ("patient", "angle", "injection", "initial_angle", "initial_injection", "recognition", "drug", "intervention_angle", "intervention_completion")}, "injection_stage_id": None, "initial_angle": None, "injection_angle": None, "intervention_angle": None, "intervention_injection_completed": False, "intervention_completed_at": None, "intervention_completion_seconds": None, "intervention_duration_seconds": None, "angle_records": {"initial": {"samples": [], "total_samples": 0, "within_target_samples": 0}, "intervention": {"samples": [], "total_samples": 0, "within_target_samples": 0}}, "attempts": [], "rfid_events": [], "events": [], "first_response_seconds": None, "last_tag": None, "notification": None, "updated_at": utc_now(), "ended_at": None, "note": ""}
+    def _new_state(self, student, exclude=None, input_source="simulation"):
+        return {"session_id": None, "student": student, "patient_id": random.choice([p for p in self.config["patient_ids"] if p != exclude]), "mode": None, "phase": "mode_selection", "planned_scenario": "hypotension", "scenario_id": None, "scenario_started_at": None, "input_source": input_source, "checklist": {key: False for key in ("patient", "angle", "injection", "initial_angle", "initial_injection", "recognition", "drug", "intervention_angle", "intervention_completion")}, "injection_stage_id": None, "initial_angle": None, "injection_angle": None, "intervention_angle": None, "intervention_injection_completed": False, "intervention_completed_at": None, "intervention_completion_seconds": None, "intervention_duration_seconds": None, "angle_records": {"initial": {"samples": [], "total_samples": 0, "within_target_samples": 0}, "intervention": {"samples": [], "total_samples": 0, "within_target_samples": 0}}, "attempts": [], "rfid_events": [], "events": [], "first_response_seconds": None, "last_tag": None, "notification": None, "updated_at": utc_now(), "ended_at": None, "note": ""}
+
+    def _set_input_source(self, source):
+        if source not in ("simulation", "esp32"):
+            raise AssessmentError("Choose simulation or esp32 as the hardware input source.")
+        self.state["input_source"] = source
+        self._angles.reset()
+        self._log(f"Selected hardware input source: {source}.")
 
     def _log(self, text):
         self.state["events"].append({"at": utc_now(), "elapsed": round(self.clock() - self._started, 3) if self._started is not None else 0, "text": text})
@@ -183,7 +190,13 @@ class AssessmentService:
     def command(self, data):
         with self.lock:
             action = data["action"]
-            if action == "select_mode":
+            if action == "set_input_source":
+                if self.state["phase"] not in ("mode_selection", "preparation"):
+                    raise AssessmentError("Change the hardware input source before starting the exercise.")
+                if data.get("session_id") != self.state["session_id"]:
+                    raise AssessmentError("This command belongs to an expired or missing assessment session.")
+                self._set_input_source(data.get("input_source"))
+            elif action == "select_mode":
                 if self.state["phase"] != "mode_selection" or data.get("mode") not in ("full", "direct"):
                     raise AssessmentError("End the current assessment before selecting another mode.")
                 self.state.update({"mode": data["mode"], "session_id": str(uuid4()), "phase": "preparation"})
@@ -199,7 +212,7 @@ class AssessmentService:
                     if data.get("scenario_id"):
                         self.state["planned_scenario"] = data["scenario_id"]
                     if data.get("input_source"):
-                        self.state["input_source"] = data["input_source"]
+                        self._set_input_source(data["input_source"])
                 elif action == "begin_injection":
                     self._require("full", "preparation")
                     self._start_injection_stage("initial")
@@ -242,7 +255,7 @@ class AssessmentService:
                     self._log("Assessment ended; prepared a different patient for the next student.")
                     self._save()
                     self.last_report = self._snapshot(False)
-                    self.state = self._new_state(self.state["student"]+1, self.state["patient_id"])
+                    self.state = self._new_state(self.state["student"]+1, self.state["patient_id"], self.state["input_source"])
                     self._started = self._injection_started = self._scenario_started = self._intervention_started = None
                     self._last_reads = {}
                     self._hardware["simulation"].update({"esp32_connected": True, "mpu_connected": True, "rfid_connected": True, "error": None})

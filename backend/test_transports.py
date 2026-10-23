@@ -75,6 +75,7 @@ class TransportTests(unittest.TestCase):
     def setUp(self):
         if self.state()["mode"]:
             self.command("end")
+        self.command("set_input_source", input_source="simulation")
 
     def wait_state(self, ws, predicate):
         for _ in range(20):
@@ -155,11 +156,26 @@ class TransportTests(unittest.TestCase):
             self.assertEqual(json.loads(ws.recv(timeout=3))["type"], "error")
 
     def test_invalid_api_payloads_are_rejected(self):
-        for payload in ({"action": "not_supported"}, {"action": "simulate_angle", "angle_deg": 100}, {"action": "simulate_angle", "angle_deg": float("nan")}, {"action": "select_mode", "mode": "wrong"}):
+        for payload in ({"action": "not_supported"}, {"action": "simulate_angle", "angle_deg": 100}, {"action": "simulate_angle", "angle_deg": float("nan")}, {"action": "select_mode", "mode": "wrong"}, {"action": "set_input_source", "input_source": "invalid"}):
             status, _ = self.request("/api/assessment/command", payload)
             self.assertEqual(status, 422)
         status, _ = self.request("/api/hardware/events", {"type": "status", "device_id": "test", "event_id": "1", "rfid_connected": "true"})
         self.assertEqual(status, 422)
+
+    def test_pre_mode_source_selection_is_streamed_and_carried_into_both_options(self):
+        with connect(self.ws+"/api/ws/assessment", open_timeout=3) as ws:
+            for mode in ("full", "direct"):
+                selected = self.command("set_input_source", input_source="esp32")
+                self.assertIsNone(selected["session_id"])
+                self.assertEqual(selected["phase"], "mode_selection")
+                self.wait_state(ws, lambda state: state["mode"] is None and state["input_source"] == "esp32")
+                chosen = self.command("select_mode", mode=mode)
+                self.assertEqual(chosen["input_source"], "esp32")
+                self.assertEqual(chosen["phase"], "preparation")
+                changed = self.command("set_input_source", input_source="simulation")
+                self.assertEqual(changed["session_id"], chosen["session_id"])
+                self.assertEqual(changed["input_source"], "simulation")
+                self.command("end")
 
 
 if __name__ == "__main__":

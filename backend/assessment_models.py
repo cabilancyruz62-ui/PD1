@@ -7,7 +7,7 @@ class StrictModel(BaseModel):
 
 
 class AssessmentCommand(StrictModel):
-    action: Literal["select_mode", "configure", "begin_injection", "complete_injection", "complete_non_injectable_intervention", "start_scenario", "scenario_visible", "review", "recognize", "note", "end", "simulate_angle", "simulate_rfid", "simulate_disconnect", "simulate_reconnect"]
+    action: Literal["select_mode", "set_input_source", "configure", "begin_injection", "complete_injection", "complete_non_injectable_intervention", "start_scenario", "scenario_visible", "review", "recognize", "note", "end", "simulate_angle", "simulate_rfid", "simulate_disconnect", "simulate_reconnect"]
     session_id: str | None = Field(default=None, max_length=64)
     injection_stage_id: str | None = Field(default=None, max_length=64)
     mode: Literal["full", "direct"] | None = None

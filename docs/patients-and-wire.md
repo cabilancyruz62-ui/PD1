@@ -9,7 +9,7 @@ The browser reconnects to the same running backend assessment after a page refre
 ## Wire gate: test without hardware
 
 1. Start both servers and choose an assessment mode. Baseline simulated vitals are available.
-2. Open **Vitals → Optional wire activation settings**, or the same controls in Settings.
+2. Open **Hardware → Monitor activation**, or use **Monitor controls** in Vitals to open the same controls.
 3. **Require wire connection for vitals** is off by default. Leave it off for initial two-mode tests.
 4. Enable it, keeping **Simulated wire** as the source.
 5. Toggle **Simulate wire connected** on to show the monitor; toggle it off to pause traces, values, and beeps.

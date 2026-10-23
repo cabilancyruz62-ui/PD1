@@ -31,10 +31,14 @@ The main menu has two assessment cards. Version 4 requires a live camera before 
 
 ## 2. Shared setup
 
+The labeled navigation tabs stay visible on phones and desktops. **Hardware** opens sensor settings, test inputs, and monitor activation directly. **Settings** contains camera, sound, overlay, and 3D-patient controls. Selecting an already open tab keeps it open; use the panel's collapse button to close it. The **Next step** shortcut opens the appropriate panel for the current assessment stage. On screens at least 1180 CSS pixels wide, Vitals remains beside the active panel; on smaller screens use the **Vitals** tab. Only one monitor renders at a time.
+
+The main menu includes **Hardware input source** above the option cards. Select **SIMULATED** or **REAL · ESP32 hardware** before choosing an option, or choose the option first and change the source in **Hardware** during preparation. Both orders work; no scenario selection is required to select a source. Selecting a source does not start an assessment or mark sensors connected. The source stays fixed once the exercise starts and is retained for the next student while the backend is running. Restarting the backend resets the default source to simulation.
+
 1. Choose an assessment card. The patient's biography and baseline simulated vitals become available.
 2. Open **Patient Info** and confirm the review acknowledgement.
 3. Open **Scenario** and select one of: Hypotension, Hypoventilation, or Bradycardia. This selection locks when the procedure/scenario begins.
-4. Open **Hardware**. Keep **SIMULATED** selected for testing without an ESP32. Real hardware can only be selected during baseline preparation.
+4. Open **Hardware** to review or change the source chosen on the main menu. Keep **SIMULATED** selected for testing without an ESP32. You can change it during preparation, before Begin Injection or Start Scenario.
 5. Optionally enable the heartbeat beep in Vitals or Settings. Waveforms continue to respond to simulated values, but there is no auto-cycle between complications and no medication picker.
 
 The assigned patient stays fixed. **End Assessment** closes the report and randomly assigns a different patient for the next student. Changing panels, the scenario selection during preparation, or hardware status never switches patients. Refreshing the browser reconnects to the backend's current assessment rather than restarting it.
@@ -42,11 +46,11 @@ The assigned patient stays fixed. **End Assessment** closes the report and rando
 ## 3. Test Option 1: Full procedure + scenario
 
 1. Choose **Option 1** and select a complication during preparation.
-2. Click **Begin Injection**. The Hardware panel opens.
-3. Under **Simulation controls**, click **Valid angle · 22.5°**. The panel should display the synthetic angle, simulated calibration ID, and Within prototype target.
+2. Click **Begin Injection**. The Scenario panel shows the injection angle and completion controls.
+3. Open **Hardware**. Under **Simulation controls**, click **Valid angle · 22.5°**. The panel should display the synthetic angle, simulated calibration ID, and **Angle within accepted range**. Continue dismisses the feedback popup.
 4. Within five seconds, press **Complete Injection**. If the sample expires, press the angle button again. The confirmation requires a fresh calibrated sample taken during this injection step; a sample from before Begin Injection is not sufficient.
 5. The one selected complication appears, vital targets change, and the response timer starts after the browser acknowledges displaying it.
-6. Open **Assessment → Checklist**, select the observed complication, and press **Record recognition**.
+6. Use **Next step: Identify complication**, or open **Assessment → Checklist**. Review Vitals, select the observed complication in **Observed complication**, and press **Submit answer**. A correct answer records recognition and the next-step shortcut changes to **Scan drug tag**; an incorrect answer leaves the identification task available.
 7. Open Hardware and press **Incorrect RFID tag**. A popup shows the detected placeholder drug, active scenario, and incorrect status. The attempt is saved. Both Try Again and Continue Assessment dismiss the popup; Continue opens Assessment. The scenario and vital targets stay unchanged, and another attempt is still possible.
 8. Press **Correct RFID tag**. The Drug Verified popup appears and a new intervention injection stage opens. Submit a fresh **Valid angle · 22.5°** sample, then press **Complete Intervention Injection**. Results become final only after this confirmation.
 9. Press **End Assessment**. Check the saved report and next patient's assignment.
@@ -116,6 +120,8 @@ The score is the weighted completion fraction normalized to 100, minus 5 points 
 FastAPI saves session snapshots to `backend/data/assessments.sqlite3`, excluded from Git. `/api/assessment/results` returns the latest 100 saved records as JSON; Feedback links to it. All rows remain in SQLite even when older than that list limit. A backend restart retains records but marks unfinished sessions interrupted and prepares a new station session; hardware must reconnect/recalibrate. Keep one backend worker per training station. Multiple browser windows connected to that backend share one assessment, not separate students.
 
 ## 8. ESP32 event contract (prepared, not physically validated)
+
+The UI selects its source through `POST /api/assessment/command` with `{"action":"set_input_source","input_source":"esp32"}` (or `"simulation"`). No session is created or required on the main menu. During preparation, include the current `session_id`; old or missing session tokens are rejected. The existing `configure` command also continues to accept `input_source` during preparation. These commands select the receiver source; connection flags still come from status heartbeats.
 
 Use `POST /api/hardware/events` or WebSocket `/api/ws/hardware`. Browser state streams at `/api/ws/assessment`; the UI also has an HTTP state fallback. The local Vite proxy forwards HTTP and WebSocket requests to FastAPI.
 
