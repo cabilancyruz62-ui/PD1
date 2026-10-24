@@ -20,11 +20,13 @@
   },
   "scenarios": {
     "hypotension": {"name": "Hypotension", "target": {"map": 50}, "expected_drug": "drug_1", "intervention_route": "injection", "injectable_expert_approved": false},
-    "hypoventilation": {"name": "Hypoventilation", "target": {"rr": 6, "etco2": 55}, "expected_drug": "drug_2", "intervention_route": "injection", "injectable_expert_approved": false},
-    "bradycardia": {"name": "Bradycardia", "target": {"hr": 45}, "expected_drug": "drug_3", "intervention_route": "injection", "injectable_expert_approved": false}
+    "hypoventilation": {"name": "Hypoventilation", "target": {"rr": 6, "etco2": 55}, "expected_drug": "drug_3", "intervention_route": "injection", "injectable_expert_approved": false},
+    "bradycardia": {"name": "Bradycardia", "target": {"hr": 45}, "expected_drug": "drug_2", "intervention_route": "injection", "injectable_expert_approved": false}
   },
   "rfid_registry": {
     "RFID_TAG_001": {"id": "drug_1", "name": "Drug 1"},
+    "0414790A0F1390": {"id": "drug_2", "name": "Glycopyrrolate"},
+    "0418790A0F1390": {"id": "drug_1", "name": "Ephedrine"},
     "RFID_TAG_002": {"id": "drug_2", "name": "Drug 2"},
     "RFID_TAG_003": {"id": "drug_3", "name": "Drug 3"}
   }
