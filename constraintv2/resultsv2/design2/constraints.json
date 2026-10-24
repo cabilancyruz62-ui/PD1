@@ -1,0 +1,3657 @@
+{
+  "schema_version": 3,
+  "design": "design2",
+  "mode": "orb",
+  "label": "Design 2",
+  "algorithm": "ORB + RANSAC",
+  "metric_count": 5,
+  "metrics": [
+    {
+      "id": "storage_efficiency",
+      "name": "1. Storage Efficiency (Storage Consumption)",
+      "unit": "MB",
+      "value": 0.007358,
+      "status": "measured",
+      "statistic": "Logical tracker source bytes / 1,000,000.",
+      "scope": "This design's own tracker.py only; shared application code, assets, dependencies and builds are excluded.",
+      "evidence": {
+        "status": "measured",
+        "bytes": 7358,
+        "mb": 0.007358,
+        "scope": "This design's tracker.py source file only; not standalone application or installed storage."
+      },
+      "edited_since_generation": false
+    },
+    {
+      "id": "performance",
+      "name": "2. Performance (Latency)",
+      "unit": "ms",
+      "value": 376.3,
+      "status": "measured",
+      "statistic": "Mean successful simulated input-to-display latency; P50/P95 and failures are retained in evidence.",
+      "scope": "Actual simulated-angle control click to matching DOM feedback plus two animation-frame callbacks; physical ESP32 transport and pixel presentation are excluded.",
+      "evidence": {
+        "unit": "ms",
+        "attempted_samples": 5,
+        "successful_samples": 5,
+        "failed_samples": 0,
+        "mean_ms": 376.3,
+        "p50_ms": 340.80000000447035,
+        "p95_ms": 451.8799999982119,
+        "observations": [
+          {
+            "status": "measured",
+            "elapsed_ms": 453.8999999985099,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 10,
+            "http_status": 200,
+            "input_angle_deg": 10,
+            "kind": "Low"
+          },
+          {
+            "status": "measured",
+            "elapsed_ms": 443.79999999701977,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 45,
+            "http_status": 200,
+            "input_angle_deg": 45,
+            "kind": "High"
+          },
+          {
+            "status": "measured",
+            "elapsed_ms": 340.80000000447035,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 10,
+            "http_status": 200,
+            "input_angle_deg": 10,
+            "kind": "Low"
+          },
+          {
+            "status": "measured",
+            "elapsed_ms": 321.29999999701977,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 45,
+            "http_status": 200,
+            "input_angle_deg": 45,
+            "kind": "High"
+          },
+          {
+            "status": "measured",
+            "elapsed_ms": 321.70000000298023,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 10,
+            "http_status": 200,
+            "input_angle_deg": 10,
+            "kind": "Low"
+          }
+        ],
+        "status": "measured",
+        "aggregation": "Pooled successful raw sample observations across repeats; failed samples remain in counts.",
+        "excluded_summary_only_repeats": [],
+        "failed_or_missing_trials": 0
+      },
+      "edited_since_generation": false
+    },
+    {
+      "id": "maintainability",
+      "name": "3. Maintainability (Maintainability Index Score)",
+      "unit": "0-100",
+      "value": 32.98298077896209,
+      "status": "measured",
+      "statistic": "Radon per-file Python Maintainability Index, 0-100.",
+      "scope": "This design's own tracker.py only; no frontend or whole-application score is claimed.",
+      "evidence": {
+        "status": "measured",
+        "score_0_100": 32.98298077896209,
+        "scope": "This design's tracker.py Python file only; not a whole-application Maintainability Index.",
+        "method": "Radon mi_visit(source, multi=True), per-file 0-100 Maintainability Index",
+        "radon_version": "6.0.1"
+      },
+      "edited_since_generation": false
+    },
+    {
+      "id": "memory_efficiency",
+      "name": "4. Memory Efficiency (RAM Consumption)",
+      "unit": "MB",
+      "value": 1338.5497410370372,
+      "status": "measured",
+      "statistic": "Mean sampled browser plus Python backend process-tree RSS; sampled peak and failures are retained in evidence.",
+      "scope": "Resident/working-set sum in decimal MB; shared pages may be counted more than once, and sampling can miss short peaks.",
+      "evidence": {
+        "unit": "MB",
+        "bytes_per_mb": 1000000,
+        "statistic": "sum of process-tree RSS / working sets",
+        "shared_page_caveat": "Shared pages may be counted in more than one process; this is not unique physical RAM. Sampled peaks can miss shorter allocation spikes.",
+        "attempted_samples": 27,
+        "successful_samples": 27,
+        "failed_samples": 0,
+        "mean_mb": 1338.5497410370372,
+        "sampled_peak_mb": 1362.767872,
+        "components": {
+          "backend": {
+            "mean_mb": 202.63655348148149,
+            "sampled_peak_mb": 202.686464
+          },
+          "browser": {
+            "mean_mb": 1135.9131875555556,
+            "sampled_peak_mb": 1160.122368
+          }
+        },
+        "observations": [
+          {
+            "valid": true,
+            "rss_bytes": 1323167744,
+            "components": {
+              "browser": {
+                "rss_bytes": 1120583680,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202584064,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 0.17199999999866122
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1323409408,
+            "components": {
+              "browser": {
+                "rss_bytes": 1120825344,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202584064,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 0.4219999999986612
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1335234560,
+            "components": {
+              "browser": {
+                "rss_bytes": 1132650496,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202584064,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 0.6719999999986612
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1335369728,
+            "components": {
+              "browser": {
+                "rss_bytes": 1132761088,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202608640,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 0.8600000000005821
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1321594880,
+            "components": {
+              "browser": {
+                "rss_bytes": 1118986240,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202608640,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 1.0469999999986612
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1322524672,
+            "components": {
+              "browser": {
+                "rss_bytes": 1119916032,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202608640,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 1.235000000000582
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1323515904,
+            "components": {
+              "browser": {
+                "rss_bytes": 1120907264,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202608640,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 1.4380000000019209
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1324109824,
+            "components": {
+              "browser": {
+                "rss_bytes": 1121501184,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202608640,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 1.6409999999959837
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1324224512,
+            "components": {
+              "browser": {
+                "rss_bytes": 1121607680,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202616832,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 1.8909999999959837
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1319129088,
+            "components": {
+              "browser": {
+                "rss_bytes": 1116512256,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202616832,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 2.0780000000013388
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1324052480,
+            "components": {
+              "browser": {
+                "rss_bytes": 1121435648,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202616832,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 2.2659999999959837
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1335382016,
+            "components": {
+              "browser": {
+                "rss_bytes": 1132744704,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202637312,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 2.5
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1342885888,
+            "components": {
+              "browser": {
+                "rss_bytes": 1140248576,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202637312,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 2.7189999999973224
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1351393280,
+            "components": {
+              "browser": {
+                "rss_bytes": 1148755968,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202637312,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 3.0
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1362288640,
+            "components": {
+              "browser": {
+                "rss_bytes": 1159651328,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202637312,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 3.2030000000013388
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1362767872,
+            "components": {
+              "browser": {
+                "rss_bytes": 1160122368,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202645504,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 3.4219999999986612
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1345294336,
+            "components": {
+              "browser": {
+                "rss_bytes": 1142648832,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202645504,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 3.6569999999992433
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1345978368,
+            "components": {
+              "browser": {
+                "rss_bytes": 1143316480,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202661888,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 3.860000000000582
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1346383872,
+            "components": {
+              "browser": {
+                "rss_bytes": 1143721984,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202661888,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 4.063000000001921
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1345343488,
+            "components": {
+              "browser": {
+                "rss_bytes": 1142681600,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202661888,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 4.25
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1348800512,
+            "components": {
+              "browser": {
+                "rss_bytes": 1146134528,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202665984,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 4.485000000000582
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1349697536,
+            "components": {
+              "browser": {
+                "rss_bytes": 1147031552,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202665984,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 4.7189999999973224
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1354637312,
+            "components": {
+              "browser": {
+                "rss_bytes": 1151967232,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202670080,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 4.938000000001921
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1343000576,
+            "components": {
+              "browser": {
+                "rss_bytes": 1140330496,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202670080,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 5.140999999995984
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1343180800,
+            "components": {
+              "browser": {
+                "rss_bytes": 1140510720,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202670080,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 5.375
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1343594496,
+            "components": {
+              "browser": {
+                "rss_bytes": 1140908032,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202686464,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 5.625
+          },
+          {
+            "valid": true,
+            "rss_bytes": 1343881216,
+            "components": {
+              "browser": {
+                "rss_bytes": 1141194752,
+                "process_count": 13,
+                "pids": [
+                  23108,
+                  28980,
+                  28428,
+                  32584,
+                  33368,
+                  23020,
+                  9996,
+                  16884,
+                  28692,
+                  6756,
+                  25404,
+                  33040,
+                  5920
+                ]
+              },
+              "backend": {
+                "rss_bytes": 202686464,
+                "process_count": 3,
+                "pids": [
+                  20032,
+                  10864,
+                  3748
+                ]
+              }
+            },
+            "missing_roots": [],
+            "vanished_children": [],
+            "elapsed_seconds": 5.875
+          }
+        ],
+        "status": "measured",
+        "aggregation": "Pooled successful raw sample observations across repeats; failed samples remain in counts.",
+        "excluded_summary_only_repeats": [],
+        "failed_or_missing_trials": 0
+      },
+      "edited_since_generation": false
+    },
+    {
+      "id": "computational_efficiency",
+      "name": "5. Computational Efficiency (CPU Utilization)",
+      "unit": "%",
+      "value": 50.75947838009664,
+      "status": "measured",
+      "statistic": "Mean CPU utilization weighted by observed interval duration, normalized across logical CPUs; sampled P95, peak and failures are retained in evidence.",
+      "scope": "Owned browser and Python backend process groups while the selected design runs; percent of total logical CPU capacity, not whole-system CPU utilization or a physical ESP32 measurement.",
+      "evidence": {
+        "unit": "%",
+        "statistic": "process-tree user + system CPU time / interval wall time / logical CPU count * 100",
+        "normalization": "100% means all logical CPU capacity; one fully busy logical CPU is 100 / logical_cpu_count percent",
+        "mean_statistic": "interval-duration-weighted mean of normalized CPU percentages",
+        "p95_statistic": "P95 of sampled interval percentages (linear interpolation)",
+        "attempted_samples": 17,
+        "successful_samples": 17,
+        "failed_samples": 0,
+        "mean_pct": 50.75947838009664,
+        "p95_pct": 62.2371763819611,
+        "sampled_peak_pct": 62.45457848753724,
+        "cpu_seconds": 45.171875,
+        "wall_seconds": 5.561999999998079,
+        "logical_cpu_count": 16,
+        "logical_cpu_counts": [
+          16
+        ],
+        "process_lifetime_caveat": "New processes are baselined at first sighting; CPU consumed before that sighting or after the last sighting of an exited process is not recoverable. Short-lived processes entirely between samples can be missed.",
+        "graphics_caveat": "This headless benchmark uses SwiftShader software rendering, so browser CPU includes software graphics work; remeasure with the final GPU configuration or Electron package.",
+        "observations": [
+          {
+            "valid": true,
+            "normalized_pct": 51.04758522761652,
+            "interval_seconds": 0.48399999999674037,
+            "cpu_seconds": 3.953125,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 3.953125,
+                "normalized_pct": 51.04758522761652,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.0,
+                "normalized_pct": 0.0,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 0.48399999999674037
+          },
+          {
+            "valid": true,
+            "normalized_pct": 58.65329649366304,
+            "interval_seconds": 0.3280000000013388,
+            "cpu_seconds": 3.078125,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 3.03125,
+                "normalized_pct": 57.7600990851301,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.046875,
+                "normalized_pct": 0.8931974085329397,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 0.8119999999980791
+          },
+          {
+            "valid": true,
+            "normalized_pct": 46.2216414586343,
+            "interval_seconds": 0.28100000000267755,
+            "cpu_seconds": 2.078125,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 1.828125,
+                "normalized_pct": 40.66114323804671,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.25,
+                "normalized_pct": 5.5604982205875855,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 1.0930000000007567
+          },
+          {
+            "valid": true,
+            "normalized_pct": 30.10455827113124,
+            "interval_seconds": 0.26599999999598367,
+            "cpu_seconds": 1.28125,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 1.28125,
+                "normalized_pct": 30.10455827113124,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.0,
+                "normalized_pct": 0.0,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 1.3589999999967404
+          },
+          {
+            "valid": true,
+            "normalized_pct": 57.40814696450393,
+            "interval_seconds": 0.31300000000192085,
+            "cpu_seconds": 2.875,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 2.84375,
+                "normalized_pct": 56.784145367063665,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.03125,
+                "normalized_pct": 0.62400159744026,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 1.6719999999986612
+          },
+          {
+            "valid": true,
+            "normalized_pct": 56.942419824947265,
+            "interval_seconds": 0.3430000000007567,
+            "cpu_seconds": 3.125,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 3.109375,
+                "normalized_pct": 56.657707725822526,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.015625,
+                "normalized_pct": 0.28471209912473633,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 2.014999999999418
+          },
+          {
+            "valid": true,
+            "normalized_pct": 53.2941120424654,
+            "interval_seconds": 0.3280000000013388,
+            "cpu_seconds": 2.796875,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 2.796875,
+                "normalized_pct": 53.2941120424654,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.0,
+                "normalized_pct": 0.0,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 2.3430000000007567
+          },
+          {
+            "valid": true,
+            "normalized_pct": 48.38288373890999,
+            "interval_seconds": 0.3289999999979045,
+            "cpu_seconds": 2.546875,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 2.375,
+                "normalized_pct": 45.11778115530256,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.171875,
+                "normalized_pct": 3.2651025836074226,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 2.6719999999986612
+          },
+          {
+            "valid": true,
+            "normalized_pct": 45.072115384682654,
+            "interval_seconds": 0.3899999999994179,
+            "cpu_seconds": 2.8125,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 2.625,
+                "normalized_pct": 42.06730769237048,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.1875,
+                "normalized_pct": 3.004807692312177,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 3.061999999998079
+          },
+          {
+            "valid": true,
+            "normalized_pct": 47.976471657350174,
+            "interval_seconds": 0.34399999999732245,
+            "cpu_seconds": 2.640625,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 2.640625,
+                "normalized_pct": 47.976471657350174,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.0,
+                "normalized_pct": 0.0,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 3.4059999999954016
+          },
+          {
+            "valid": true,
+            "normalized_pct": 58.59375,
+            "interval_seconds": 0.375,
+            "cpu_seconds": 3.515625,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 3.46875,
+                "normalized_pct": 57.8125,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.046875,
+                "normalized_pct": 0.78125,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 3.7809999999954016
+          },
+          {
+            "valid": true,
+            "normalized_pct": 46.84093386565292,
+            "interval_seconds": 0.3440000000045984,
+            "cpu_seconds": 2.578125,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 2.578125,
+                "normalized_pct": 46.84093386565292,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.0,
+                "normalized_pct": 0.0,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 4.125
+          },
+          {
+            "valid": true,
+            "normalized_pct": 62.18282585556706,
+            "interval_seconds": 0.23399999999674037,
+            "cpu_seconds": 2.328125,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 2.03125,
+                "normalized_pct": 54.25347222297797,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.296875,
+                "normalized_pct": 7.9293536325890885,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 4.35899999999674
+          },
+          {
+            "valid": true,
+            "normalized_pct": 12.52003205106716,
+            "interval_seconds": 0.23400000000401633,
+            "cpu_seconds": 0.46875,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 0.46875,
+                "normalized_pct": 12.52003205106716,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.0,
+                "normalized_pct": 0.0,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 4.593000000000757
+          },
+          {
+            "valid": true,
+            "normalized_pct": 59.44293478321929,
+            "interval_seconds": 0.39099999999598367,
+            "cpu_seconds": 3.71875,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 3.71875,
+                "normalized_pct": 59.44293478321929,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.0,
+                "normalized_pct": 0.0,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 4.98399999999674
+          },
+          {
+            "valid": true,
+            "normalized_pct": 62.45457848753724,
+            "interval_seconds": 0.3440000000045984,
+            "cpu_seconds": 3.4375,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 3.40625,
+                "normalized_pct": 61.88680959219599,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.03125,
+                "normalized_pct": 0.5677688953412476,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 5.328000000001339
+          },
+          {
+            "valid": true,
+            "normalized_pct": 51.74946581268668,
+            "interval_seconds": 0.23399999999674037,
+            "cpu_seconds": 1.9375,
+            "logical_cpu_count": 16,
+            "components": {
+              "browser": {
+                "cpu_seconds": 1.671875,
+                "normalized_pct": 44.65478098352803,
+                "process_count": 13,
+                "pids": [
+                  29336,
+                  28496,
+                  6164,
+                  30020,
+                  34512,
+                  27212,
+                  18476,
+                  27140,
+                  34028,
+                  18288,
+                  17172,
+                  20416,
+                  32684
+                ]
+              },
+              "backend": {
+                "cpu_seconds": 0.265625,
+                "normalized_pct": 7.094684829158658,
+                "process_count": 3,
+                "pids": [
+                  19744,
+                  25980,
+                  30340
+                ]
+              }
+            },
+            "process_errors": [],
+            "new_processes": [],
+            "disappeared_processes": [],
+            "elapsed_seconds": 5.561999999998079
+          }
+        ],
+        "status": "measured",
+        "aggregation": "Pooled successful raw intervals across repeats; mean is weighted by interval duration, while P95 and peak describe sampled intervals; failed samples remain in counts.",
+        "excluded_summary_only_repeats": [],
+        "failed_or_missing_trials": 0
+      },
+      "edited_since_generation": false
+    }
+  ],
+  "provenance": {
+    "generated_at_utc": "2026-10-23T18:06:31.037100+00:00",
+    "completed_at_utc": "2026-10-23T18:08:10.578113+00:00",
+    "derived_from_report": "C:\\Users\\norud\\Desktop\\Veterinary-Anesthesia-AR-Starter\\Veterinary-Anesthesia-AR\\constraintv2\\results\\latest.json",
+    "report_generated_at_utc": "2026-10-23T19:02:09.516360+00:00",
+    "source_fingerprint": {
+      "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+      "application_sha256": "47fc9cde4dd50b58aaf22d1e89e65e5504342084cbbaaae47e837dfabe88d992",
+      "files": [
+        {
+          "path": "backend/angles.py",
+          "sha256": "4fadebb0ae9aa3e089031626e70a2c1af41c1dd22c1d4ae889de3f36ab658cb8"
+        },
+        {
+          "path": "backend/assessment.py",
+          "sha256": "cccdbdb13d9bc948c1211fe507575ac6650622060d041a5a0e3a8e6c7cf1aed5"
+        },
+        {
+          "path": "backend/assessment_models.py",
+          "sha256": "4646fa371c150f81aeb4a081435e759098ed19402ce4896bc82cc8ec8e899eab"
+        },
+        {
+          "path": "backend/assessment_store.py",
+          "sha256": "e97968db424b87e591707392a2cca1bc837b573c3ed89d8e815351ee2e3fc1f1"
+        },
+        {
+          "path": "backend/config/assessment.json",
+          "sha256": "72c03115bbc2fd7f111609cfc2cac05410ea05bc97d78afbc8d420cff17c2abe"
+        },
+        {
+          "path": "backend/main.py",
+          "sha256": "edefe4ef0231fcc847d00ddd9898c253a9397069e337972f5846e1e24121ac2d"
+        },
+        {
+          "path": "backend/requirements.txt",
+          "sha256": "f26a26fac717c54921e90b97e6371b76bff3b919e4147d609bedb973153f7307"
+        },
+        {
+          "path": "backend/tracking.py",
+          "sha256": "5db26198f9d7a54fb11c8b02d748c7f58a8e0dfed4994a0ffef264683b2203da"
+        },
+        {
+          "path": "backend/wire.py",
+          "sha256": "7e65119b430a5eb4446764e8ba0b713c94f167cc1fa7a87449ecb7cb93896b6b"
+        },
+        {
+          "path": "designs/design-1-aruco/tracker.py",
+          "sha256": "a16da4ff6f25b3654e3545d5d0d9a8c38b3c9509d4e75f38089c15329ca41a46"
+        },
+        {
+          "path": "designs/design-2-orb-ransac/tracker.py",
+          "sha256": "83483a164e7a6ab7da8049e26870198671db1eb0c6b0fac134928855d0881e27"
+        },
+        {
+          "path": "designs/design-3-optical-flow/tracker.py",
+          "sha256": "be97989068f65d34097b4c4ccbda9ad8d1206085b9ebd7e7d6ce708728aa48fb"
+        },
+        {
+          "path": "designs/requirements.txt",
+          "sha256": "ba324186ef7e9b464df3aeb92958d4a4a6ea84f9e19d95e506c99a304acc16b1"
+        },
+        {
+          "path": "designs/run.py",
+          "sha256": "474278a857ab9edef450f1aebfcee14d32145c0018a3a930be10445dcfc3b0e7"
+        },
+        {
+          "path": "designs/tracking_common.py",
+          "sha256": "98af8ce7344e940d09c583be5561de0a6bb2c3c0cb8d87ac1209bc48557621b6"
+        },
+        {
+          "path": "frontend/index.html",
+          "sha256": "e2e7066194c482014dcdcc2b05a744da6c7fc7ad106c835d0900e2052081a543"
+        },
+        {
+          "path": "frontend/package-lock.json",
+          "sha256": "f7e4d9a86abdc4200070cbae76276a863985aaf5f3f4f409b7e426975812d962"
+        },
+        {
+          "path": "frontend/package.json",
+          "sha256": "afda01304a060cde4bcdf9563078a077f3d0f4400141bf495b8db16cffb1fab6"
+        },
+        {
+          "path": "frontend/src/App.jsx",
+          "sha256": "888e1c25afbdace8818dc1c1c71b60d4bb57b93b800e07de2cc9535a97ea0741"
+        },
+        {
+          "path": "frontend/src/components/AssessmentPanel.jsx",
+          "sha256": "181f3c8f693bad97c139cc1dee50d01147d9e75e264abfa208e52db1c0882d0d"
+        },
+        {
+          "path": "frontend/src/components/CameraSettings.jsx",
+          "sha256": "508b0c1cb673a2f03c3c2938b3437d8f2f851328824098de78b8e4745e3501ff"
+        },
+        {
+          "path": "frontend/src/components/DummyOverlay.jsx",
+          "sha256": "545afe8db6f76dd394db553a76bcf6c870c564d7a42a4ed4a4fe4d2df20339fa"
+        },
+        {
+          "path": "frontend/src/components/DuringFeedback.jsx",
+          "sha256": "0b83a1808f260a488b3009b81991498a12e11a586f051a811598e84104197d05"
+        },
+        {
+          "path": "frontend/src/components/HardwarePanel.jsx",
+          "sha256": "ae8b27c6408e3e858bb0fe9de4942451aa7d9ce39c34fb7488ddd706d548762d"
+        },
+        {
+          "path": "frontend/src/components/HardwareSourceSelect.jsx",
+          "sha256": "bfd1ee577cf3b25381c449182bff70ba94c33d05bd44f7aebf1e36f42a0be39e"
+        },
+        {
+          "path": "frontend/src/components/InjectionAngle.jsx",
+          "sha256": "31a45bc52222a76c19f5c3db7fd001883fa17b07b6527f1d6ead8a7c35689e9b"
+        },
+        {
+          "path": "frontend/src/components/InterventionNotice.jsx",
+          "sha256": "55c574b610521f8a036d4eb2d228181e79df4a436a042e798ac979ba6843da04"
+        },
+        {
+          "path": "frontend/src/components/ModeSelection.jsx",
+          "sha256": "f6114e4e37a9ac6a6934e6f4635ad2f5b8b9b24b2b68fe1bd05b7ed914c10019"
+        },
+        {
+          "path": "frontend/src/components/ModelViewer.jsx",
+          "sha256": "5bdd19a228dbfedeb06fd74ba82759c4beadb1b3c89d8dd96557e6dab8d12593"
+        },
+        {
+          "path": "frontend/src/components/MonitorPanel.jsx",
+          "sha256": "a308599d26273bec536822e5883d13fe30b2ed0393083ca87ba7dd9d4065eb3c"
+        },
+        {
+          "path": "frontend/src/components/ScenarioPanel.jsx",
+          "sha256": "78a5a1033f9c9fcd717353623f0d528eb33278b2de6d55cd90c0b78708a36534"
+        },
+        {
+          "path": "frontend/src/components/SimulationControls.jsx",
+          "sha256": "2631a40c7e3de8f09cb34c8b5d4c4139af1240c92b3493b4d68acd336a5fa05d"
+        },
+        {
+          "path": "frontend/src/components/TrackedOverlay.jsx",
+          "sha256": "24343925827d7be5b75c886383e34ea106ccd5ad27203b5d5dc6575552273a15"
+        },
+        {
+          "path": "frontend/src/components/TrackingRegionSelector.jsx",
+          "sha256": "b998aa656c9390f3b4279a633cc22983ec5519dbcf8a1c79570df478b694b70c"
+        },
+        {
+          "path": "frontend/src/components/TrackingSettings.jsx",
+          "sha256": "464e93024970c9bf6273b26b7a84c8fb41917d135f508b813e148fe9da20acc5"
+        },
+        {
+          "path": "frontend/src/components/VitalsControls.jsx",
+          "sha256": "c06b36487c36666ebd6d47ae69f1c67dc32d08e0a1dc6d5fb9f538da60c91def"
+        },
+        {
+          "path": "frontend/src/components/Waveform.jsx",
+          "sha256": "c7d3595cd45cbb01a36243d2c13ea56674af80d74614293ea1bbcc3d4af482a0"
+        },
+        {
+          "path": "frontend/src/data/breeds.js",
+          "sha256": "7f81b092e4576be4694e118a49b82ca42c5fe54bc57b75397df6424416e413ad"
+        },
+        {
+          "path": "frontend/src/data/patients.js",
+          "sha256": "0e67e2d0daec0d755bcff7c9fbec798f684bd6572d1c14db95e7aaf9f20fd54c"
+        },
+        {
+          "path": "frontend/src/hooks/useAssessment.js",
+          "sha256": "d8ed8c270082d022a9411ad8613de99f4ed2f35b975d9ee5539c182a66a241c2"
+        },
+        {
+          "path": "frontend/src/hooks/useCamera.js",
+          "sha256": "13b017d7668f392491224244e13429db370b7d0649ae6087d2a1edc04c06de3c"
+        },
+        {
+          "path": "frontend/src/hooks/useMediaQuery.js",
+          "sha256": "0200528722e574e5791cd04a47e6dbcdbcdbfc8ae5644ceb24efb1acc0b9c811"
+        },
+        {
+          "path": "frontend/src/hooks/useMonitorSound.js",
+          "sha256": "379209bba98d06c75754dfe632c05cc48cd0f6e67ee3dededbc185e61e29722a"
+        },
+        {
+          "path": "frontend/src/hooks/useTracking.js",
+          "sha256": "34cd5faaae911f881f1566695aed87c935dd3767a68e32b67b89348c3cd267b3"
+        },
+        {
+          "path": "frontend/src/lib/assessmentView.js",
+          "sha256": "f9e50bb2251743f5a795104ce0214c85e788586f8149e005f8853ea2acbcacc9"
+        },
+        {
+          "path": "frontend/src/lib/cameras.js",
+          "sha256": "987f415b1f638b1a8888dedaa0d84b6b0f2e58fab713cc0e2d9dd864aa72f849"
+        },
+        {
+          "path": "frontend/src/lib/dogModel.js",
+          "sha256": "181ec308712d7ccdf0ef82f6171110b5f3e4def8be204e3a6f327093a54a2842"
+        },
+        {
+          "path": "frontend/src/lib/dogPlacement.js",
+          "sha256": "dddad5f9f6ef0c012b13c05eb8d28b38e630f86b05fec39857325a0b21173404"
+        },
+        {
+          "path": "frontend/src/lib/dummyOverlay.js",
+          "sha256": "4716c7a7ec667e7587eefd2ca0457b8c9e46e20d710434e23de59e7d76a0681a"
+        },
+        {
+          "path": "frontend/src/lib/feedback.js",
+          "sha256": "2dcb3fa23d3723fb08f30eaefc7e24a1c1ea7f6ac7a2f8b43460f8a97d1f6bbf"
+        },
+        {
+          "path": "frontend/src/lib/modelFraming.js",
+          "sha256": "7ec663612b682bcc1df79a920576603f3709326baabb452456bcd3bf7b51cbe1"
+        },
+        {
+          "path": "frontend/src/lib/monitor.js",
+          "sha256": "49860a1fa635e90cf3605163e54e2ecf0d24edcd9ccc46e4355fc9d5cbd7bb5e"
+        },
+        {
+          "path": "frontend/src/lib/navigation.js",
+          "sha256": "217312a1ac31a472a2f9f1ad0f8b39582fe1d4b4c53e379ca834bf44601a78e4"
+        },
+        {
+          "path": "frontend/src/lib/tracking.js",
+          "sha256": "2b0f83ee82872c07c0a4a08b2d764ee5733dcb3f66e2d478827f0b0823b0e4a0"
+        },
+        {
+          "path": "frontend/src/lib/vitals.js",
+          "sha256": "e2b01891f06d243fc4ddae1b5af454cdbc923a566c1225eb6a7ef7ec652431fb"
+        },
+        {
+          "path": "frontend/src/main.jsx",
+          "sha256": "3dec8288c361b8aa096803a15dfd3f3c553398d73ad4c09bc8e63f79d930dbec"
+        },
+        {
+          "path": "frontend/src/style.css",
+          "sha256": "68e47e13af13eeeb00ec16a5a9bd44d87dcbc4f66f0fdba0b0efdd4c9ef0bf22"
+        },
+        {
+          "path": "frontend/vite.config.js",
+          "sha256": "1b6d9fbfcd1322c193fd178ecc7136ee7ef8da969fa26a92b101703d3e42c954"
+        }
+      ],
+      "errors": []
+    },
+    "production_build": {
+      "status": "recorded",
+      "scope": "Existing production frontend/dist files, separate from raw-source storage",
+      "source_build_linkage": "Unverified: build files are fingerprinted, but a compiler-attested source-to-build mapping is not available. Rebuild immediately before runtime measurements.",
+      "fingerprint": {
+        "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+        "application_sha256": "c172eefe27d5f7965e2a88f6da99dbdede45b29e7db3923656da5f3ef7e6cdb3",
+        "files": [
+          {
+            "path": "frontend/dist/assets/ModelViewer-Dr9csLu3.js",
+            "sha256": "e7cb19c602d7c1a21a6c855921abeb11c166293c6c5c42e9aa118a34493a13fe"
+          },
+          {
+            "path": "frontend/dist/assets/index-BzkGeSYk.css",
+            "sha256": "ece83594efd47c1f78e461c8ea651caf7be51e73763c44ec05657fcaa2752ac6"
+          },
+          {
+            "path": "frontend/dist/assets/index-j4IGXq9T.js",
+            "sha256": "5040fd0bbadfe4b8c4094f72f883afb6bed79d446d04fe99744545c73ed2b199"
+          },
+          {
+            "path": "frontend/dist/index.html",
+            "sha256": "9a9d87fa3e1728441ae6c38a36f5c3bd1fe23506d56b1972e5c5dfd8d727af3f"
+          },
+          {
+            "path": "frontend/dist/models/README.md",
+            "sha256": "1bb5109a33b243559fd9cfda9a6005a4bb3093cb2c6eb5a648fa798465ad5562"
+          }
+        ],
+        "errors": []
+      }
+    }
+  },
+  "constraint_provenance": {
+    "constraint1": {
+      "generated_at_utc": "2026-10-23T18:06:31.037100+00:00",
+      "completed_at_utc": "2026-10-23T18:08:10.578113+00:00",
+      "derived_from_report": "C:\\Users\\norud\\Desktop\\Veterinary-Anesthesia-AR-Starter\\Veterinary-Anesthesia-AR\\constraintv2\\results\\latest.json",
+      "report_generated_at_utc": "2026-10-23T19:02:09.516360+00:00",
+      "source_fingerprint": {
+        "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+        "application_sha256": "47fc9cde4dd50b58aaf22d1e89e65e5504342084cbbaaae47e837dfabe88d992",
+        "files": [
+          {
+            "path": "backend/angles.py",
+            "sha256": "4fadebb0ae9aa3e089031626e70a2c1af41c1dd22c1d4ae889de3f36ab658cb8"
+          },
+          {
+            "path": "backend/assessment.py",
+            "sha256": "cccdbdb13d9bc948c1211fe507575ac6650622060d041a5a0e3a8e6c7cf1aed5"
+          },
+          {
+            "path": "backend/assessment_models.py",
+            "sha256": "4646fa371c150f81aeb4a081435e759098ed19402ce4896bc82cc8ec8e899eab"
+          },
+          {
+            "path": "backend/assessment_store.py",
+            "sha256": "e97968db424b87e591707392a2cca1bc837b573c3ed89d8e815351ee2e3fc1f1"
+          },
+          {
+            "path": "backend/config/assessment.json",
+            "sha256": "72c03115bbc2fd7f111609cfc2cac05410ea05bc97d78afbc8d420cff17c2abe"
+          },
+          {
+            "path": "backend/main.py",
+            "sha256": "edefe4ef0231fcc847d00ddd9898c253a9397069e337972f5846e1e24121ac2d"
+          },
+          {
+            "path": "backend/requirements.txt",
+            "sha256": "f26a26fac717c54921e90b97e6371b76bff3b919e4147d609bedb973153f7307"
+          },
+          {
+            "path": "backend/tracking.py",
+            "sha256": "5db26198f9d7a54fb11c8b02d748c7f58a8e0dfed4994a0ffef264683b2203da"
+          },
+          {
+            "path": "backend/wire.py",
+            "sha256": "7e65119b430a5eb4446764e8ba0b713c94f167cc1fa7a87449ecb7cb93896b6b"
+          },
+          {
+            "path": "designs/design-1-aruco/tracker.py",
+            "sha256": "a16da4ff6f25b3654e3545d5d0d9a8c38b3c9509d4e75f38089c15329ca41a46"
+          },
+          {
+            "path": "designs/design-2-orb-ransac/tracker.py",
+            "sha256": "83483a164e7a6ab7da8049e26870198671db1eb0c6b0fac134928855d0881e27"
+          },
+          {
+            "path": "designs/design-3-optical-flow/tracker.py",
+            "sha256": "be97989068f65d34097b4c4ccbda9ad8d1206085b9ebd7e7d6ce708728aa48fb"
+          },
+          {
+            "path": "designs/requirements.txt",
+            "sha256": "ba324186ef7e9b464df3aeb92958d4a4a6ea84f9e19d95e506c99a304acc16b1"
+          },
+          {
+            "path": "designs/run.py",
+            "sha256": "474278a857ab9edef450f1aebfcee14d32145c0018a3a930be10445dcfc3b0e7"
+          },
+          {
+            "path": "designs/tracking_common.py",
+            "sha256": "98af8ce7344e940d09c583be5561de0a6bb2c3c0cb8d87ac1209bc48557621b6"
+          },
+          {
+            "path": "frontend/index.html",
+            "sha256": "e2e7066194c482014dcdcc2b05a744da6c7fc7ad106c835d0900e2052081a543"
+          },
+          {
+            "path": "frontend/package-lock.json",
+            "sha256": "f7e4d9a86abdc4200070cbae76276a863985aaf5f3f4f409b7e426975812d962"
+          },
+          {
+            "path": "frontend/package.json",
+            "sha256": "afda01304a060cde4bcdf9563078a077f3d0f4400141bf495b8db16cffb1fab6"
+          },
+          {
+            "path": "frontend/src/App.jsx",
+            "sha256": "888e1c25afbdace8818dc1c1c71b60d4bb57b93b800e07de2cc9535a97ea0741"
+          },
+          {
+            "path": "frontend/src/components/AssessmentPanel.jsx",
+            "sha256": "181f3c8f693bad97c139cc1dee50d01147d9e75e264abfa208e52db1c0882d0d"
+          },
+          {
+            "path": "frontend/src/components/CameraSettings.jsx",
+            "sha256": "508b0c1cb673a2f03c3c2938b3437d8f2f851328824098de78b8e4745e3501ff"
+          },
+          {
+            "path": "frontend/src/components/DummyOverlay.jsx",
+            "sha256": "545afe8db6f76dd394db553a76bcf6c870c564d7a42a4ed4a4fe4d2df20339fa"
+          },
+          {
+            "path": "frontend/src/components/DuringFeedback.jsx",
+            "sha256": "0b83a1808f260a488b3009b81991498a12e11a586f051a811598e84104197d05"
+          },
+          {
+            "path": "frontend/src/components/HardwarePanel.jsx",
+            "sha256": "ae8b27c6408e3e858bb0fe9de4942451aa7d9ce39c34fb7488ddd706d548762d"
+          },
+          {
+            "path": "frontend/src/components/HardwareSourceSelect.jsx",
+            "sha256": "bfd1ee577cf3b25381c449182bff70ba94c33d05bd44f7aebf1e36f42a0be39e"
+          },
+          {
+            "path": "frontend/src/components/InjectionAngle.jsx",
+            "sha256": "31a45bc52222a76c19f5c3db7fd001883fa17b07b6527f1d6ead8a7c35689e9b"
+          },
+          {
+            "path": "frontend/src/components/InterventionNotice.jsx",
+            "sha256": "55c574b610521f8a036d4eb2d228181e79df4a436a042e798ac979ba6843da04"
+          },
+          {
+            "path": "frontend/src/components/ModeSelection.jsx",
+            "sha256": "f6114e4e37a9ac6a6934e6f4635ad2f5b8b9b24b2b68fe1bd05b7ed914c10019"
+          },
+          {
+            "path": "frontend/src/components/ModelViewer.jsx",
+            "sha256": "5bdd19a228dbfedeb06fd74ba82759c4beadb1b3c89d8dd96557e6dab8d12593"
+          },
+          {
+            "path": "frontend/src/components/MonitorPanel.jsx",
+            "sha256": "a308599d26273bec536822e5883d13fe30b2ed0393083ca87ba7dd9d4065eb3c"
+          },
+          {
+            "path": "frontend/src/components/ScenarioPanel.jsx",
+            "sha256": "78a5a1033f9c9fcd717353623f0d528eb33278b2de6d55cd90c0b78708a36534"
+          },
+          {
+            "path": "frontend/src/components/SimulationControls.jsx",
+            "sha256": "2631a40c7e3de8f09cb34c8b5d4c4139af1240c92b3493b4d68acd336a5fa05d"
+          },
+          {
+            "path": "frontend/src/components/TrackedOverlay.jsx",
+            "sha256": "24343925827d7be5b75c886383e34ea106ccd5ad27203b5d5dc6575552273a15"
+          },
+          {
+            "path": "frontend/src/components/TrackingRegionSelector.jsx",
+            "sha256": "b998aa656c9390f3b4279a633cc22983ec5519dbcf8a1c79570df478b694b70c"
+          },
+          {
+            "path": "frontend/src/components/TrackingSettings.jsx",
+            "sha256": "464e93024970c9bf6273b26b7a84c8fb41917d135f508b813e148fe9da20acc5"
+          },
+          {
+            "path": "frontend/src/components/VitalsControls.jsx",
+            "sha256": "c06b36487c36666ebd6d47ae69f1c67dc32d08e0a1dc6d5fb9f538da60c91def"
+          },
+          {
+            "path": "frontend/src/components/Waveform.jsx",
+            "sha256": "c7d3595cd45cbb01a36243d2c13ea56674af80d74614293ea1bbcc3d4af482a0"
+          },
+          {
+            "path": "frontend/src/data/breeds.js",
+            "sha256": "7f81b092e4576be4694e118a49b82ca42c5fe54bc57b75397df6424416e413ad"
+          },
+          {
+            "path": "frontend/src/data/patients.js",
+            "sha256": "0e67e2d0daec0d755bcff7c9fbec798f684bd6572d1c14db95e7aaf9f20fd54c"
+          },
+          {
+            "path": "frontend/src/hooks/useAssessment.js",
+            "sha256": "d8ed8c270082d022a9411ad8613de99f4ed2f35b975d9ee5539c182a66a241c2"
+          },
+          {
+            "path": "frontend/src/hooks/useCamera.js",
+            "sha256": "13b017d7668f392491224244e13429db370b7d0649ae6087d2a1edc04c06de3c"
+          },
+          {
+            "path": "frontend/src/hooks/useMediaQuery.js",
+            "sha256": "0200528722e574e5791cd04a47e6dbcdbcdbfc8ae5644ceb24efb1acc0b9c811"
+          },
+          {
+            "path": "frontend/src/hooks/useMonitorSound.js",
+            "sha256": "379209bba98d06c75754dfe632c05cc48cd0f6e67ee3dededbc185e61e29722a"
+          },
+          {
+            "path": "frontend/src/hooks/useTracking.js",
+            "sha256": "34cd5faaae911f881f1566695aed87c935dd3767a68e32b67b89348c3cd267b3"
+          },
+          {
+            "path": "frontend/src/lib/assessmentView.js",
+            "sha256": "f9e50bb2251743f5a795104ce0214c85e788586f8149e005f8853ea2acbcacc9"
+          },
+          {
+            "path": "frontend/src/lib/cameras.js",
+            "sha256": "987f415b1f638b1a8888dedaa0d84b6b0f2e58fab713cc0e2d9dd864aa72f849"
+          },
+          {
+            "path": "frontend/src/lib/dogModel.js",
+            "sha256": "181ec308712d7ccdf0ef82f6171110b5f3e4def8be204e3a6f327093a54a2842"
+          },
+          {
+            "path": "frontend/src/lib/dogPlacement.js",
+            "sha256": "dddad5f9f6ef0c012b13c05eb8d28b38e630f86b05fec39857325a0b21173404"
+          },
+          {
+            "path": "frontend/src/lib/dummyOverlay.js",
+            "sha256": "4716c7a7ec667e7587eefd2ca0457b8c9e46e20d710434e23de59e7d76a0681a"
+          },
+          {
+            "path": "frontend/src/lib/feedback.js",
+            "sha256": "2dcb3fa23d3723fb08f30eaefc7e24a1c1ea7f6ac7a2f8b43460f8a97d1f6bbf"
+          },
+          {
+            "path": "frontend/src/lib/modelFraming.js",
+            "sha256": "7ec663612b682bcc1df79a920576603f3709326baabb452456bcd3bf7b51cbe1"
+          },
+          {
+            "path": "frontend/src/lib/monitor.js",
+            "sha256": "49860a1fa635e90cf3605163e54e2ecf0d24edcd9ccc46e4355fc9d5cbd7bb5e"
+          },
+          {
+            "path": "frontend/src/lib/navigation.js",
+            "sha256": "217312a1ac31a472a2f9f1ad0f8b39582fe1d4b4c53e379ca834bf44601a78e4"
+          },
+          {
+            "path": "frontend/src/lib/tracking.js",
+            "sha256": "2b0f83ee82872c07c0a4a08b2d764ee5733dcb3f66e2d478827f0b0823b0e4a0"
+          },
+          {
+            "path": "frontend/src/lib/vitals.js",
+            "sha256": "e2b01891f06d243fc4ddae1b5af454cdbc923a566c1225eb6a7ef7ec652431fb"
+          },
+          {
+            "path": "frontend/src/main.jsx",
+            "sha256": "3dec8288c361b8aa096803a15dfd3f3c553398d73ad4c09bc8e63f79d930dbec"
+          },
+          {
+            "path": "frontend/src/style.css",
+            "sha256": "68e47e13af13eeeb00ec16a5a9bd44d87dcbc4f66f0fdba0b0efdd4c9ef0bf22"
+          },
+          {
+            "path": "frontend/vite.config.js",
+            "sha256": "1b6d9fbfcd1322c193fd178ecc7136ee7ef8da969fa26a92b101703d3e42c954"
+          }
+        ],
+        "errors": []
+      },
+      "production_build": {
+        "status": "recorded",
+        "scope": "Existing production frontend/dist files, separate from raw-source storage",
+        "source_build_linkage": "Unverified: build files are fingerprinted, but a compiler-attested source-to-build mapping is not available. Rebuild immediately before runtime measurements.",
+        "fingerprint": {
+          "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+          "application_sha256": "c172eefe27d5f7965e2a88f6da99dbdede45b29e7db3923656da5f3ef7e6cdb3",
+          "files": [
+            {
+              "path": "frontend/dist/assets/ModelViewer-Dr9csLu3.js",
+              "sha256": "e7cb19c602d7c1a21a6c855921abeb11c166293c6c5c42e9aa118a34493a13fe"
+            },
+            {
+              "path": "frontend/dist/assets/index-BzkGeSYk.css",
+              "sha256": "ece83594efd47c1f78e461c8ea651caf7be51e73763c44ec05657fcaa2752ac6"
+            },
+            {
+              "path": "frontend/dist/assets/index-j4IGXq9T.js",
+              "sha256": "5040fd0bbadfe4b8c4094f72f883afb6bed79d446d04fe99744545c73ed2b199"
+            },
+            {
+              "path": "frontend/dist/index.html",
+              "sha256": "9a9d87fa3e1728441ae6c38a36f5c3bd1fe23506d56b1972e5c5dfd8d727af3f"
+            },
+            {
+              "path": "frontend/dist/models/README.md",
+              "sha256": "1bb5109a33b243559fd9cfda9a6005a4bb3093cb2c6eb5a648fa798465ad5562"
+            }
+          ],
+          "errors": []
+        }
+      }
+    },
+    "constraint2": {
+      "generated_at_utc": "2026-10-23T18:06:31.037100+00:00",
+      "completed_at_utc": "2026-10-23T18:08:10.578113+00:00",
+      "derived_from_report": "C:\\Users\\norud\\Desktop\\Veterinary-Anesthesia-AR-Starter\\Veterinary-Anesthesia-AR\\constraintv2\\results\\latest.json",
+      "report_generated_at_utc": "2026-10-23T19:02:09.516360+00:00",
+      "source_fingerprint": {
+        "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+        "application_sha256": "47fc9cde4dd50b58aaf22d1e89e65e5504342084cbbaaae47e837dfabe88d992",
+        "files": [
+          {
+            "path": "backend/angles.py",
+            "sha256": "4fadebb0ae9aa3e089031626e70a2c1af41c1dd22c1d4ae889de3f36ab658cb8"
+          },
+          {
+            "path": "backend/assessment.py",
+            "sha256": "cccdbdb13d9bc948c1211fe507575ac6650622060d041a5a0e3a8e6c7cf1aed5"
+          },
+          {
+            "path": "backend/assessment_models.py",
+            "sha256": "4646fa371c150f81aeb4a081435e759098ed19402ce4896bc82cc8ec8e899eab"
+          },
+          {
+            "path": "backend/assessment_store.py",
+            "sha256": "e97968db424b87e591707392a2cca1bc837b573c3ed89d8e815351ee2e3fc1f1"
+          },
+          {
+            "path": "backend/config/assessment.json",
+            "sha256": "72c03115bbc2fd7f111609cfc2cac05410ea05bc97d78afbc8d420cff17c2abe"
+          },
+          {
+            "path": "backend/main.py",
+            "sha256": "edefe4ef0231fcc847d00ddd9898c253a9397069e337972f5846e1e24121ac2d"
+          },
+          {
+            "path": "backend/requirements.txt",
+            "sha256": "f26a26fac717c54921e90b97e6371b76bff3b919e4147d609bedb973153f7307"
+          },
+          {
+            "path": "backend/tracking.py",
+            "sha256": "5db26198f9d7a54fb11c8b02d748c7f58a8e0dfed4994a0ffef264683b2203da"
+          },
+          {
+            "path": "backend/wire.py",
+            "sha256": "7e65119b430a5eb4446764e8ba0b713c94f167cc1fa7a87449ecb7cb93896b6b"
+          },
+          {
+            "path": "designs/design-1-aruco/tracker.py",
+            "sha256": "a16da4ff6f25b3654e3545d5d0d9a8c38b3c9509d4e75f38089c15329ca41a46"
+          },
+          {
+            "path": "designs/design-2-orb-ransac/tracker.py",
+            "sha256": "83483a164e7a6ab7da8049e26870198671db1eb0c6b0fac134928855d0881e27"
+          },
+          {
+            "path": "designs/design-3-optical-flow/tracker.py",
+            "sha256": "be97989068f65d34097b4c4ccbda9ad8d1206085b9ebd7e7d6ce708728aa48fb"
+          },
+          {
+            "path": "designs/requirements.txt",
+            "sha256": "ba324186ef7e9b464df3aeb92958d4a4a6ea84f9e19d95e506c99a304acc16b1"
+          },
+          {
+            "path": "designs/run.py",
+            "sha256": "474278a857ab9edef450f1aebfcee14d32145c0018a3a930be10445dcfc3b0e7"
+          },
+          {
+            "path": "designs/tracking_common.py",
+            "sha256": "98af8ce7344e940d09c583be5561de0a6bb2c3c0cb8d87ac1209bc48557621b6"
+          },
+          {
+            "path": "frontend/index.html",
+            "sha256": "e2e7066194c482014dcdcc2b05a744da6c7fc7ad106c835d0900e2052081a543"
+          },
+          {
+            "path": "frontend/package-lock.json",
+            "sha256": "f7e4d9a86abdc4200070cbae76276a863985aaf5f3f4f409b7e426975812d962"
+          },
+          {
+            "path": "frontend/package.json",
+            "sha256": "afda01304a060cde4bcdf9563078a077f3d0f4400141bf495b8db16cffb1fab6"
+          },
+          {
+            "path": "frontend/src/App.jsx",
+            "sha256": "888e1c25afbdace8818dc1c1c71b60d4bb57b93b800e07de2cc9535a97ea0741"
+          },
+          {
+            "path": "frontend/src/components/AssessmentPanel.jsx",
+            "sha256": "181f3c8f693bad97c139cc1dee50d01147d9e75e264abfa208e52db1c0882d0d"
+          },
+          {
+            "path": "frontend/src/components/CameraSettings.jsx",
+            "sha256": "508b0c1cb673a2f03c3c2938b3437d8f2f851328824098de78b8e4745e3501ff"
+          },
+          {
+            "path": "frontend/src/components/DummyOverlay.jsx",
+            "sha256": "545afe8db6f76dd394db553a76bcf6c870c564d7a42a4ed4a4fe4d2df20339fa"
+          },
+          {
+            "path": "frontend/src/components/DuringFeedback.jsx",
+            "sha256": "0b83a1808f260a488b3009b81991498a12e11a586f051a811598e84104197d05"
+          },
+          {
+            "path": "frontend/src/components/HardwarePanel.jsx",
+            "sha256": "ae8b27c6408e3e858bb0fe9de4942451aa7d9ce39c34fb7488ddd706d548762d"
+          },
+          {
+            "path": "frontend/src/components/HardwareSourceSelect.jsx",
+            "sha256": "bfd1ee577cf3b25381c449182bff70ba94c33d05bd44f7aebf1e36f42a0be39e"
+          },
+          {
+            "path": "frontend/src/components/InjectionAngle.jsx",
+            "sha256": "31a45bc52222a76c19f5c3db7fd001883fa17b07b6527f1d6ead8a7c35689e9b"
+          },
+          {
+            "path": "frontend/src/components/InterventionNotice.jsx",
+            "sha256": "55c574b610521f8a036d4eb2d228181e79df4a436a042e798ac979ba6843da04"
+          },
+          {
+            "path": "frontend/src/components/ModeSelection.jsx",
+            "sha256": "f6114e4e37a9ac6a6934e6f4635ad2f5b8b9b24b2b68fe1bd05b7ed914c10019"
+          },
+          {
+            "path": "frontend/src/components/ModelViewer.jsx",
+            "sha256": "5bdd19a228dbfedeb06fd74ba82759c4beadb1b3c89d8dd96557e6dab8d12593"
+          },
+          {
+            "path": "frontend/src/components/MonitorPanel.jsx",
+            "sha256": "a308599d26273bec536822e5883d13fe30b2ed0393083ca87ba7dd9d4065eb3c"
+          },
+          {
+            "path": "frontend/src/components/ScenarioPanel.jsx",
+            "sha256": "78a5a1033f9c9fcd717353623f0d528eb33278b2de6d55cd90c0b78708a36534"
+          },
+          {
+            "path": "frontend/src/components/SimulationControls.jsx",
+            "sha256": "2631a40c7e3de8f09cb34c8b5d4c4139af1240c92b3493b4d68acd336a5fa05d"
+          },
+          {
+            "path": "frontend/src/components/TrackedOverlay.jsx",
+            "sha256": "24343925827d7be5b75c886383e34ea106ccd5ad27203b5d5dc6575552273a15"
+          },
+          {
+            "path": "frontend/src/components/TrackingRegionSelector.jsx",
+            "sha256": "b998aa656c9390f3b4279a633cc22983ec5519dbcf8a1c79570df478b694b70c"
+          },
+          {
+            "path": "frontend/src/components/TrackingSettings.jsx",
+            "sha256": "464e93024970c9bf6273b26b7a84c8fb41917d135f508b813e148fe9da20acc5"
+          },
+          {
+            "path": "frontend/src/components/VitalsControls.jsx",
+            "sha256": "c06b36487c36666ebd6d47ae69f1c67dc32d08e0a1dc6d5fb9f538da60c91def"
+          },
+          {
+            "path": "frontend/src/components/Waveform.jsx",
+            "sha256": "c7d3595cd45cbb01a36243d2c13ea56674af80d74614293ea1bbcc3d4af482a0"
+          },
+          {
+            "path": "frontend/src/data/breeds.js",
+            "sha256": "7f81b092e4576be4694e118a49b82ca42c5fe54bc57b75397df6424416e413ad"
+          },
+          {
+            "path": "frontend/src/data/patients.js",
+            "sha256": "0e67e2d0daec0d755bcff7c9fbec798f684bd6572d1c14db95e7aaf9f20fd54c"
+          },
+          {
+            "path": "frontend/src/hooks/useAssessment.js",
+            "sha256": "d8ed8c270082d022a9411ad8613de99f4ed2f35b975d9ee5539c182a66a241c2"
+          },
+          {
+            "path": "frontend/src/hooks/useCamera.js",
+            "sha256": "13b017d7668f392491224244e13429db370b7d0649ae6087d2a1edc04c06de3c"
+          },
+          {
+            "path": "frontend/src/hooks/useMediaQuery.js",
+            "sha256": "0200528722e574e5791cd04a47e6dbcdbcdbfc8ae5644ceb24efb1acc0b9c811"
+          },
+          {
+            "path": "frontend/src/hooks/useMonitorSound.js",
+            "sha256": "379209bba98d06c75754dfe632c05cc48cd0f6e67ee3dededbc185e61e29722a"
+          },
+          {
+            "path": "frontend/src/hooks/useTracking.js",
+            "sha256": "34cd5faaae911f881f1566695aed87c935dd3767a68e32b67b89348c3cd267b3"
+          },
+          {
+            "path": "frontend/src/lib/assessmentView.js",
+            "sha256": "f9e50bb2251743f5a795104ce0214c85e788586f8149e005f8853ea2acbcacc9"
+          },
+          {
+            "path": "frontend/src/lib/cameras.js",
+            "sha256": "987f415b1f638b1a8888dedaa0d84b6b0f2e58fab713cc0e2d9dd864aa72f849"
+          },
+          {
+            "path": "frontend/src/lib/dogModel.js",
+            "sha256": "181ec308712d7ccdf0ef82f6171110b5f3e4def8be204e3a6f327093a54a2842"
+          },
+          {
+            "path": "frontend/src/lib/dogPlacement.js",
+            "sha256": "dddad5f9f6ef0c012b13c05eb8d28b38e630f86b05fec39857325a0b21173404"
+          },
+          {
+            "path": "frontend/src/lib/dummyOverlay.js",
+            "sha256": "4716c7a7ec667e7587eefd2ca0457b8c9e46e20d710434e23de59e7d76a0681a"
+          },
+          {
+            "path": "frontend/src/lib/feedback.js",
+            "sha256": "2dcb3fa23d3723fb08f30eaefc7e24a1c1ea7f6ac7a2f8b43460f8a97d1f6bbf"
+          },
+          {
+            "path": "frontend/src/lib/modelFraming.js",
+            "sha256": "7ec663612b682bcc1df79a920576603f3709326baabb452456bcd3bf7b51cbe1"
+          },
+          {
+            "path": "frontend/src/lib/monitor.js",
+            "sha256": "49860a1fa635e90cf3605163e54e2ecf0d24edcd9ccc46e4355fc9d5cbd7bb5e"
+          },
+          {
+            "path": "frontend/src/lib/navigation.js",
+            "sha256": "217312a1ac31a472a2f9f1ad0f8b39582fe1d4b4c53e379ca834bf44601a78e4"
+          },
+          {
+            "path": "frontend/src/lib/tracking.js",
+            "sha256": "2b0f83ee82872c07c0a4a08b2d764ee5733dcb3f66e2d478827f0b0823b0e4a0"
+          },
+          {
+            "path": "frontend/src/lib/vitals.js",
+            "sha256": "e2b01891f06d243fc4ddae1b5af454cdbc923a566c1225eb6a7ef7ec652431fb"
+          },
+          {
+            "path": "frontend/src/main.jsx",
+            "sha256": "3dec8288c361b8aa096803a15dfd3f3c553398d73ad4c09bc8e63f79d930dbec"
+          },
+          {
+            "path": "frontend/src/style.css",
+            "sha256": "68e47e13af13eeeb00ec16a5a9bd44d87dcbc4f66f0fdba0b0efdd4c9ef0bf22"
+          },
+          {
+            "path": "frontend/vite.config.js",
+            "sha256": "1b6d9fbfcd1322c193fd178ecc7136ee7ef8da969fa26a92b101703d3e42c954"
+          }
+        ],
+        "errors": []
+      },
+      "production_build": {
+        "status": "recorded",
+        "scope": "Existing production frontend/dist files, separate from raw-source storage",
+        "source_build_linkage": "Unverified: build files are fingerprinted, but a compiler-attested source-to-build mapping is not available. Rebuild immediately before runtime measurements.",
+        "fingerprint": {
+          "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+          "application_sha256": "c172eefe27d5f7965e2a88f6da99dbdede45b29e7db3923656da5f3ef7e6cdb3",
+          "files": [
+            {
+              "path": "frontend/dist/assets/ModelViewer-Dr9csLu3.js",
+              "sha256": "e7cb19c602d7c1a21a6c855921abeb11c166293c6c5c42e9aa118a34493a13fe"
+            },
+            {
+              "path": "frontend/dist/assets/index-BzkGeSYk.css",
+              "sha256": "ece83594efd47c1f78e461c8ea651caf7be51e73763c44ec05657fcaa2752ac6"
+            },
+            {
+              "path": "frontend/dist/assets/index-j4IGXq9T.js",
+              "sha256": "5040fd0bbadfe4b8c4094f72f883afb6bed79d446d04fe99744545c73ed2b199"
+            },
+            {
+              "path": "frontend/dist/index.html",
+              "sha256": "9a9d87fa3e1728441ae6c38a36f5c3bd1fe23506d56b1972e5c5dfd8d727af3f"
+            },
+            {
+              "path": "frontend/dist/models/README.md",
+              "sha256": "1bb5109a33b243559fd9cfda9a6005a4bb3093cb2c6eb5a648fa798465ad5562"
+            }
+          ],
+          "errors": []
+        }
+      }
+    },
+    "constraint3": {
+      "generated_at_utc": "2026-10-23T18:06:31.037100+00:00",
+      "completed_at_utc": "2026-10-23T18:08:10.578113+00:00",
+      "derived_from_report": "C:\\Users\\norud\\Desktop\\Veterinary-Anesthesia-AR-Starter\\Veterinary-Anesthesia-AR\\constraintv2\\results\\latest.json",
+      "report_generated_at_utc": "2026-10-23T19:02:09.516360+00:00",
+      "source_fingerprint": {
+        "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+        "application_sha256": "47fc9cde4dd50b58aaf22d1e89e65e5504342084cbbaaae47e837dfabe88d992",
+        "files": [
+          {
+            "path": "backend/angles.py",
+            "sha256": "4fadebb0ae9aa3e089031626e70a2c1af41c1dd22c1d4ae889de3f36ab658cb8"
+          },
+          {
+            "path": "backend/assessment.py",
+            "sha256": "cccdbdb13d9bc948c1211fe507575ac6650622060d041a5a0e3a8e6c7cf1aed5"
+          },
+          {
+            "path": "backend/assessment_models.py",
+            "sha256": "4646fa371c150f81aeb4a081435e759098ed19402ce4896bc82cc8ec8e899eab"
+          },
+          {
+            "path": "backend/assessment_store.py",
+            "sha256": "e97968db424b87e591707392a2cca1bc837b573c3ed89d8e815351ee2e3fc1f1"
+          },
+          {
+            "path": "backend/config/assessment.json",
+            "sha256": "72c03115bbc2fd7f111609cfc2cac05410ea05bc97d78afbc8d420cff17c2abe"
+          },
+          {
+            "path": "backend/main.py",
+            "sha256": "edefe4ef0231fcc847d00ddd9898c253a9397069e337972f5846e1e24121ac2d"
+          },
+          {
+            "path": "backend/requirements.txt",
+            "sha256": "f26a26fac717c54921e90b97e6371b76bff3b919e4147d609bedb973153f7307"
+          },
+          {
+            "path": "backend/tracking.py",
+            "sha256": "5db26198f9d7a54fb11c8b02d748c7f58a8e0dfed4994a0ffef264683b2203da"
+          },
+          {
+            "path": "backend/wire.py",
+            "sha256": "7e65119b430a5eb4446764e8ba0b713c94f167cc1fa7a87449ecb7cb93896b6b"
+          },
+          {
+            "path": "designs/design-1-aruco/tracker.py",
+            "sha256": "a16da4ff6f25b3654e3545d5d0d9a8c38b3c9509d4e75f38089c15329ca41a46"
+          },
+          {
+            "path": "designs/design-2-orb-ransac/tracker.py",
+            "sha256": "83483a164e7a6ab7da8049e26870198671db1eb0c6b0fac134928855d0881e27"
+          },
+          {
+            "path": "designs/design-3-optical-flow/tracker.py",
+            "sha256": "be97989068f65d34097b4c4ccbda9ad8d1206085b9ebd7e7d6ce708728aa48fb"
+          },
+          {
+            "path": "designs/requirements.txt",
+            "sha256": "ba324186ef7e9b464df3aeb92958d4a4a6ea84f9e19d95e506c99a304acc16b1"
+          },
+          {
+            "path": "designs/run.py",
+            "sha256": "474278a857ab9edef450f1aebfcee14d32145c0018a3a930be10445dcfc3b0e7"
+          },
+          {
+            "path": "designs/tracking_common.py",
+            "sha256": "98af8ce7344e940d09c583be5561de0a6bb2c3c0cb8d87ac1209bc48557621b6"
+          },
+          {
+            "path": "frontend/index.html",
+            "sha256": "e2e7066194c482014dcdcc2b05a744da6c7fc7ad106c835d0900e2052081a543"
+          },
+          {
+            "path": "frontend/package-lock.json",
+            "sha256": "f7e4d9a86abdc4200070cbae76276a863985aaf5f3f4f409b7e426975812d962"
+          },
+          {
+            "path": "frontend/package.json",
+            "sha256": "afda01304a060cde4bcdf9563078a077f3d0f4400141bf495b8db16cffb1fab6"
+          },
+          {
+            "path": "frontend/src/App.jsx",
+            "sha256": "888e1c25afbdace8818dc1c1c71b60d4bb57b93b800e07de2cc9535a97ea0741"
+          },
+          {
+            "path": "frontend/src/components/AssessmentPanel.jsx",
+            "sha256": "181f3c8f693bad97c139cc1dee50d01147d9e75e264abfa208e52db1c0882d0d"
+          },
+          {
+            "path": "frontend/src/components/CameraSettings.jsx",
+            "sha256": "508b0c1cb673a2f03c3c2938b3437d8f2f851328824098de78b8e4745e3501ff"
+          },
+          {
+            "path": "frontend/src/components/DummyOverlay.jsx",
+            "sha256": "545afe8db6f76dd394db553a76bcf6c870c564d7a42a4ed4a4fe4d2df20339fa"
+          },
+          {
+            "path": "frontend/src/components/DuringFeedback.jsx",
+            "sha256": "0b83a1808f260a488b3009b81991498a12e11a586f051a811598e84104197d05"
+          },
+          {
+            "path": "frontend/src/components/HardwarePanel.jsx",
+            "sha256": "ae8b27c6408e3e858bb0fe9de4942451aa7d9ce39c34fb7488ddd706d548762d"
+          },
+          {
+            "path": "frontend/src/components/HardwareSourceSelect.jsx",
+            "sha256": "bfd1ee577cf3b25381c449182bff70ba94c33d05bd44f7aebf1e36f42a0be39e"
+          },
+          {
+            "path": "frontend/src/components/InjectionAngle.jsx",
+            "sha256": "31a45bc52222a76c19f5c3db7fd001883fa17b07b6527f1d6ead8a7c35689e9b"
+          },
+          {
+            "path": "frontend/src/components/InterventionNotice.jsx",
+            "sha256": "55c574b610521f8a036d4eb2d228181e79df4a436a042e798ac979ba6843da04"
+          },
+          {
+            "path": "frontend/src/components/ModeSelection.jsx",
+            "sha256": "f6114e4e37a9ac6a6934e6f4635ad2f5b8b9b24b2b68fe1bd05b7ed914c10019"
+          },
+          {
+            "path": "frontend/src/components/ModelViewer.jsx",
+            "sha256": "5bdd19a228dbfedeb06fd74ba82759c4beadb1b3c89d8dd96557e6dab8d12593"
+          },
+          {
+            "path": "frontend/src/components/MonitorPanel.jsx",
+            "sha256": "a308599d26273bec536822e5883d13fe30b2ed0393083ca87ba7dd9d4065eb3c"
+          },
+          {
+            "path": "frontend/src/components/ScenarioPanel.jsx",
+            "sha256": "78a5a1033f9c9fcd717353623f0d528eb33278b2de6d55cd90c0b78708a36534"
+          },
+          {
+            "path": "frontend/src/components/SimulationControls.jsx",
+            "sha256": "2631a40c7e3de8f09cb34c8b5d4c4139af1240c92b3493b4d68acd336a5fa05d"
+          },
+          {
+            "path": "frontend/src/components/TrackedOverlay.jsx",
+            "sha256": "24343925827d7be5b75c886383e34ea106ccd5ad27203b5d5dc6575552273a15"
+          },
+          {
+            "path": "frontend/src/components/TrackingRegionSelector.jsx",
+            "sha256": "b998aa656c9390f3b4279a633cc22983ec5519dbcf8a1c79570df478b694b70c"
+          },
+          {
+            "path": "frontend/src/components/TrackingSettings.jsx",
+            "sha256": "464e93024970c9bf6273b26b7a84c8fb41917d135f508b813e148fe9da20acc5"
+          },
+          {
+            "path": "frontend/src/components/VitalsControls.jsx",
+            "sha256": "c06b36487c36666ebd6d47ae69f1c67dc32d08e0a1dc6d5fb9f538da60c91def"
+          },
+          {
+            "path": "frontend/src/components/Waveform.jsx",
+            "sha256": "c7d3595cd45cbb01a36243d2c13ea56674af80d74614293ea1bbcc3d4af482a0"
+          },
+          {
+            "path": "frontend/src/data/breeds.js",
+            "sha256": "7f81b092e4576be4694e118a49b82ca42c5fe54bc57b75397df6424416e413ad"
+          },
+          {
+            "path": "frontend/src/data/patients.js",
+            "sha256": "0e67e2d0daec0d755bcff7c9fbec798f684bd6572d1c14db95e7aaf9f20fd54c"
+          },
+          {
+            "path": "frontend/src/hooks/useAssessment.js",
+            "sha256": "d8ed8c270082d022a9411ad8613de99f4ed2f35b975d9ee5539c182a66a241c2"
+          },
+          {
+            "path": "frontend/src/hooks/useCamera.js",
+            "sha256": "13b017d7668f392491224244e13429db370b7d0649ae6087d2a1edc04c06de3c"
+          },
+          {
+            "path": "frontend/src/hooks/useMediaQuery.js",
+            "sha256": "0200528722e574e5791cd04a47e6dbcdbcdbfc8ae5644ceb24efb1acc0b9c811"
+          },
+          {
+            "path": "frontend/src/hooks/useMonitorSound.js",
+            "sha256": "379209bba98d06c75754dfe632c05cc48cd0f6e67ee3dededbc185e61e29722a"
+          },
+          {
+            "path": "frontend/src/hooks/useTracking.js",
+            "sha256": "34cd5faaae911f881f1566695aed87c935dd3767a68e32b67b89348c3cd267b3"
+          },
+          {
+            "path": "frontend/src/lib/assessmentView.js",
+            "sha256": "f9e50bb2251743f5a795104ce0214c85e788586f8149e005f8853ea2acbcacc9"
+          },
+          {
+            "path": "frontend/src/lib/cameras.js",
+            "sha256": "987f415b1f638b1a8888dedaa0d84b6b0f2e58fab713cc0e2d9dd864aa72f849"
+          },
+          {
+            "path": "frontend/src/lib/dogModel.js",
+            "sha256": "181ec308712d7ccdf0ef82f6171110b5f3e4def8be204e3a6f327093a54a2842"
+          },
+          {
+            "path": "frontend/src/lib/dogPlacement.js",
+            "sha256": "dddad5f9f6ef0c012b13c05eb8d28b38e630f86b05fec39857325a0b21173404"
+          },
+          {
+            "path": "frontend/src/lib/dummyOverlay.js",
+            "sha256": "4716c7a7ec667e7587eefd2ca0457b8c9e46e20d710434e23de59e7d76a0681a"
+          },
+          {
+            "path": "frontend/src/lib/feedback.js",
+            "sha256": "2dcb3fa23d3723fb08f30eaefc7e24a1c1ea7f6ac7a2f8b43460f8a97d1f6bbf"
+          },
+          {
+            "path": "frontend/src/lib/modelFraming.js",
+            "sha256": "7ec663612b682bcc1df79a920576603f3709326baabb452456bcd3bf7b51cbe1"
+          },
+          {
+            "path": "frontend/src/lib/monitor.js",
+            "sha256": "49860a1fa635e90cf3605163e54e2ecf0d24edcd9ccc46e4355fc9d5cbd7bb5e"
+          },
+          {
+            "path": "frontend/src/lib/navigation.js",
+            "sha256": "217312a1ac31a472a2f9f1ad0f8b39582fe1d4b4c53e379ca834bf44601a78e4"
+          },
+          {
+            "path": "frontend/src/lib/tracking.js",
+            "sha256": "2b0f83ee82872c07c0a4a08b2d764ee5733dcb3f66e2d478827f0b0823b0e4a0"
+          },
+          {
+            "path": "frontend/src/lib/vitals.js",
+            "sha256": "e2b01891f06d243fc4ddae1b5af454cdbc923a566c1225eb6a7ef7ec652431fb"
+          },
+          {
+            "path": "frontend/src/main.jsx",
+            "sha256": "3dec8288c361b8aa096803a15dfd3f3c553398d73ad4c09bc8e63f79d930dbec"
+          },
+          {
+            "path": "frontend/src/style.css",
+            "sha256": "68e47e13af13eeeb00ec16a5a9bd44d87dcbc4f66f0fdba0b0efdd4c9ef0bf22"
+          },
+          {
+            "path": "frontend/vite.config.js",
+            "sha256": "1b6d9fbfcd1322c193fd178ecc7136ee7ef8da969fa26a92b101703d3e42c954"
+          }
+        ],
+        "errors": []
+      },
+      "production_build": {
+        "status": "recorded",
+        "scope": "Existing production frontend/dist files, separate from raw-source storage",
+        "source_build_linkage": "Unverified: build files are fingerprinted, but a compiler-attested source-to-build mapping is not available. Rebuild immediately before runtime measurements.",
+        "fingerprint": {
+          "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+          "application_sha256": "c172eefe27d5f7965e2a88f6da99dbdede45b29e7db3923656da5f3ef7e6cdb3",
+          "files": [
+            {
+              "path": "frontend/dist/assets/ModelViewer-Dr9csLu3.js",
+              "sha256": "e7cb19c602d7c1a21a6c855921abeb11c166293c6c5c42e9aa118a34493a13fe"
+            },
+            {
+              "path": "frontend/dist/assets/index-BzkGeSYk.css",
+              "sha256": "ece83594efd47c1f78e461c8ea651caf7be51e73763c44ec05657fcaa2752ac6"
+            },
+            {
+              "path": "frontend/dist/assets/index-j4IGXq9T.js",
+              "sha256": "5040fd0bbadfe4b8c4094f72f883afb6bed79d446d04fe99744545c73ed2b199"
+            },
+            {
+              "path": "frontend/dist/index.html",
+              "sha256": "9a9d87fa3e1728441ae6c38a36f5c3bd1fe23506d56b1972e5c5dfd8d727af3f"
+            },
+            {
+              "path": "frontend/dist/models/README.md",
+              "sha256": "1bb5109a33b243559fd9cfda9a6005a4bb3093cb2c6eb5a648fa798465ad5562"
+            }
+          ],
+          "errors": []
+        }
+      }
+    },
+    "constraint4": {
+      "generated_at_utc": "2026-10-23T18:06:31.037100+00:00",
+      "completed_at_utc": "2026-10-23T18:08:10.578113+00:00",
+      "derived_from_report": "C:\\Users\\norud\\Desktop\\Veterinary-Anesthesia-AR-Starter\\Veterinary-Anesthesia-AR\\constraintv2\\results\\latest.json",
+      "report_generated_at_utc": "2026-10-23T19:02:09.516360+00:00",
+      "source_fingerprint": {
+        "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+        "application_sha256": "47fc9cde4dd50b58aaf22d1e89e65e5504342084cbbaaae47e837dfabe88d992",
+        "files": [
+          {
+            "path": "backend/angles.py",
+            "sha256": "4fadebb0ae9aa3e089031626e70a2c1af41c1dd22c1d4ae889de3f36ab658cb8"
+          },
+          {
+            "path": "backend/assessment.py",
+            "sha256": "cccdbdb13d9bc948c1211fe507575ac6650622060d041a5a0e3a8e6c7cf1aed5"
+          },
+          {
+            "path": "backend/assessment_models.py",
+            "sha256": "4646fa371c150f81aeb4a081435e759098ed19402ce4896bc82cc8ec8e899eab"
+          },
+          {
+            "path": "backend/assessment_store.py",
+            "sha256": "e97968db424b87e591707392a2cca1bc837b573c3ed89d8e815351ee2e3fc1f1"
+          },
+          {
+            "path": "backend/config/assessment.json",
+            "sha256": "72c03115bbc2fd7f111609cfc2cac05410ea05bc97d78afbc8d420cff17c2abe"
+          },
+          {
+            "path": "backend/main.py",
+            "sha256": "edefe4ef0231fcc847d00ddd9898c253a9397069e337972f5846e1e24121ac2d"
+          },
+          {
+            "path": "backend/requirements.txt",
+            "sha256": "f26a26fac717c54921e90b97e6371b76bff3b919e4147d609bedb973153f7307"
+          },
+          {
+            "path": "backend/tracking.py",
+            "sha256": "5db26198f9d7a54fb11c8b02d748c7f58a8e0dfed4994a0ffef264683b2203da"
+          },
+          {
+            "path": "backend/wire.py",
+            "sha256": "7e65119b430a5eb4446764e8ba0b713c94f167cc1fa7a87449ecb7cb93896b6b"
+          },
+          {
+            "path": "designs/design-1-aruco/tracker.py",
+            "sha256": "a16da4ff6f25b3654e3545d5d0d9a8c38b3c9509d4e75f38089c15329ca41a46"
+          },
+          {
+            "path": "designs/design-2-orb-ransac/tracker.py",
+            "sha256": "83483a164e7a6ab7da8049e26870198671db1eb0c6b0fac134928855d0881e27"
+          },
+          {
+            "path": "designs/design-3-optical-flow/tracker.py",
+            "sha256": "be97989068f65d34097b4c4ccbda9ad8d1206085b9ebd7e7d6ce708728aa48fb"
+          },
+          {
+            "path": "designs/requirements.txt",
+            "sha256": "ba324186ef7e9b464df3aeb92958d4a4a6ea84f9e19d95e506c99a304acc16b1"
+          },
+          {
+            "path": "designs/run.py",
+            "sha256": "474278a857ab9edef450f1aebfcee14d32145c0018a3a930be10445dcfc3b0e7"
+          },
+          {
+            "path": "designs/tracking_common.py",
+            "sha256": "98af8ce7344e940d09c583be5561de0a6bb2c3c0cb8d87ac1209bc48557621b6"
+          },
+          {
+            "path": "frontend/index.html",
+            "sha256": "e2e7066194c482014dcdcc2b05a744da6c7fc7ad106c835d0900e2052081a543"
+          },
+          {
+            "path": "frontend/package-lock.json",
+            "sha256": "f7e4d9a86abdc4200070cbae76276a863985aaf5f3f4f409b7e426975812d962"
+          },
+          {
+            "path": "frontend/package.json",
+            "sha256": "afda01304a060cde4bcdf9563078a077f3d0f4400141bf495b8db16cffb1fab6"
+          },
+          {
+            "path": "frontend/src/App.jsx",
+            "sha256": "888e1c25afbdace8818dc1c1c71b60d4bb57b93b800e07de2cc9535a97ea0741"
+          },
+          {
+            "path": "frontend/src/components/AssessmentPanel.jsx",
+            "sha256": "181f3c8f693bad97c139cc1dee50d01147d9e75e264abfa208e52db1c0882d0d"
+          },
+          {
+            "path": "frontend/src/components/CameraSettings.jsx",
+            "sha256": "508b0c1cb673a2f03c3c2938b3437d8f2f851328824098de78b8e4745e3501ff"
+          },
+          {
+            "path": "frontend/src/components/DummyOverlay.jsx",
+            "sha256": "545afe8db6f76dd394db553a76bcf6c870c564d7a42a4ed4a4fe4d2df20339fa"
+          },
+          {
+            "path": "frontend/src/components/DuringFeedback.jsx",
+            "sha256": "0b83a1808f260a488b3009b81991498a12e11a586f051a811598e84104197d05"
+          },
+          {
+            "path": "frontend/src/components/HardwarePanel.jsx",
+            "sha256": "ae8b27c6408e3e858bb0fe9de4942451aa7d9ce39c34fb7488ddd706d548762d"
+          },
+          {
+            "path": "frontend/src/components/HardwareSourceSelect.jsx",
+            "sha256": "bfd1ee577cf3b25381c449182bff70ba94c33d05bd44f7aebf1e36f42a0be39e"
+          },
+          {
+            "path": "frontend/src/components/InjectionAngle.jsx",
+            "sha256": "31a45bc52222a76c19f5c3db7fd001883fa17b07b6527f1d6ead8a7c35689e9b"
+          },
+          {
+            "path": "frontend/src/components/InterventionNotice.jsx",
+            "sha256": "55c574b610521f8a036d4eb2d228181e79df4a436a042e798ac979ba6843da04"
+          },
+          {
+            "path": "frontend/src/components/ModeSelection.jsx",
+            "sha256": "f6114e4e37a9ac6a6934e6f4635ad2f5b8b9b24b2b68fe1bd05b7ed914c10019"
+          },
+          {
+            "path": "frontend/src/components/ModelViewer.jsx",
+            "sha256": "5bdd19a228dbfedeb06fd74ba82759c4beadb1b3c89d8dd96557e6dab8d12593"
+          },
+          {
+            "path": "frontend/src/components/MonitorPanel.jsx",
+            "sha256": "a308599d26273bec536822e5883d13fe30b2ed0393083ca87ba7dd9d4065eb3c"
+          },
+          {
+            "path": "frontend/src/components/ScenarioPanel.jsx",
+            "sha256": "78a5a1033f9c9fcd717353623f0d528eb33278b2de6d55cd90c0b78708a36534"
+          },
+          {
+            "path": "frontend/src/components/SimulationControls.jsx",
+            "sha256": "2631a40c7e3de8f09cb34c8b5d4c4139af1240c92b3493b4d68acd336a5fa05d"
+          },
+          {
+            "path": "frontend/src/components/TrackedOverlay.jsx",
+            "sha256": "24343925827d7be5b75c886383e34ea106ccd5ad27203b5d5dc6575552273a15"
+          },
+          {
+            "path": "frontend/src/components/TrackingRegionSelector.jsx",
+            "sha256": "b998aa656c9390f3b4279a633cc22983ec5519dbcf8a1c79570df478b694b70c"
+          },
+          {
+            "path": "frontend/src/components/TrackingSettings.jsx",
+            "sha256": "464e93024970c9bf6273b26b7a84c8fb41917d135f508b813e148fe9da20acc5"
+          },
+          {
+            "path": "frontend/src/components/VitalsControls.jsx",
+            "sha256": "c06b36487c36666ebd6d47ae69f1c67dc32d08e0a1dc6d5fb9f538da60c91def"
+          },
+          {
+            "path": "frontend/src/components/Waveform.jsx",
+            "sha256": "c7d3595cd45cbb01a36243d2c13ea56674af80d74614293ea1bbcc3d4af482a0"
+          },
+          {
+            "path": "frontend/src/data/breeds.js",
+            "sha256": "7f81b092e4576be4694e118a49b82ca42c5fe54bc57b75397df6424416e413ad"
+          },
+          {
+            "path": "frontend/src/data/patients.js",
+            "sha256": "0e67e2d0daec0d755bcff7c9fbec798f684bd6572d1c14db95e7aaf9f20fd54c"
+          },
+          {
+            "path": "frontend/src/hooks/useAssessment.js",
+            "sha256": "d8ed8c270082d022a9411ad8613de99f4ed2f35b975d9ee5539c182a66a241c2"
+          },
+          {
+            "path": "frontend/src/hooks/useCamera.js",
+            "sha256": "13b017d7668f392491224244e13429db370b7d0649ae6087d2a1edc04c06de3c"
+          },
+          {
+            "path": "frontend/src/hooks/useMediaQuery.js",
+            "sha256": "0200528722e574e5791cd04a47e6dbcdbcdbfc8ae5644ceb24efb1acc0b9c811"
+          },
+          {
+            "path": "frontend/src/hooks/useMonitorSound.js",
+            "sha256": "379209bba98d06c75754dfe632c05cc48cd0f6e67ee3dededbc185e61e29722a"
+          },
+          {
+            "path": "frontend/src/hooks/useTracking.js",
+            "sha256": "34cd5faaae911f881f1566695aed87c935dd3767a68e32b67b89348c3cd267b3"
+          },
+          {
+            "path": "frontend/src/lib/assessmentView.js",
+            "sha256": "f9e50bb2251743f5a795104ce0214c85e788586f8149e005f8853ea2acbcacc9"
+          },
+          {
+            "path": "frontend/src/lib/cameras.js",
+            "sha256": "987f415b1f638b1a8888dedaa0d84b6b0f2e58fab713cc0e2d9dd864aa72f849"
+          },
+          {
+            "path": "frontend/src/lib/dogModel.js",
+            "sha256": "181ec308712d7ccdf0ef82f6171110b5f3e4def8be204e3a6f327093a54a2842"
+          },
+          {
+            "path": "frontend/src/lib/dogPlacement.js",
+            "sha256": "dddad5f9f6ef0c012b13c05eb8d28b38e630f86b05fec39857325a0b21173404"
+          },
+          {
+            "path": "frontend/src/lib/dummyOverlay.js",
+            "sha256": "4716c7a7ec667e7587eefd2ca0457b8c9e46e20d710434e23de59e7d76a0681a"
+          },
+          {
+            "path": "frontend/src/lib/feedback.js",
+            "sha256": "2dcb3fa23d3723fb08f30eaefc7e24a1c1ea7f6ac7a2f8b43460f8a97d1f6bbf"
+          },
+          {
+            "path": "frontend/src/lib/modelFraming.js",
+            "sha256": "7ec663612b682bcc1df79a920576603f3709326baabb452456bcd3bf7b51cbe1"
+          },
+          {
+            "path": "frontend/src/lib/monitor.js",
+            "sha256": "49860a1fa635e90cf3605163e54e2ecf0d24edcd9ccc46e4355fc9d5cbd7bb5e"
+          },
+          {
+            "path": "frontend/src/lib/navigation.js",
+            "sha256": "217312a1ac31a472a2f9f1ad0f8b39582fe1d4b4c53e379ca834bf44601a78e4"
+          },
+          {
+            "path": "frontend/src/lib/tracking.js",
+            "sha256": "2b0f83ee82872c07c0a4a08b2d764ee5733dcb3f66e2d478827f0b0823b0e4a0"
+          },
+          {
+            "path": "frontend/src/lib/vitals.js",
+            "sha256": "e2b01891f06d243fc4ddae1b5af454cdbc923a566c1225eb6a7ef7ec652431fb"
+          },
+          {
+            "path": "frontend/src/main.jsx",
+            "sha256": "3dec8288c361b8aa096803a15dfd3f3c553398d73ad4c09bc8e63f79d930dbec"
+          },
+          {
+            "path": "frontend/src/style.css",
+            "sha256": "68e47e13af13eeeb00ec16a5a9bd44d87dcbc4f66f0fdba0b0efdd4c9ef0bf22"
+          },
+          {
+            "path": "frontend/vite.config.js",
+            "sha256": "1b6d9fbfcd1322c193fd178ecc7136ee7ef8da969fa26a92b101703d3e42c954"
+          }
+        ],
+        "errors": []
+      },
+      "production_build": {
+        "status": "recorded",
+        "scope": "Existing production frontend/dist files, separate from raw-source storage",
+        "source_build_linkage": "Unverified: build files are fingerprinted, but a compiler-attested source-to-build mapping is not available. Rebuild immediately before runtime measurements.",
+        "fingerprint": {
+          "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+          "application_sha256": "c172eefe27d5f7965e2a88f6da99dbdede45b29e7db3923656da5f3ef7e6cdb3",
+          "files": [
+            {
+              "path": "frontend/dist/assets/ModelViewer-Dr9csLu3.js",
+              "sha256": "e7cb19c602d7c1a21a6c855921abeb11c166293c6c5c42e9aa118a34493a13fe"
+            },
+            {
+              "path": "frontend/dist/assets/index-BzkGeSYk.css",
+              "sha256": "ece83594efd47c1f78e461c8ea651caf7be51e73763c44ec05657fcaa2752ac6"
+            },
+            {
+              "path": "frontend/dist/assets/index-j4IGXq9T.js",
+              "sha256": "5040fd0bbadfe4b8c4094f72f883afb6bed79d446d04fe99744545c73ed2b199"
+            },
+            {
+              "path": "frontend/dist/index.html",
+              "sha256": "9a9d87fa3e1728441ae6c38a36f5c3bd1fe23506d56b1972e5c5dfd8d727af3f"
+            },
+            {
+              "path": "frontend/dist/models/README.md",
+              "sha256": "1bb5109a33b243559fd9cfda9a6005a4bb3093cb2c6eb5a648fa798465ad5562"
+            }
+          ],
+          "errors": []
+        }
+      }
+    },
+    "constraint5": {
+      "generated_at_utc": "2026-10-23T19:02:23.290740+00:00",
+      "completed_at_utc": "2026-10-23T19:03:43.730821+00:00",
+      "source_fingerprint": {
+        "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+        "application_sha256": "47fc9cde4dd50b58aaf22d1e89e65e5504342084cbbaaae47e837dfabe88d992",
+        "files": [
+          {
+            "path": "backend/angles.py",
+            "sha256": "4fadebb0ae9aa3e089031626e70a2c1af41c1dd22c1d4ae889de3f36ab658cb8"
+          },
+          {
+            "path": "backend/assessment.py",
+            "sha256": "cccdbdb13d9bc948c1211fe507575ac6650622060d041a5a0e3a8e6c7cf1aed5"
+          },
+          {
+            "path": "backend/assessment_models.py",
+            "sha256": "4646fa371c150f81aeb4a081435e759098ed19402ce4896bc82cc8ec8e899eab"
+          },
+          {
+            "path": "backend/assessment_store.py",
+            "sha256": "e97968db424b87e591707392a2cca1bc837b573c3ed89d8e815351ee2e3fc1f1"
+          },
+          {
+            "path": "backend/config/assessment.json",
+            "sha256": "72c03115bbc2fd7f111609cfc2cac05410ea05bc97d78afbc8d420cff17c2abe"
+          },
+          {
+            "path": "backend/main.py",
+            "sha256": "edefe4ef0231fcc847d00ddd9898c253a9397069e337972f5846e1e24121ac2d"
+          },
+          {
+            "path": "backend/requirements.txt",
+            "sha256": "f26a26fac717c54921e90b97e6371b76bff3b919e4147d609bedb973153f7307"
+          },
+          {
+            "path": "backend/tracking.py",
+            "sha256": "5db26198f9d7a54fb11c8b02d748c7f58a8e0dfed4994a0ffef264683b2203da"
+          },
+          {
+            "path": "backend/wire.py",
+            "sha256": "7e65119b430a5eb4446764e8ba0b713c94f167cc1fa7a87449ecb7cb93896b6b"
+          },
+          {
+            "path": "designs/design-1-aruco/tracker.py",
+            "sha256": "a16da4ff6f25b3654e3545d5d0d9a8c38b3c9509d4e75f38089c15329ca41a46"
+          },
+          {
+            "path": "designs/design-2-orb-ransac/tracker.py",
+            "sha256": "83483a164e7a6ab7da8049e26870198671db1eb0c6b0fac134928855d0881e27"
+          },
+          {
+            "path": "designs/design-3-optical-flow/tracker.py",
+            "sha256": "be97989068f65d34097b4c4ccbda9ad8d1206085b9ebd7e7d6ce708728aa48fb"
+          },
+          {
+            "path": "designs/requirements.txt",
+            "sha256": "ba324186ef7e9b464df3aeb92958d4a4a6ea84f9e19d95e506c99a304acc16b1"
+          },
+          {
+            "path": "designs/run.py",
+            "sha256": "474278a857ab9edef450f1aebfcee14d32145c0018a3a930be10445dcfc3b0e7"
+          },
+          {
+            "path": "designs/tracking_common.py",
+            "sha256": "98af8ce7344e940d09c583be5561de0a6bb2c3c0cb8d87ac1209bc48557621b6"
+          },
+          {
+            "path": "frontend/index.html",
+            "sha256": "e2e7066194c482014dcdcc2b05a744da6c7fc7ad106c835d0900e2052081a543"
+          },
+          {
+            "path": "frontend/package-lock.json",
+            "sha256": "f7e4d9a86abdc4200070cbae76276a863985aaf5f3f4f409b7e426975812d962"
+          },
+          {
+            "path": "frontend/package.json",
+            "sha256": "afda01304a060cde4bcdf9563078a077f3d0f4400141bf495b8db16cffb1fab6"
+          },
+          {
+            "path": "frontend/src/App.jsx",
+            "sha256": "888e1c25afbdace8818dc1c1c71b60d4bb57b93b800e07de2cc9535a97ea0741"
+          },
+          {
+            "path": "frontend/src/components/AssessmentPanel.jsx",
+            "sha256": "181f3c8f693bad97c139cc1dee50d01147d9e75e264abfa208e52db1c0882d0d"
+          },
+          {
+            "path": "frontend/src/components/CameraSettings.jsx",
+            "sha256": "508b0c1cb673a2f03c3c2938b3437d8f2f851328824098de78b8e4745e3501ff"
+          },
+          {
+            "path": "frontend/src/components/DummyOverlay.jsx",
+            "sha256": "545afe8db6f76dd394db553a76bcf6c870c564d7a42a4ed4a4fe4d2df20339fa"
+          },
+          {
+            "path": "frontend/src/components/DuringFeedback.jsx",
+            "sha256": "0b83a1808f260a488b3009b81991498a12e11a586f051a811598e84104197d05"
+          },
+          {
+            "path": "frontend/src/components/HardwarePanel.jsx",
+            "sha256": "ae8b27c6408e3e858bb0fe9de4942451aa7d9ce39c34fb7488ddd706d548762d"
+          },
+          {
+            "path": "frontend/src/components/HardwareSourceSelect.jsx",
+            "sha256": "bfd1ee577cf3b25381c449182bff70ba94c33d05bd44f7aebf1e36f42a0be39e"
+          },
+          {
+            "path": "frontend/src/components/InjectionAngle.jsx",
+            "sha256": "31a45bc52222a76c19f5c3db7fd001883fa17b07b6527f1d6ead8a7c35689e9b"
+          },
+          {
+            "path": "frontend/src/components/InterventionNotice.jsx",
+            "sha256": "55c574b610521f8a036d4eb2d228181e79df4a436a042e798ac979ba6843da04"
+          },
+          {
+            "path": "frontend/src/components/ModeSelection.jsx",
+            "sha256": "f6114e4e37a9ac6a6934e6f4635ad2f5b8b9b24b2b68fe1bd05b7ed914c10019"
+          },
+          {
+            "path": "frontend/src/components/ModelViewer.jsx",
+            "sha256": "5bdd19a228dbfedeb06fd74ba82759c4beadb1b3c89d8dd96557e6dab8d12593"
+          },
+          {
+            "path": "frontend/src/components/MonitorPanel.jsx",
+            "sha256": "a308599d26273bec536822e5883d13fe30b2ed0393083ca87ba7dd9d4065eb3c"
+          },
+          {
+            "path": "frontend/src/components/ScenarioPanel.jsx",
+            "sha256": "78a5a1033f9c9fcd717353623f0d528eb33278b2de6d55cd90c0b78708a36534"
+          },
+          {
+            "path": "frontend/src/components/SimulationControls.jsx",
+            "sha256": "2631a40c7e3de8f09cb34c8b5d4c4139af1240c92b3493b4d68acd336a5fa05d"
+          },
+          {
+            "path": "frontend/src/components/TrackedOverlay.jsx",
+            "sha256": "24343925827d7be5b75c886383e34ea106ccd5ad27203b5d5dc6575552273a15"
+          },
+          {
+            "path": "frontend/src/components/TrackingRegionSelector.jsx",
+            "sha256": "b998aa656c9390f3b4279a633cc22983ec5519dbcf8a1c79570df478b694b70c"
+          },
+          {
+            "path": "frontend/src/components/TrackingSettings.jsx",
+            "sha256": "464e93024970c9bf6273b26b7a84c8fb41917d135f508b813e148fe9da20acc5"
+          },
+          {
+            "path": "frontend/src/components/VitalsControls.jsx",
+            "sha256": "c06b36487c36666ebd6d47ae69f1c67dc32d08e0a1dc6d5fb9f538da60c91def"
+          },
+          {
+            "path": "frontend/src/components/Waveform.jsx",
+            "sha256": "c7d3595cd45cbb01a36243d2c13ea56674af80d74614293ea1bbcc3d4af482a0"
+          },
+          {
+            "path": "frontend/src/data/breeds.js",
+            "sha256": "7f81b092e4576be4694e118a49b82ca42c5fe54bc57b75397df6424416e413ad"
+          },
+          {
+            "path": "frontend/src/data/patients.js",
+            "sha256": "0e67e2d0daec0d755bcff7c9fbec798f684bd6572d1c14db95e7aaf9f20fd54c"
+          },
+          {
+            "path": "frontend/src/hooks/useAssessment.js",
+            "sha256": "d8ed8c270082d022a9411ad8613de99f4ed2f35b975d9ee5539c182a66a241c2"
+          },
+          {
+            "path": "frontend/src/hooks/useCamera.js",
+            "sha256": "13b017d7668f392491224244e13429db370b7d0649ae6087d2a1edc04c06de3c"
+          },
+          {
+            "path": "frontend/src/hooks/useMediaQuery.js",
+            "sha256": "0200528722e574e5791cd04a47e6dbcdbcdbfc8ae5644ceb24efb1acc0b9c811"
+          },
+          {
+            "path": "frontend/src/hooks/useMonitorSound.js",
+            "sha256": "379209bba98d06c75754dfe632c05cc48cd0f6e67ee3dededbc185e61e29722a"
+          },
+          {
+            "path": "frontend/src/hooks/useTracking.js",
+            "sha256": "34cd5faaae911f881f1566695aed87c935dd3767a68e32b67b89348c3cd267b3"
+          },
+          {
+            "path": "frontend/src/lib/assessmentView.js",
+            "sha256": "f9e50bb2251743f5a795104ce0214c85e788586f8149e005f8853ea2acbcacc9"
+          },
+          {
+            "path": "frontend/src/lib/cameras.js",
+            "sha256": "987f415b1f638b1a8888dedaa0d84b6b0f2e58fab713cc0e2d9dd864aa72f849"
+          },
+          {
+            "path": "frontend/src/lib/dogModel.js",
+            "sha256": "181ec308712d7ccdf0ef82f6171110b5f3e4def8be204e3a6f327093a54a2842"
+          },
+          {
+            "path": "frontend/src/lib/dogPlacement.js",
+            "sha256": "dddad5f9f6ef0c012b13c05eb8d28b38e630f86b05fec39857325a0b21173404"
+          },
+          {
+            "path": "frontend/src/lib/dummyOverlay.js",
+            "sha256": "4716c7a7ec667e7587eefd2ca0457b8c9e46e20d710434e23de59e7d76a0681a"
+          },
+          {
+            "path": "frontend/src/lib/feedback.js",
+            "sha256": "2dcb3fa23d3723fb08f30eaefc7e24a1c1ea7f6ac7a2f8b43460f8a97d1f6bbf"
+          },
+          {
+            "path": "frontend/src/lib/modelFraming.js",
+            "sha256": "7ec663612b682bcc1df79a920576603f3709326baabb452456bcd3bf7b51cbe1"
+          },
+          {
+            "path": "frontend/src/lib/monitor.js",
+            "sha256": "49860a1fa635e90cf3605163e54e2ecf0d24edcd9ccc46e4355fc9d5cbd7bb5e"
+          },
+          {
+            "path": "frontend/src/lib/navigation.js",
+            "sha256": "217312a1ac31a472a2f9f1ad0f8b39582fe1d4b4c53e379ca834bf44601a78e4"
+          },
+          {
+            "path": "frontend/src/lib/tracking.js",
+            "sha256": "2b0f83ee82872c07c0a4a08b2d764ee5733dcb3f66e2d478827f0b0823b0e4a0"
+          },
+          {
+            "path": "frontend/src/lib/vitals.js",
+            "sha256": "e2b01891f06d243fc4ddae1b5af454cdbc923a566c1225eb6a7ef7ec652431fb"
+          },
+          {
+            "path": "frontend/src/main.jsx",
+            "sha256": "3dec8288c361b8aa096803a15dfd3f3c553398d73ad4c09bc8e63f79d930dbec"
+          },
+          {
+            "path": "frontend/src/style.css",
+            "sha256": "68e47e13af13eeeb00ec16a5a9bd44d87dcbc4f66f0fdba0b0efdd4c9ef0bf22"
+          },
+          {
+            "path": "frontend/vite.config.js",
+            "sha256": "1b6d9fbfcd1322c193fd178ecc7136ee7ef8da969fa26a92b101703d3e42c954"
+          }
+        ],
+        "errors": []
+      },
+      "production_build": {
+        "status": "recorded",
+        "scope": "Existing production frontend/dist files, separate from raw-source storage",
+        "source_build_linkage": "Unverified: build files are fingerprinted, but a compiler-attested source-to-build mapping is not available. Rebuild immediately before runtime measurements.",
+        "fingerprint": {
+          "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+          "application_sha256": "c172eefe27d5f7965e2a88f6da99dbdede45b29e7db3923656da5f3ef7e6cdb3",
+          "files": [
+            {
+              "path": "frontend/dist/assets/ModelViewer-Dr9csLu3.js",
+              "sha256": "e7cb19c602d7c1a21a6c855921abeb11c166293c6c5c42e9aa118a34493a13fe"
+            },
+            {
+              "path": "frontend/dist/assets/index-BzkGeSYk.css",
+              "sha256": "ece83594efd47c1f78e461c8ea651caf7be51e73763c44ec05657fcaa2752ac6"
+            },
+            {
+              "path": "frontend/dist/assets/index-j4IGXq9T.js",
+              "sha256": "5040fd0bbadfe4b8c4094f72f883afb6bed79d446d04fe99744545c73ed2b199"
+            },
+            {
+              "path": "frontend/dist/index.html",
+              "sha256": "9a9d87fa3e1728441ae6c38a36f5c3bd1fe23506d56b1972e5c5dfd8d727af3f"
+            },
+            {
+              "path": "frontend/dist/models/README.md",
+              "sha256": "1bb5109a33b243559fd9cfda9a6005a4bb3093cb2c6eb5a648fa798465ad5562"
+            }
+          ],
+          "errors": []
+        }
+      }
+    }
+  },
+  "trials": [
+    {
+      "mode": "orb",
+      "status": "measured",
+      "assessment": {
+        "patient_id": "charlie",
+        "phase": "injection",
+        "source": "simulation",
+        "angle_min": 15,
+        "angle_max": 30
+      },
+      "tracking_diagnostics": {
+        "frames_sent": 4,
+        "results_received": 4,
+        "tracked_results": 4,
+        "last_status": "tracking",
+        "not_an_accuracy_measurement": true
+      },
+      "latency": {
+        "unit": "ms",
+        "attempted_samples": 5,
+        "successful_samples": 5,
+        "failed_samples": 0,
+        "mean_ms": 376.3,
+        "p50_ms": 340.80000000447035,
+        "p95_ms": 451.8799999982119,
+        "observations": [
+          {
+            "status": "measured",
+            "elapsed_ms": 453.8999999985099,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 10,
+            "http_status": 200,
+            "input_angle_deg": 10,
+            "kind": "Low"
+          },
+          {
+            "status": "measured",
+            "elapsed_ms": 443.79999999701977,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 45,
+            "http_status": 200,
+            "input_angle_deg": 45,
+            "kind": "High"
+          },
+          {
+            "status": "measured",
+            "elapsed_ms": 340.80000000447035,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 10,
+            "http_status": 200,
+            "input_angle_deg": 10,
+            "kind": "Low"
+          },
+          {
+            "status": "measured",
+            "elapsed_ms": 321.29999999701977,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 45,
+            "http_status": 200,
+            "input_angle_deg": 45,
+            "kind": "High"
+          },
+          {
+            "status": "measured",
+            "elapsed_ms": 321.70000000298023,
+            "command_action": "simulate_angle",
+            "observed_angle_deg": 10,
+            "http_status": 200,
+            "input_angle_deg": 10,
+            "kind": "Low"
+          }
+        ]
+      },
+      "repeat": 1
+    }
+  ],
+  "acceptance_limits": "not_set"
+}

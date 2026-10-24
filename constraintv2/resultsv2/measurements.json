@@ -1,0 +1,5102 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-10-23T18:06:31.037100+00:00",
+  "purpose": "Compare Designs 1, 2 and 3; shared application/model measurements are supplementary context",
+  "definitions": {
+    "version": 2,
+    "mb_bytes": 1000000,
+    "targets": {
+      "application_raw_storage_mb_max": null,
+      "simulated_input_to_display_p95_ms_max": null,
+      "python_maintainability_index_min": null,
+      "runtime_ram_peak_mb_max": null,
+      "canine_triangles_max": null
+    },
+    "target_status": "not_set",
+    "notes": [
+      "These are measurement definitions. No pass/fail limits have been supplied.",
+      "Raw application storage is different from dependencies, a production build, installed footprint, or a packaged Electron executable.",
+      "The Maintainability Index currently covers Python only; JavaScript/JSX is not assigned a fabricated equivalent score.",
+      "Simulated browser input-to-display latency does not include physical sensor sampling, USB/Wi-Fi delivery, or monitor scanout.",
+      "Runtime RAM is sampled resident memory for the isolated browser process group plus its backend process group; shared pages can be counted more than once.",
+      "Model complexity counts triangles for the current procedural dogs; it is not a polygon count for an unavailable final Blender asset."
+    ]
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\norud\\Desktop\\Veterinary-Anesthesia-AR-Starter\\Veterinary-Anesthesia-AR\\backend\\.venv\\Scripts\\python.exe",
+    "node": {
+      "status": "measured",
+      "output": "v26.3.0"
+    },
+    "packages": {
+      "radon": "6.0.1",
+      "psutil": "7.2.2",
+      "opencv-contrib-python": null,
+      "numpy": "2.5.4",
+      "fastapi": "0.143.3",
+      "websockets": "16.1.1"
+    },
+    "git_head": {
+      "status": "measured",
+      "output": "92f7517b957bdd27e23766b419a16da4f6b3c0fc"
+    },
+    "git_working_tree": {
+      "status": "measured",
+      "output": "M README.md\n M backend/main.py\n M backend/requirements.txt\n M constraint/README.md\n M designs/README.md\n M designs/design-1-aruco/README.md\n M designs/design-2-orb-ransac/README.md\n M designs/design-2-orb-ransac/tracker.py\n M designs/design-3-optical-flow/README.md\n M docs/DOG_MODELS.md\n M docs/RUNNING.md\n M frontend/src/App.jsx\n M frontend/src/components/DummyOverlay.jsx\n M frontend/src/style.css\n?? backend/test_tracking.py\n?? backend/tracking.py\n?? constraintv2/\n?? designs/inspect_reference.py\n?? designs/make_pad_targets.py\n?? designs/references/\n?? docs/TRACKING.md\n?? frontend/src/components/TrackedOverlay.jsx\n?? frontend/src/components/TrackingRegionSelector.jsx\n?? frontend/src/components/TrackingSettings.jsx\n?? frontend/src/hooks/useTracking.js\n?? frontend/src/lib/tracking.js\n?? frontend/tests/tracking.browser.py\n?? frontend/tests/tracking.test.js"
+    },
+    "source_note": "Measurements describe the local working tree, including uncommitted changes; HEAD alone does not identify this build."
+  },
+  "static": {
+    "storage": {
+      "status": "measured",
+      "scope": "raw project files; includes source, models, assets, metadata, docs, tests and measurement code",
+      "measurement": "sum of logical file byte lengths; excludes directory entries and filesystem allocation overhead",
+      "mb_definition": "1 MB = 1,000,000 bytes",
+      "total_bytes": 970257,
+      "total_mb": 0.970257,
+      "file_count": 137,
+      "categories": {
+        "source_code": {
+          "file_count": 55,
+          "bytes": 254542,
+          "mb": 0.254542
+        },
+        "models_3d": {
+          "file_count": 0,
+          "bytes": 0,
+          "mb": 0.0
+        },
+        "assets": {
+          "file_count": 10,
+          "bytes": 233056,
+          "mb": 0.233056
+        },
+        "project_metadata": {
+          "file_count": 12,
+          "bytes": 67623,
+          "mb": 0.067623
+        },
+        "documentation": {
+          "file_count": 21,
+          "bytes": 118101,
+          "mb": 0.118101
+        },
+        "tests": {
+          "file_count": 31,
+          "bytes": 188539,
+          "mb": 0.188539
+        },
+        "measurement_tools": {
+          "file_count": 7,
+          "bytes": 99099,
+          "mb": 0.099099
+        },
+        "other": {
+          "file_count": 1,
+          "bytes": 9297,
+          "mb": 0.009297
+        }
+      },
+      "application_raw": {
+        "file_count": 58,
+        "bytes": 302520,
+        "mb": 0.30252,
+        "scope": "frontend/src and frontend/public; frontend entry/build manifests; backend production source/config; AR model assets; dynamically imported designs tracking source",
+        "excluded_support": "documentation, tests, measurement tools, standalone target/reference photos and printing assets",
+        "categories": {
+          "source_code": {
+            "file_count": 53,
+            "bytes": 238804,
+            "mb": 0.238804
+          },
+          "models_3d": {
+            "file_count": 0,
+            "bytes": 0,
+            "mb": 0.0
+          },
+          "assets": {
+            "file_count": 0,
+            "bytes": 0,
+            "mb": 0.0
+          },
+          "project_metadata": {
+            "file_count": 5,
+            "bytes": 63716,
+            "mb": 0.063716
+          },
+          "documentation": {
+            "file_count": 0,
+            "bytes": 0,
+            "mb": 0.0
+          },
+          "tests": {
+            "file_count": 0,
+            "bytes": 0,
+            "mb": 0.0
+          },
+          "measurement_tools": {
+            "file_count": 0,
+            "bytes": 0,
+            "mb": 0.0
+          },
+          "other": {
+            "file_count": 0,
+            "bytes": 0,
+            "mb": 0.0
+          }
+        }
+      },
+      "repository_support": {
+        "file_count": 79,
+        "bytes": 667737,
+        "mb": 0.667737
+      },
+      "by_top_level": {
+        "(root files)": {
+          "file_count": 2,
+          "bytes": 8087,
+          "mb": 0.008087
+        },
+        "AR model": {
+          "file_count": 1,
+          "bytes": 579,
+          "mb": 0.000579
+        },
+        "backend": {
+          "file_count": 18,
+          "bytes": 114982,
+          "mb": 0.114982
+        },
+        "constraint": {
+          "file_count": 14,
+          "bytes": 70675,
+          "mb": 0.070675
+        },
+        "constraintv2": {
+          "file_count": 11,
+          "bytes": 110941,
+          "mb": 0.110941
+        },
+        "designs": {
+          "file_count": 29,
+          "bytes": 317346,
+          "mb": 0.317346
+        },
+        "docs": {
+          "file_count": 8,
+          "bytes": 67992,
+          "mb": 0.067992
+        },
+        "frontend": {
+          "file_count": 54,
+          "bytes": 279655,
+          "mb": 0.279655
+        }
+      },
+      "files": [
+        {
+          "path": ".gitignore",
+          "category": "project_metadata",
+          "bytes": 151,
+          "application_payload": false
+        },
+        {
+          "path": "AR model/README.md",
+          "category": "documentation",
+          "bytes": 579,
+          "application_payload": false
+        },
+        {
+          "path": "README.md",
+          "category": "documentation",
+          "bytes": 7936,
+          "application_payload": false
+        },
+        {
+          "path": "backend/angles.py",
+          "category": "source_code",
+          "bytes": 4832,
+          "application_payload": true
+        },
+        {
+          "path": "backend/assessment.py",
+          "category": "source_code",
+          "bytes": 28465,
+          "application_payload": true
+        },
+        {
+          "path": "backend/assessment_models.py",
+          "category": "source_code",
+          "bytes": 2361,
+          "application_payload": true
+        },
+        {
+          "path": "backend/assessment_store.py",
+          "category": "source_code",
+          "bytes": 1495,
+          "application_payload": true
+        },
+        {
+          "path": "backend/config/assessment.json",
+          "category": "project_metadata",
+          "bytes": 1499,
+          "application_payload": true
+        },
+        {
+          "path": "backend/main.py",
+          "category": "source_code",
+          "bytes": 5908,
+          "application_payload": true
+        },
+        {
+          "path": "backend/requirements.txt",
+          "category": "project_metadata",
+          "bytes": 155,
+          "application_payload": true
+        },
+        {
+          "path": "backend/test_angles.py",
+          "category": "tests",
+          "bytes": 3439,
+          "application_payload": false
+        },
+        {
+          "path": "backend/test_assessment.py",
+          "category": "tests",
+          "bytes": 12406,
+          "application_payload": false
+        },
+        {
+          "path": "backend/test_injection_workflow.py",
+          "category": "tests",
+          "bytes": 8023,
+          "application_payload": false
+        },
+        {
+          "path": "backend/test_input_source.py",
+          "category": "tests",
+          "bytes": 7212,
+          "application_payload": false
+        },
+        {
+          "path": "backend/test_tracking.py",
+          "category": "tests",
+          "bytes": 8313,
+          "application_payload": false
+        },
+        {
+          "path": "backend/test_transports.py",
+          "category": "tests",
+          "bytes": 10311,
+          "application_payload": false
+        },
+        {
+          "path": "backend/test_vitals.py",
+          "category": "tests",
+          "bytes": 9867,
+          "application_payload": false
+        },
+        {
+          "path": "backend/test_wire.py",
+          "category": "tests",
+          "bytes": 1110,
+          "application_payload": false
+        },
+        {
+          "path": "backend/test_wire_api.py",
+          "category": "tests",
+          "bytes": 3007,
+          "application_payload": false
+        },
+        {
+          "path": "backend/tracking.py",
+          "category": "source_code",
+          "bytes": 5618,
+          "application_payload": true
+        },
+        {
+          "path": "backend/wire.py",
+          "category": "source_code",
+          "bytes": 961,
+          "application_payload": true
+        },
+        {
+          "path": "constraint/README.md",
+          "category": "documentation",
+          "bytes": 7245,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/design-1-aruco/README.md",
+          "category": "documentation",
+          "bytes": 741,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/design-2-orb-ransac/README.md",
+          "category": "documentation",
+          "bytes": 717,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/design-3-optical-flow/README.md",
+          "category": "documentation",
+          "bytes": 907,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/limits.json",
+          "category": "project_metadata",
+          "bytes": 198,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/metrics.py",
+          "category": "measurement_tools",
+          "bytes": 7143,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/profiling.py",
+          "category": "measurement_tools",
+          "bytes": 5588,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/requirements.txt",
+          "category": "project_metadata",
+          "bytes": 46,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/run.py",
+          "category": "measurement_tools",
+          "bytes": 20978,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/scenes.py",
+          "category": "measurement_tools",
+          "bytes": 5797,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/tests/test_metrics.py",
+          "category": "tests",
+          "bytes": 8577,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/tests/test_profiling.py",
+          "category": "tests",
+          "bytes": 3985,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/tests/test_runner.py",
+          "category": "tests",
+          "bytes": 3663,
+          "application_payload": false
+        },
+        {
+          "path": "constraint/tests/test_scenes.py",
+          "category": "tests",
+          "bytes": 5090,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/README.md",
+          "category": "documentation",
+          "bytes": 8662,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/definitions.json",
+          "category": "project_metadata",
+          "bytes": 1100,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/model_complexity.mjs",
+          "category": "other",
+          "bytes": 9297,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/requirements.txt",
+          "category": "project_metadata",
+          "bytes": 46,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/run.py",
+          "category": "measurement_tools",
+          "bytes": 12986,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/runtime_metrics.py",
+          "category": "measurement_tools",
+          "bytes": 32284,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/static_metrics.py",
+          "category": "measurement_tools",
+          "bytes": 14323,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/tests/model_complexity.test.mjs",
+          "category": "tests",
+          "bytes": 5375,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/tests/test_run.py",
+          "category": "tests",
+          "bytes": 11295,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/tests/test_runtime_metrics.py",
+          "category": "tests",
+          "bytes": 6660,
+          "application_payload": false
+        },
+        {
+          "path": "constraintv2/tests/test_static_metrics.py",
+          "category": "tests",
+          "bytes": 8913,
+          "application_payload": false
+        },
+        {
+          "path": "designs/.gitignore",
+          "category": "project_metadata",
+          "bytes": 113,
+          "application_payload": false
+        },
+        {
+          "path": "designs/README.md",
+          "category": "documentation",
+          "bytes": 6799,
+          "application_payload": false
+        },
+        {
+          "path": "designs/design-1-aruco/README.md",
+          "category": "documentation",
+          "bytes": 2169,
+          "application_payload": false
+        },
+        {
+          "path": "designs/design-1-aruco/marker-0.png",
+          "category": "assets",
+          "bytes": 3667,
+          "application_payload": false
+        },
+        {
+          "path": "designs/design-1-aruco/tracker.py",
+          "category": "source_code",
+          "bytes": 2890,
+          "application_payload": true
+        },
+        {
+          "path": "designs/design-2-orb-ransac/README.md",
+          "category": "documentation",
+          "bytes": 2496,
+          "application_payload": false
+        },
+        {
+          "path": "designs/design-2-orb-ransac/tracker.py",
+          "category": "source_code",
+          "bytes": 7358,
+          "application_payload": true
+        },
+        {
+          "path": "designs/design-3-optical-flow/README.md",
+          "category": "documentation",
+          "bytes": 2623,
+          "application_payload": false
+        },
+        {
+          "path": "designs/design-3-optical-flow/tracker.py",
+          "category": "source_code",
+          "bytes": 6090,
+          "application_payload": true
+        },
+        {
+          "path": "designs/inspect_reference.py",
+          "category": "source_code",
+          "bytes": 5389,
+          "application_payload": false
+        },
+        {
+          "path": "designs/make_pad_targets.py",
+          "category": "source_code",
+          "bytes": 10349,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/README.md",
+          "category": "documentation",
+          "bytes": 8744,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/photos/01-oblique.jpg",
+          "category": "assets",
+          "bytes": 47784,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/photos/02-working-view.jpg",
+          "category": "assets",
+          "bytes": 51900,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/photos/03-ruler-view.jpg",
+          "category": "assets",
+          "bytes": 40238,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/profile.json",
+          "category": "project_metadata",
+          "bytes": 2253,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/targets/marker-0.png",
+          "category": "assets",
+          "bytes": 2628,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/targets/marker-0.svg",
+          "category": "assets",
+          "bytes": 1718,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/targets/print-targets.pdf",
+          "category": "assets",
+          "bytes": 59320,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/targets/print-targets.svg",
+          "category": "assets",
+          "bytes": 4324,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/targets/texture-patch.png",
+          "category": "assets",
+          "bytes": 7625,
+          "application_payload": false
+        },
+        {
+          "path": "designs/references/injection-pad/targets/texture-patch.svg",
+          "category": "assets",
+          "bytes": 13852,
+          "application_payload": false
+        },
+        {
+          "path": "designs/requirements.txt",
+          "category": "project_metadata",
+          "bytes": 40,
+          "application_payload": true
+        },
+        {
+          "path": "designs/run.py",
+          "category": "source_code",
+          "bytes": 7691,
+          "application_payload": true
+        },
+        {
+          "path": "designs/tests/test_aruco.py",
+          "category": "tests",
+          "bytes": 3664,
+          "application_payload": false
+        },
+        {
+          "path": "designs/tests/test_optical_flow.py",
+          "category": "tests",
+          "bytes": 3213,
+          "application_payload": false
+        },
+        {
+          "path": "designs/tests/test_orb.py",
+          "category": "tests",
+          "bytes": 3547,
+          "application_payload": false
+        },
+        {
+          "path": "designs/tests/test_runner.py",
+          "category": "tests",
+          "bytes": 6150,
+          "application_payload": false
+        },
+        {
+          "path": "designs/tracking_common.py",
+          "category": "source_code",
+          "bytes": 2712,
+          "application_payload": true
+        },
+        {
+          "path": "docs/ANGLES_AND_INTERVENTION.md",
+          "category": "documentation",
+          "bytes": 13394,
+          "application_payload": false
+        },
+        {
+          "path": "docs/BASELINE_VITALS.md",
+          "category": "documentation",
+          "bytes": 2492,
+          "application_payload": false
+        },
+        {
+          "path": "docs/DOG_MODELS.md",
+          "category": "documentation",
+          "bytes": 3464,
+          "application_payload": false
+        },
+        {
+          "path": "docs/RUNNING.md",
+          "category": "documentation",
+          "bytes": 13508,
+          "application_payload": false
+        },
+        {
+          "path": "docs/SIMULATION.md",
+          "category": "documentation",
+          "bytes": 1794,
+          "application_payload": false
+        },
+        {
+          "path": "docs/TRACKING.md",
+          "category": "documentation",
+          "bytes": 8030,
+          "application_payload": false
+        },
+        {
+          "path": "docs/TWO_MODES.md",
+          "category": "documentation",
+          "bytes": 21711,
+          "application_payload": false
+        },
+        {
+          "path": "docs/patients-and-wire.md",
+          "category": "documentation",
+          "bytes": 3599,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/index.html",
+          "category": "source_code",
+          "bytes": 256,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/package-lock.json",
+          "category": "project_metadata",
+          "bytes": 61561,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/package.json",
+          "category": "project_metadata",
+          "bytes": 461,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/public/models/README.md",
+          "category": "documentation",
+          "bytes": 491,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/src/App.jsx",
+          "category": "source_code",
+          "bytes": 19832,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/AssessmentPanel.jsx",
+          "category": "source_code",
+          "bytes": 7761,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/CameraSettings.jsx",
+          "category": "source_code",
+          "bytes": 2471,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/DummyOverlay.jsx",
+          "category": "source_code",
+          "bytes": 5734,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/DuringFeedback.jsx",
+          "category": "source_code",
+          "bytes": 2260,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/HardwarePanel.jsx",
+          "category": "source_code",
+          "bytes": 4245,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/HardwareSourceSelect.jsx",
+          "category": "source_code",
+          "bytes": 1182,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/InjectionAngle.jsx",
+          "category": "source_code",
+          "bytes": 1749,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/InterventionNotice.jsx",
+          "category": "source_code",
+          "bytes": 2456,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/ModeSelection.jsx",
+          "category": "source_code",
+          "bytes": 2085,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/ModelViewer.jsx",
+          "category": "source_code",
+          "bytes": 5588,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/MonitorPanel.jsx",
+          "category": "source_code",
+          "bytes": 1440,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/ScenarioPanel.jsx",
+          "category": "source_code",
+          "bytes": 2694,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/SimulationControls.jsx",
+          "category": "source_code",
+          "bytes": 1893,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/TrackedOverlay.jsx",
+          "category": "source_code",
+          "bytes": 1029,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/TrackingRegionSelector.jsx",
+          "category": "source_code",
+          "bytes": 4347,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/TrackingSettings.jsx",
+          "category": "source_code",
+          "bytes": 3787,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/VitalsControls.jsx",
+          "category": "source_code",
+          "bytes": 1061,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/components/Waveform.jsx",
+          "category": "source_code",
+          "bytes": 2564,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/data/breeds.js",
+          "category": "source_code",
+          "bytes": 990,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/data/patients.js",
+          "category": "source_code",
+          "bytes": 2590,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/hooks/useAssessment.js",
+          "category": "source_code",
+          "bytes": 5040,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/hooks/useCamera.js",
+          "category": "source_code",
+          "bytes": 4731,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/hooks/useMediaQuery.js",
+          "category": "source_code",
+          "bytes": 440,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/hooks/useMonitorSound.js",
+          "category": "source_code",
+          "bytes": 2268,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/hooks/useTracking.js",
+          "category": "source_code",
+          "bytes": 5117,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/assessmentView.js",
+          "category": "source_code",
+          "bytes": 2040,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/cameras.js",
+          "category": "source_code",
+          "bytes": 1166,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/dogModel.js",
+          "category": "source_code",
+          "bytes": 17064,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/dogPlacement.js",
+          "category": "source_code",
+          "bytes": 288,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/dummyOverlay.js",
+          "category": "source_code",
+          "bytes": 610,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/feedback.js",
+          "category": "source_code",
+          "bytes": 5276,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/modelFraming.js",
+          "category": "source_code",
+          "bytes": 882,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/monitor.js",
+          "category": "source_code",
+          "bytes": 1576,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/navigation.js",
+          "category": "source_code",
+          "bytes": 1930,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/tracking.js",
+          "category": "source_code",
+          "bytes": 3319,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/lib/vitals.js",
+          "category": "source_code",
+          "bytes": 1068,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/main.jsx",
+          "category": "source_code",
+          "bytes": 186,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/src/style.css",
+          "category": "source_code",
+          "bytes": 31084,
+          "application_payload": true
+        },
+        {
+          "path": "frontend/tests/assessment.test.js",
+          "category": "tests",
+          "bytes": 2801,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/breeds.test.js",
+          "category": "tests",
+          "bytes": 2356,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/cameras.test.js",
+          "category": "tests",
+          "bytes": 2278,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/dogModel.test.js",
+          "category": "tests",
+          "bytes": 4989,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/dummyOverlay.test.js",
+          "category": "tests",
+          "bytes": 2476,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/feedback.test.js",
+          "category": "tests",
+          "bytes": 11769,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/navigation.test.js",
+          "category": "tests",
+          "bytes": 2246,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/tracking.browser.py",
+          "category": "tests",
+          "bytes": 19010,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/tracking.test.js",
+          "category": "tests",
+          "bytes": 3106,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/tests/vitals.test.js",
+          "category": "tests",
+          "bytes": 3688,
+          "application_payload": false
+        },
+        {
+          "path": "frontend/vite.config.js",
+          "category": "source_code",
+          "bytes": 324,
+          "application_payload": true
+        }
+      ],
+      "exclusions": [
+        {
+          "path": ".git/",
+          "reason": "version-control history"
+        },
+        {
+          "path": "Microsoft/",
+          "reason": "PowerShell tool cache"
+        },
+        {
+          "path": "backend/.venv/",
+          "reason": "Python virtual environment"
+        },
+        {
+          "path": "backend/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "backend/data/",
+          "reason": "runtime data directory"
+        },
+        {
+          "path": "constraint/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "constraint/comparison.json",
+          "reason": "generated diagnostic report"
+        },
+        {
+          "path": "constraint/comparison.md",
+          "reason": "generated diagnostic report"
+        },
+        {
+          "path": "constraint/design-1-aruco/results/",
+          "reason": "generated measurement results"
+        },
+        {
+          "path": "constraint/design-2-orb-ransac/results/",
+          "reason": "generated measurement results"
+        },
+        {
+          "path": "constraint/design-3-optical-flow/results/",
+          "reason": "generated measurement results"
+        },
+        {
+          "path": "constraint/runs/",
+          "reason": "generated measurement runs"
+        },
+        {
+          "path": "constraint/tests/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "constraintv2/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "constraintv2/results/",
+          "reason": "generated measurement results"
+        },
+        {
+          "path": "constraintv2/tests/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "designs/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "designs/design-1-aruco/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "designs/design-2-orb-ransac/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "designs/design-3-optical-flow/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "designs/references/injection-pad/photo-check.json",
+          "reason": "generated diagnostic report"
+        },
+        {
+          "path": "designs/references/injection-pad/targets/artwork-check.json",
+          "reason": "generated diagnostic report"
+        },
+        {
+          "path": "designs/tests/__pycache__/",
+          "reason": "Python bytecode cache"
+        },
+        {
+          "path": "frontend/dist/",
+          "reason": "generated build output"
+        },
+        {
+          "path": "frontend/node_modules/",
+          "reason": "installed dependencies"
+        }
+      ],
+      "errors": []
+    },
+    "maintainability": {
+      "status": "measured",
+      "language": "Python only",
+      "method": "Radon mi_visit(source, multi=True), per-file 0-100 Maintainability Index",
+      "aggregation": "unweighted mean and median of successfully analyzed Python files; no whole-application score",
+      "scope": "application_raw Python source_code files; excludes tests and measurement tooling",
+      "score_0_100": null,
+      "mean_score_0_100": 43.21348193135632,
+      "median_score_0_100": 43.995124235799594,
+      "coverage": {
+        "python_files_eligible": 12,
+        "python_files_analyzed": 12,
+        "non_python_source_files_not_analyzed": 41,
+        "non_python_source_extensions_not_analyzed": {
+          ".css": 1,
+          ".html": 1,
+          ".js": 19,
+          ".jsx": 20
+        },
+        "frontend_javascript_jsx_covered": false
+      },
+      "files": [
+        {
+          "path": "backend/angles.py",
+          "score_0_100": 47.01957232252505
+        },
+        {
+          "path": "backend/assessment.py",
+          "score_0_100": 0.0
+        },
+        {
+          "path": "backend/assessment_models.py",
+          "score_0_100": 54.166219077278754
+        },
+        {
+          "path": "backend/assessment_store.py",
+          "score_0_100": 72.2409644257403
+        },
+        {
+          "path": "backend/main.py",
+          "score_0_100": 48.270321308245656
+        },
+        {
+          "path": "backend/tracking.py",
+          "score_0_100": 36.264123085662895
+        },
+        {
+          "path": "backend/wire.py",
+          "score_0_100": 58.098120345394555
+        },
+        {
+          "path": "designs/design-1-aruco/tracker.py",
+          "score_0_100": 64.27222135536297
+        },
+        {
+          "path": "designs/design-2-orb-ransac/tracker.py",
+          "score_0_100": 32.98298077896209
+        },
+        {
+          "path": "designs/design-3-optical-flow/tracker.py",
+          "score_0_100": 40.970676149074144
+        },
+        {
+          "path": "designs/run.py",
+          "score_0_100": 23.69101067759418
+        },
+        {
+          "path": "designs/tracking_common.py",
+          "score_0_100": 40.58557365043525
+        }
+      ],
+      "errors": [],
+      "radon_version": "6.0.1",
+      "reason": "Python-only MI; frontend JavaScript/JSX has not been measured."
+    }
+  },
+  "source_fingerprint": {
+    "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+    "application_sha256": "47fc9cde4dd50b58aaf22d1e89e65e5504342084cbbaaae47e837dfabe88d992",
+    "files": [
+      {
+        "path": "backend/angles.py",
+        "sha256": "4fadebb0ae9aa3e089031626e70a2c1af41c1dd22c1d4ae889de3f36ab658cb8"
+      },
+      {
+        "path": "backend/assessment.py",
+        "sha256": "cccdbdb13d9bc948c1211fe507575ac6650622060d041a5a0e3a8e6c7cf1aed5"
+      },
+      {
+        "path": "backend/assessment_models.py",
+        "sha256": "4646fa371c150f81aeb4a081435e759098ed19402ce4896bc82cc8ec8e899eab"
+      },
+      {
+        "path": "backend/assessment_store.py",
+        "sha256": "e97968db424b87e591707392a2cca1bc837b573c3ed89d8e815351ee2e3fc1f1"
+      },
+      {
+        "path": "backend/config/assessment.json",
+        "sha256": "72c03115bbc2fd7f111609cfc2cac05410ea05bc97d78afbc8d420cff17c2abe"
+      },
+      {
+        "path": "backend/main.py",
+        "sha256": "edefe4ef0231fcc847d00ddd9898c253a9397069e337972f5846e1e24121ac2d"
+      },
+      {
+        "path": "backend/requirements.txt",
+        "sha256": "f26a26fac717c54921e90b97e6371b76bff3b919e4147d609bedb973153f7307"
+      },
+      {
+        "path": "backend/tracking.py",
+        "sha256": "5db26198f9d7a54fb11c8b02d748c7f58a8e0dfed4994a0ffef264683b2203da"
+      },
+      {
+        "path": "backend/wire.py",
+        "sha256": "7e65119b430a5eb4446764e8ba0b713c94f167cc1fa7a87449ecb7cb93896b6b"
+      },
+      {
+        "path": "designs/design-1-aruco/tracker.py",
+        "sha256": "a16da4ff6f25b3654e3545d5d0d9a8c38b3c9509d4e75f38089c15329ca41a46"
+      },
+      {
+        "path": "designs/design-2-orb-ransac/tracker.py",
+        "sha256": "83483a164e7a6ab7da8049e26870198671db1eb0c6b0fac134928855d0881e27"
+      },
+      {
+        "path": "designs/design-3-optical-flow/tracker.py",
+        "sha256": "be97989068f65d34097b4c4ccbda9ad8d1206085b9ebd7e7d6ce708728aa48fb"
+      },
+      {
+        "path": "designs/requirements.txt",
+        "sha256": "ba324186ef7e9b464df3aeb92958d4a4a6ea84f9e19d95e506c99a304acc16b1"
+      },
+      {
+        "path": "designs/run.py",
+        "sha256": "474278a857ab9edef450f1aebfcee14d32145c0018a3a930be10445dcfc3b0e7"
+      },
+      {
+        "path": "designs/tracking_common.py",
+        "sha256": "98af8ce7344e940d09c583be5561de0a6bb2c3c0cb8d87ac1209bc48557621b6"
+      },
+      {
+        "path": "frontend/index.html",
+        "sha256": "e2e7066194c482014dcdcc2b05a744da6c7fc7ad106c835d0900e2052081a543"
+      },
+      {
+        "path": "frontend/package-lock.json",
+        "sha256": "f7e4d9a86abdc4200070cbae76276a863985aaf5f3f4f409b7e426975812d962"
+      },
+      {
+        "path": "frontend/package.json",
+        "sha256": "afda01304a060cde4bcdf9563078a077f3d0f4400141bf495b8db16cffb1fab6"
+      },
+      {
+        "path": "frontend/src/App.jsx",
+        "sha256": "888e1c25afbdace8818dc1c1c71b60d4bb57b93b800e07de2cc9535a97ea0741"
+      },
+      {
+        "path": "frontend/src/components/AssessmentPanel.jsx",
+        "sha256": "181f3c8f693bad97c139cc1dee50d01147d9e75e264abfa208e52db1c0882d0d"
+      },
+      {
+        "path": "frontend/src/components/CameraSettings.jsx",
+        "sha256": "508b0c1cb673a2f03c3c2938b3437d8f2f851328824098de78b8e4745e3501ff"
+      },
+      {
+        "path": "frontend/src/components/DummyOverlay.jsx",
+        "sha256": "545afe8db6f76dd394db553a76bcf6c870c564d7a42a4ed4a4fe4d2df20339fa"
+      },
+      {
+        "path": "frontend/src/components/DuringFeedback.jsx",
+        "sha256": "0b83a1808f260a488b3009b81991498a12e11a586f051a811598e84104197d05"
+      },
+      {
+        "path": "frontend/src/components/HardwarePanel.jsx",
+        "sha256": "ae8b27c6408e3e858bb0fe9de4942451aa7d9ce39c34fb7488ddd706d548762d"
+      },
+      {
+        "path": "frontend/src/components/HardwareSourceSelect.jsx",
+        "sha256": "bfd1ee577cf3b25381c449182bff70ba94c33d05bd44f7aebf1e36f42a0be39e"
+      },
+      {
+        "path": "frontend/src/components/InjectionAngle.jsx",
+        "sha256": "31a45bc52222a76c19f5c3db7fd001883fa17b07b6527f1d6ead8a7c35689e9b"
+      },
+      {
+        "path": "frontend/src/components/InterventionNotice.jsx",
+        "sha256": "55c574b610521f8a036d4eb2d228181e79df4a436a042e798ac979ba6843da04"
+      },
+      {
+        "path": "frontend/src/components/ModeSelection.jsx",
+        "sha256": "f6114e4e37a9ac6a6934e6f4635ad2f5b8b9b24b2b68fe1bd05b7ed914c10019"
+      },
+      {
+        "path": "frontend/src/components/ModelViewer.jsx",
+        "sha256": "5bdd19a228dbfedeb06fd74ba82759c4beadb1b3c89d8dd96557e6dab8d12593"
+      },
+      {
+        "path": "frontend/src/components/MonitorPanel.jsx",
+        "sha256": "a308599d26273bec536822e5883d13fe30b2ed0393083ca87ba7dd9d4065eb3c"
+      },
+      {
+        "path": "frontend/src/components/ScenarioPanel.jsx",
+        "sha256": "78a5a1033f9c9fcd717353623f0d528eb33278b2de6d55cd90c0b78708a36534"
+      },
+      {
+        "path": "frontend/src/components/SimulationControls.jsx",
+        "sha256": "2631a40c7e3de8f09cb34c8b5d4c4139af1240c92b3493b4d68acd336a5fa05d"
+      },
+      {
+        "path": "frontend/src/components/TrackedOverlay.jsx",
+        "sha256": "24343925827d7be5b75c886383e34ea106ccd5ad27203b5d5dc6575552273a15"
+      },
+      {
+        "path": "frontend/src/components/TrackingRegionSelector.jsx",
+        "sha256": "b998aa656c9390f3b4279a633cc22983ec5519dbcf8a1c79570df478b694b70c"
+      },
+      {
+        "path": "frontend/src/components/TrackingSettings.jsx",
+        "sha256": "464e93024970c9bf6273b26b7a84c8fb41917d135f508b813e148fe9da20acc5"
+      },
+      {
+        "path": "frontend/src/components/VitalsControls.jsx",
+        "sha256": "c06b36487c36666ebd6d47ae69f1c67dc32d08e0a1dc6d5fb9f538da60c91def"
+      },
+      {
+        "path": "frontend/src/components/Waveform.jsx",
+        "sha256": "c7d3595cd45cbb01a36243d2c13ea56674af80d74614293ea1bbcc3d4af482a0"
+      },
+      {
+        "path": "frontend/src/data/breeds.js",
+        "sha256": "7f81b092e4576be4694e118a49b82ca42c5fe54bc57b75397df6424416e413ad"
+      },
+      {
+        "path": "frontend/src/data/patients.js",
+        "sha256": "0e67e2d0daec0d755bcff7c9fbec798f684bd6572d1c14db95e7aaf9f20fd54c"
+      },
+      {
+        "path": "frontend/src/hooks/useAssessment.js",
+        "sha256": "d8ed8c270082d022a9411ad8613de99f4ed2f35b975d9ee5539c182a66a241c2"
+      },
+      {
+        "path": "frontend/src/hooks/useCamera.js",
+        "sha256": "13b017d7668f392491224244e13429db370b7d0649ae6087d2a1edc04c06de3c"
+      },
+      {
+        "path": "frontend/src/hooks/useMediaQuery.js",
+        "sha256": "0200528722e574e5791cd04a47e6dbcdbcdbfc8ae5644ceb24efb1acc0b9c811"
+      },
+      {
+        "path": "frontend/src/hooks/useMonitorSound.js",
+        "sha256": "379209bba98d06c75754dfe632c05cc48cd0f6e67ee3dededbc185e61e29722a"
+      },
+      {
+        "path": "frontend/src/hooks/useTracking.js",
+        "sha256": "34cd5faaae911f881f1566695aed87c935dd3767a68e32b67b89348c3cd267b3"
+      },
+      {
+        "path": "frontend/src/lib/assessmentView.js",
+        "sha256": "f9e50bb2251743f5a795104ce0214c85e788586f8149e005f8853ea2acbcacc9"
+      },
+      {
+        "path": "frontend/src/lib/cameras.js",
+        "sha256": "987f415b1f638b1a8888dedaa0d84b6b0f2e58fab713cc0e2d9dd864aa72f849"
+      },
+      {
+        "path": "frontend/src/lib/dogModel.js",
+        "sha256": "181ec308712d7ccdf0ef82f6171110b5f3e4def8be204e3a6f327093a54a2842"
+      },
+      {
+        "path": "frontend/src/lib/dogPlacement.js",
+        "sha256": "dddad5f9f6ef0c012b13c05eb8d28b38e630f86b05fec39857325a0b21173404"
+      },
+      {
+        "path": "frontend/src/lib/dummyOverlay.js",
+        "sha256": "4716c7a7ec667e7587eefd2ca0457b8c9e46e20d710434e23de59e7d76a0681a"
+      },
+      {
+        "path": "frontend/src/lib/feedback.js",
+        "sha256": "2dcb3fa23d3723fb08f30eaefc7e24a1c1ea7f6ac7a2f8b43460f8a97d1f6bbf"
+      },
+      {
+        "path": "frontend/src/lib/modelFraming.js",
+        "sha256": "7ec663612b682bcc1df79a920576603f3709326baabb452456bcd3bf7b51cbe1"
+      },
+      {
+        "path": "frontend/src/lib/monitor.js",
+        "sha256": "49860a1fa635e90cf3605163e54e2ecf0d24edcd9ccc46e4355fc9d5cbd7bb5e"
+      },
+      {
+        "path": "frontend/src/lib/navigation.js",
+        "sha256": "217312a1ac31a472a2f9f1ad0f8b39582fe1d4b4c53e379ca834bf44601a78e4"
+      },
+      {
+        "path": "frontend/src/lib/tracking.js",
+        "sha256": "2b0f83ee82872c07c0a4a08b2d764ee5733dcb3f66e2d478827f0b0823b0e4a0"
+      },
+      {
+        "path": "frontend/src/lib/vitals.js",
+        "sha256": "e2b01891f06d243fc4ddae1b5af454cdbc923a566c1225eb6a7ef7ec652431fb"
+      },
+      {
+        "path": "frontend/src/main.jsx",
+        "sha256": "3dec8288c361b8aa096803a15dfd3f3c553398d73ad4c09bc8e63f79d930dbec"
+      },
+      {
+        "path": "frontend/src/style.css",
+        "sha256": "68e47e13af13eeeb00ec16a5a9bd44d87dcbc4f66f0fdba0b0efdd4c9ef0bf22"
+      },
+      {
+        "path": "frontend/vite.config.js",
+        "sha256": "1b6d9fbfcd1322c193fd178ecc7136ee7ef8da969fa26a92b101703d3e42c954"
+      }
+    ],
+    "errors": []
+  },
+  "production_build": {
+    "status": "recorded",
+    "scope": "Existing production frontend/dist files, separate from raw-source storage",
+    "source_build_linkage": "Unverified: build files are fingerprinted, but a compiler-attested source-to-build mapping is not available. Rebuild immediately before runtime measurements.",
+    "fingerprint": {
+      "algorithm": "SHA-256 of sorted path + NUL + file SHA-256 + newline",
+      "application_sha256": "c172eefe27d5f7965e2a88f6da99dbdede45b29e7db3923656da5f3ef7e6cdb3",
+      "files": [
+        {
+          "path": "frontend/dist/assets/ModelViewer-Dr9csLu3.js",
+          "sha256": "e7cb19c602d7c1a21a6c855921abeb11c166293c6c5c42e9aa118a34493a13fe"
+        },
+        {
+          "path": "frontend/dist/assets/index-BzkGeSYk.css",
+          "sha256": "ece83594efd47c1f78e461c8ea651caf7be51e73763c44ec05657fcaa2752ac6"
+        },
+        {
+          "path": "frontend/dist/assets/index-j4IGXq9T.js",
+          "sha256": "5040fd0bbadfe4b8c4094f72f883afb6bed79d446d04fe99744545c73ed2b199"
+        },
+        {
+          "path": "frontend/dist/index.html",
+          "sha256": "9a9d87fa3e1728441ae6c38a36f5c3bd1fe23506d56b1972e5c5dfd8d727af3f"
+        },
+        {
+          "path": "frontend/dist/models/README.md",
+          "sha256": "1bb5109a33b243559fd9cfda9a6005a4bb3093cb2c6eb5a648fa798465ad5562"
+        }
+      ],
+      "errors": []
+    }
+  },
+  "model_complexity": {
+    "status": "measured",
+    "schema_version": 1,
+    "measurement_kind": "static_model_complexity",
+    "generated_at_utc": "2026-10-23T18:06:32.047Z",
+    "three_revision": "172",
+    "model_source": "frontend/src/lib/dogModel.js",
+    "profile_source": "frontend/src/data/breeds.js",
+    "renderer_source": "frontend/src/components/DummyOverlay.jsx",
+    "triangle_unit": "triangles",
+    "polygon_count": null,
+    "polygon_count_reason": "The models use triangulated BufferGeometry. Original authored polygon or quad counts cannot be inferred from triangle indices.",
+    "scope": "One visible canine model before camera frustum or occlusion culling; model geometry only, not lights, camera, tracking graphics or multiple GPU render passes.",
+    "count_definitions": {
+      "triangle_count": "Sum of floor(drawable index or nonindexed position count / 3) per visible mesh/material group, multiplied by InstancedMesh.count when applicable.",
+      "stored_vertex_count": "Sum of position-attribute entry counts over unique mesh geometries, including seam duplicates and hidden mesh geometry.",
+      "instance_vertex_count": "Sum of complete position-attribute entry counts per mesh instance, including hidden mesh instances; this is not a count of vertices processed by the GPU.",
+      "visible_instance_vertex_count": "Complete position-attribute entry counts per visible mesh instance that contributes triangles; not reduced for draw ranges or culling.",
+      "mesh_count": "Scene graph mesh objects; InstancedMesh remains one object and its instances are counted separately.",
+      "stored_index_count": "Index-buffer element counts over unique geometries; these are indices, not vertices or triangles."
+    },
+    "limitations": [
+      "Static geometry measurement; no browser, WebGL frame timing, runtime memory, or GPU performance is measured.",
+      "Triangle totals do not remove back-facing, degenerate, hidden-by-other-geometry or off-camera triangles.",
+      "Wireframe mode, shadow passes, multi-view rendering, LOD selection and non-mesh primitives are outside this measurement.",
+      "Current canine models are procedural approximations; repeat the measurement for fitted Blender/GLB assets when those are integrated."
+    ],
+    "models": [
+      {
+        "breed_id": "labrador",
+        "breed_label": "Labrador Retriever",
+        "model_type": "procedural_visual_stand_in",
+        "blender_asset": false,
+        "poses": {
+          "standing": {
+            "mesh_count": 67,
+            "visible_mesh_count": 67,
+            "mesh_instance_count": 67,
+            "visible_mesh_instance_count": 67,
+            "indexed_mesh_count": 67,
+            "nonindexed_mesh_count": 0,
+            "unique_geometry_count": 67,
+            "unique_material_count": 13,
+            "stored_vertex_count": 21973,
+            "instance_vertex_count": 21973,
+            "visible_instance_vertex_count": 21973,
+            "stored_index_count": 110568,
+            "triangle_count": 36856,
+            "indexed_triangle_count": 36856,
+            "nonindexed_triangle_count": 0
+          },
+          "lying": {
+            "mesh_count": 67,
+            "visible_mesh_count": 67,
+            "mesh_instance_count": 67,
+            "visible_mesh_instance_count": 67,
+            "indexed_mesh_count": 67,
+            "nonindexed_mesh_count": 0,
+            "unique_geometry_count": 67,
+            "unique_material_count": 13,
+            "stored_vertex_count": 21973,
+            "instance_vertex_count": 21973,
+            "visible_instance_vertex_count": 21973,
+            "stored_index_count": 110568,
+            "triangle_count": 36856,
+            "indexed_triangle_count": 36856,
+            "nonindexed_triangle_count": 0
+          }
+        },
+        "topology_stable_between_poses": true,
+        "configured_glb": {
+          "configured_url": "/models/labrador.glb",
+          "file": "frontend/public/models/labrador.glb",
+          "present": false,
+          "size_bytes": null,
+          "used_by_current_dog_renderer": false,
+          "triangle_count": null,
+          "reason": "No GLB asset is supplied at the configured path; the current renderer uses the procedural model."
+        }
+      },
+      {
+        "breed_id": "beagle",
+        "breed_label": "Beagle",
+        "model_type": "procedural_visual_stand_in",
+        "blender_asset": false,
+        "poses": {
+          "standing": {
+            "mesh_count": 69,
+            "visible_mesh_count": 69,
+            "mesh_instance_count": 69,
+            "visible_mesh_instance_count": 69,
+            "indexed_mesh_count": 69,
+            "nonindexed_mesh_count": 0,
+            "unique_geometry_count": 69,
+            "unique_material_count": 12,
+            "stored_vertex_count": 23075,
+            "instance_vertex_count": 23075,
+            "visible_instance_vertex_count": 23075,
+            "stored_index_count": 116280,
+            "triangle_count": 38760,
+            "indexed_triangle_count": 38760,
+            "nonindexed_triangle_count": 0
+          },
+          "lying": {
+            "mesh_count": 69,
+            "visible_mesh_count": 69,
+            "mesh_instance_count": 69,
+            "visible_mesh_instance_count": 69,
+            "indexed_mesh_count": 69,
+            "nonindexed_mesh_count": 0,
+            "unique_geometry_count": 69,
+            "unique_material_count": 12,
+            "stored_vertex_count": 23075,
+            "instance_vertex_count": 23075,
+            "visible_instance_vertex_count": 23075,
+            "stored_index_count": 116280,
+            "triangle_count": 38760,
+            "indexed_triangle_count": 38760,
+            "nonindexed_triangle_count": 0
+          }
+        },
+        "topology_stable_between_poses": true,
+        "configured_glb": {
+          "configured_url": "/models/beagle.glb",
+          "file": "frontend/public/models/beagle.glb",
+          "present": false,
+          "size_bytes": null,
+          "used_by_current_dog_renderer": false,
+          "triangle_count": null,
+          "reason": "No GLB asset is supplied at the configured path; the current renderer uses the procedural model."
+        }
+      },
+      {
+        "breed_id": "dalmatian",
+        "breed_label": "Dalmatian",
+        "model_type": "procedural_visual_stand_in",
+        "blender_asset": false,
+        "poses": {
+          "standing": {
+            "mesh_count": 75,
+            "visible_mesh_count": 75,
+            "mesh_instance_count": 75,
+            "visible_mesh_instance_count": 75,
+            "indexed_mesh_count": 75,
+            "nonindexed_mesh_count": 0,
+            "unique_geometry_count": 75,
+            "unique_material_count": 11,
+            "stored_vertex_count": 23533,
+            "instance_vertex_count": 23533,
+            "visible_instance_vertex_count": 23533,
+            "stored_index_count": 117960,
+            "triangle_count": 39320,
+            "indexed_triangle_count": 39320,
+            "nonindexed_triangle_count": 0
+          },
+          "lying": {
+            "mesh_count": 75,
+            "visible_mesh_count": 75,
+            "mesh_instance_count": 75,
+            "visible_mesh_instance_count": 75,
+            "indexed_mesh_count": 75,
+            "nonindexed_mesh_count": 0,
+            "unique_geometry_count": 75,
+            "unique_material_count": 11,
+            "stored_vertex_count": 23533,
+            "instance_vertex_count": 23533,
+            "visible_instance_vertex_count": 23533,
+            "stored_index_count": 117960,
+            "triangle_count": 39320,
+            "indexed_triangle_count": 39320,
+            "nonindexed_triangle_count": 0
+          }
+        },
+        "topology_stable_between_poses": true,
+        "configured_glb": {
+          "configured_url": "/models/dalmatian.glb",
+          "file": "frontend/public/models/dalmatian.glb",
+          "present": false,
+          "size_bytes": null,
+          "used_by_current_dog_renderer": false,
+          "triangle_count": null,
+          "reason": "No GLB asset is supplied at the configured path; the current renderer uses the procedural model."
+        }
+      }
+    ]
+  },
+  "runtime": {
+    "status": "measured",
+    "runs": [
+      {
+        "status": "measured",
+        "workload": "headless synthetic browser; simulated-angle UI controls; helper-assisted tracking artwork",
+        "build": "production frontend/dist served by Vite preview",
+        "modes": [
+          {
+            "mode": "aruco",
+            "status": "measured",
+            "target_condition": "printed-marker artwork",
+            "assessment": {
+              "patient_id": "charlie",
+              "phase": "injection",
+              "source": "simulation",
+              "angle_min": 15,
+              "angle_max": 30
+            },
+            "webgl": {
+              "available": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)"
+            },
+            "measured_seconds": 5.110000000000582,
+            "tracking_diagnostics": {
+              "frames_sent": 5,
+              "results_received": 5,
+              "tracked_results": 5,
+              "last_status": "tracking",
+              "not_an_accuracy_measurement": true
+            },
+            "memory": {
+              "unit": "MB",
+              "bytes_per_mb": 1000000,
+              "statistic": "sum of process-tree RSS / working sets",
+              "shared_page_caveat": "Shared pages may be counted in more than one process; this is not unique physical RAM. Sampled peaks can miss shorter allocation spikes.",
+              "attempted_samples": 24,
+              "successful_samples": 24,
+              "failed_samples": 0,
+              "mean_mb": 1427.6962986666667,
+              "sampled_peak_mb": 1570.820096,
+              "components": {
+                "backend": {
+                  "mean_mb": 84.168192,
+                  "sampled_peak_mb": 84.72576
+                },
+                "browser": {
+                  "mean_mb": 1343.5281066666666,
+                  "sampled_peak_mb": 1487.54432
+                }
+              },
+              "observations": [
+                {
+                  "valid": true,
+                  "rss_bytes": 1528496128,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1445498880,
+                      "process_count": 19,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476,
+                        34156
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 82997248,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.14100000000325963
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1563250688,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1479974912,
+                      "process_count": 19,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476,
+                        34156
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 83275776,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.4530000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1568894976,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1485619200,
+                      "process_count": 19,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476,
+                        34156
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 83275776,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.6560000000026776
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1570820096,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1487544320,
+                      "process_count": 19,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476,
+                        34156
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 83275776,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.8280000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1557635072,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1474359296,
+                      "process_count": 19,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476,
+                        34156
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 83275776,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.0
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1526005760,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1442713600,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 83292160,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.1880000000019209
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1509842944,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1426391040,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 83451904,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.4219999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1510957056,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1427505152,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 83451904,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.6719999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1510191104,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1425588224,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84602880,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.875
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1513074688,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1428455424,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84619264,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.0780000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1507332096,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1422712832,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84619264,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.2969999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1540210688,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1455497216,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84713472,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.5310000000026776
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1540194304,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1455480832,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84713472,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.75
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1512660992,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1427947520,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84713472,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.9219999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1391857664,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1307230208,
+                      "process_count": 18,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        18408,
+                        23088,
+                        2076,
+                        11044,
+                        31064,
+                        3200,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84627456,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.1719999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1266249728,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1181622272,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84627456,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.375
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1270206464,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1185558528,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84647936,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.610000000000582
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1270366208,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1185640448,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84725760,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.7969999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1270788096,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1186275328,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84512768,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.0
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1266753536,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1182208000,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84545536,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.2189999999973224
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1263431680,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1178886144,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84545536,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.421999999998661
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1268252672,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1183653888,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84598784,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.6560000000026776
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1268510720,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1184067584,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84443136,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.875
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1268727808,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1184243712,
+                      "process_count": 13,
+                      "pids": [
+                        12300,
+                        18516,
+                        25852,
+                        19988,
+                        13404,
+                        32540,
+                        31064,
+                        34100,
+                        30248,
+                        4700,
+                        17832,
+                        34212,
+                        18476
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 84484096,
+                      "process_count": 3,
+                      "pids": [
+                        27876,
+                        24640,
+                        31668
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 5.110000000000582
+                }
+              ]
+            },
+            "latency": {
+              "unit": "ms",
+              "attempted_samples": 5,
+              "successful_samples": 5,
+              "failed_samples": 0,
+              "mean_ms": 356.94000000208615,
+              "p50_ms": 309.6000000014901,
+              "p95_ms": 534.8600000053643,
+              "observations": [
+                {
+                  "status": "measured",
+                  "elapsed_ms": 285.80000000447035,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 336.70000000298023,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 45,
+                  "http_status": 200,
+                  "input_angle_deg": 45,
+                  "kind": "High"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 584.4000000059605,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 309.6000000014901,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 45,
+                  "http_status": 200,
+                  "input_angle_deg": 45,
+                  "kind": "High"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 268.19999999552965,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                }
+              ]
+            }
+          },
+          {
+            "mode": "orb",
+            "status": "measured",
+            "target_condition": "synthetic non-coded texture artwork (helper-assisted; not original pad)",
+            "assessment": {
+              "patient_id": "charlie",
+              "phase": "injection",
+              "source": "simulation",
+              "angle_min": 15,
+              "angle_max": 30
+            },
+            "webgl": {
+              "available": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)"
+            },
+            "measured_seconds": 5.906999999999243,
+            "tracking_diagnostics": {
+              "frames_sent": 4,
+              "results_received": 4,
+              "tracked_results": 4,
+              "last_status": "tracking",
+              "not_an_accuracy_measurement": true
+            },
+            "memory": {
+              "unit": "MB",
+              "bytes_per_mb": 1000000,
+              "statistic": "sum of process-tree RSS / working sets",
+              "shared_page_caveat": "Shared pages may be counted in more than one process; this is not unique physical RAM. Sampled peaks can miss shorter allocation spikes.",
+              "attempted_samples": 27,
+              "successful_samples": 27,
+              "failed_samples": 0,
+              "mean_mb": 1338.5497410370372,
+              "sampled_peak_mb": 1362.767872,
+              "components": {
+                "backend": {
+                  "mean_mb": 202.63655348148149,
+                  "sampled_peak_mb": 202.686464
+                },
+                "browser": {
+                  "mean_mb": 1135.9131875555556,
+                  "sampled_peak_mb": 1160.122368
+                }
+              },
+              "observations": [
+                {
+                  "valid": true,
+                  "rss_bytes": 1323167744,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1120583680,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202584064,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.17199999999866122
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1323409408,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1120825344,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202584064,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.4219999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1335234560,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1132650496,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202584064,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.6719999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1335369728,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1132761088,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202608640,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.8600000000005821
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1321594880,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1118986240,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202608640,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.0469999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1322524672,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1119916032,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202608640,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.235000000000582
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1323515904,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1120907264,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202608640,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.4380000000019209
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1324109824,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1121501184,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202608640,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.6409999999959837
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1324224512,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1121607680,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202616832,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.8909999999959837
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1319129088,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1116512256,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202616832,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.0780000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1324052480,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1121435648,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202616832,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.2659999999959837
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1335382016,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1132744704,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202637312,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.5
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1342885888,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1140248576,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202637312,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.7189999999973224
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1351393280,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1148755968,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202637312,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.0
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1362288640,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1159651328,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202637312,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.2030000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1362767872,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1160122368,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202645504,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.4219999999986612
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1345294336,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1142648832,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202645504,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.6569999999992433
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1345978368,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1143316480,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202661888,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.860000000000582
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1346383872,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1143721984,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202661888,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.063000000001921
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1345343488,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1142681600,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202661888,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.25
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1348800512,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1146134528,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202665984,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.485000000000582
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1349697536,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1147031552,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202665984,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.7189999999973224
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1354637312,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1151967232,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202670080,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.938000000001921
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1343000576,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1140330496,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202670080,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 5.140999999995984
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1343180800,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1140510720,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202670080,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 5.375
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1343594496,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1140908032,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202686464,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 5.625
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1343881216,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1141194752,
+                      "process_count": 13,
+                      "pids": [
+                        23108,
+                        28980,
+                        28428,
+                        32584,
+                        33368,
+                        23020,
+                        9996,
+                        16884,
+                        28692,
+                        6756,
+                        25404,
+                        33040,
+                        5920
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 202686464,
+                      "process_count": 3,
+                      "pids": [
+                        20032,
+                        10864,
+                        3748
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 5.875
+                }
+              ]
+            },
+            "latency": {
+              "unit": "ms",
+              "attempted_samples": 5,
+              "successful_samples": 5,
+              "failed_samples": 0,
+              "mean_ms": 376.3,
+              "p50_ms": 340.80000000447035,
+              "p95_ms": 451.8799999982119,
+              "observations": [
+                {
+                  "status": "measured",
+                  "elapsed_ms": 453.8999999985099,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 443.79999999701977,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 45,
+                  "http_status": 200,
+                  "input_angle_deg": 45,
+                  "kind": "High"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 340.80000000447035,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 321.29999999701977,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 45,
+                  "http_status": 200,
+                  "input_angle_deg": 45,
+                  "kind": "High"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 321.70000000298023,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                }
+              ]
+            }
+          },
+          {
+            "mode": "optical-flow",
+            "status": "measured",
+            "target_condition": "synthetic non-coded texture artwork (helper-assisted; not original pad)",
+            "assessment": {
+              "patient_id": "charlie",
+              "phase": "injection",
+              "source": "simulation",
+              "angle_min": 15,
+              "angle_max": 30
+            },
+            "webgl": {
+              "available": true,
+              "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+              "vendor": "Google Inc. (Google)"
+            },
+            "measured_seconds": 5.437000000005355,
+            "tracking_diagnostics": {
+              "frames_sent": 6,
+              "results_received": 6,
+              "tracked_results": 6,
+              "last_status": "tracking",
+              "not_an_accuracy_measurement": true
+            },
+            "memory": {
+              "unit": "MB",
+              "bytes_per_mb": 1000000,
+              "statistic": "sum of process-tree RSS / working sets",
+              "shared_page_caveat": "Shared pages may be counted in more than one process; this is not unique physical RAM. Sampled peaks can miss shorter allocation spikes.",
+              "attempted_samples": 27,
+              "successful_samples": 27,
+              "failed_samples": 0,
+              "mean_mb": 1413.6184983703704,
+              "sampled_peak_mb": 1593.982976,
+              "components": {
+                "backend": {
+                  "mean_mb": 88.27168237037037,
+                  "sampled_peak_mb": 88.530944
+                },
+                "browser": {
+                  "mean_mb": 1325.346816,
+                  "sampled_peak_mb": 1505.75104
+                }
+              },
+              "observations": [
+                {
+                  "valid": true,
+                  "rss_bytes": 1587130368,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1500094464,
+                      "process_count": 18,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        9812,
+                        20220,
+                        32072,
+                        12328,
+                        14020,
+                        22848,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 87035904,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.125
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1587847168,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1500577792,
+                      "process_count": 18,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        9812,
+                        20220,
+                        32072,
+                        12328,
+                        14020,
+                        22848,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 87269376,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.3280000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1592733696,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1504501760,
+                      "process_count": 18,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        9812,
+                        20220,
+                        32072,
+                        12328,
+                        14020,
+                        22848,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88231936,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.5
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1593982976,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1505751040,
+                      "process_count": 18,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        9812,
+                        20220,
+                        32072,
+                        12328,
+                        14020,
+                        22848,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88231936,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.7030000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1586991104,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1498759168,
+                      "process_count": 18,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        9812,
+                        20220,
+                        32072,
+                        12328,
+                        14020,
+                        22848,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88231936,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 0.8590000000040163
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1587179520,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1498947584,
+                      "process_count": 18,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        9812,
+                        20220,
+                        32072,
+                        12328,
+                        14020,
+                        22848,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88231936,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.0470000000059372
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1587392512,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1499160576,
+                      "process_count": 18,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        9812,
+                        20220,
+                        32072,
+                        12328,
+                        14020,
+                        22848,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88231936,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.2340000000040163
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1490530304,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1402277888,
+                      "process_count": 17,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        9812,
+                        32072,
+                        12328,
+                        14020,
+                        22848,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88252416,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.4840000000040163
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1354272768,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1266020352,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88252416,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.6720000000059372
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1335877632,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1247592448,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88285184,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 1.875
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1340940288,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1252655104,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88285184,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.0780000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1342271488,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1253974016,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88297472,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.297000000005937
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1337491456,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1249193984,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88297472,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.5
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1337712640,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1249415168,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88297472,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.7190000000045984
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1359069184,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1270730752,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88338432,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 2.937000000005355
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1339363328,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1251024896,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88338432,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.1410000000032596
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1339908096,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1251569664,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88338432,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.3440000000045984
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1344102400,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1255686144,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88416256,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.562000000005355
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1344741376,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1256325120,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88416256,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.7340000000040163
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1345417216,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1257000960,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88416256,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 3.9530000000013388
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1346252800,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1257742336,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88510464,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.187000000005355
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1342214144,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1253699584,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88514560,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.39100000000326
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1342414848,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1253900288,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88514560,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.625
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1359126528,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1270611968,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88514560,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 4.828000000001339
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1359511552,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1270984704,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88526848,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 5.0310000000026776
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1342930944,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1254404096,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88526848,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 5.234000000004016
+                },
+                {
+                  "valid": true,
+                  "rss_bytes": 1340293120,
+                  "components": {
+                    "browser": {
+                      "rss_bytes": 1251762176,
+                      "process_count": 13,
+                      "pids": [
+                        34004,
+                        30796,
+                        19784,
+                        15696,
+                        30152,
+                        17576,
+                        14020,
+                        32980,
+                        33712,
+                        16568,
+                        1692,
+                        34664,
+                        27980
+                      ]
+                    },
+                    "backend": {
+                      "rss_bytes": 88530944,
+                      "process_count": 3,
+                      "pids": [
+                        1256,
+                        29848,
+                        31536
+                      ]
+                    }
+                  },
+                  "missing_roots": [],
+                  "vanished_children": [],
+                  "elapsed_seconds": 5.437000000005355
+                }
+              ]
+            },
+            "latency": {
+              "unit": "ms",
+              "attempted_samples": 5,
+              "successful_samples": 5,
+              "failed_samples": 0,
+              "mean_ms": 434.27999999821185,
+              "p50_ms": 453.70000000298023,
+              "p95_ms": 629.9999999955296,
+              "observations": [
+                {
+                  "status": "measured",
+                  "elapsed_ms": 210.5,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 659.1999999955297,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 45,
+                  "http_status": 200,
+                  "input_angle_deg": 45,
+                  "kind": "High"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 513.1999999955297,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 334.79999999701977,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 45,
+                  "http_status": 200,
+                  "input_angle_deg": 45,
+                  "kind": "High"
+                },
+                {
+                  "status": "measured",
+                  "elapsed_ms": 453.70000000298023,
+                  "command_action": "simulate_angle",
+                  "observed_angle_deg": 10,
+                  "http_status": 200,
+                  "input_angle_deg": 10,
+                  "kind": "Low"
+                }
+              ]
+            }
+          }
+        ],
+        "method": {
+          "latency_start": "performance.now immediately before clicking the actual Low/High simulated-angle UI button",
+          "latency_end": "matching fresh numeric angle and visible feedback modal after React DOM commit and two requestAnimationFrame callbacks",
+          "latency_excludes": [
+            "USB/serial/ESP32/MPU6050 transport",
+            "physical sensor acquisition",
+            "physical pixel scanout"
+          ],
+          "memory_includes": [
+            "owned Edge process tree",
+            "owned Python backend process tree"
+          ],
+          "memory_excludes": [
+            "Vite static preview server",
+            "measurement Python process",
+            "other browser profiles",
+            "operating system"
+          ],
+          "sample_interval_seconds": 0.1,
+          "warmup_seconds": 2,
+          "requested_seconds": 5.0,
+          "requested_latency_samples_per_mode": 5,
+          "graphics": "headless Edge with explicit SwiftShader software rendering; not final hardware GPU or Electron measurements",
+          "comparison_limit": "Synthetic markers and non-coded texture do not validate unchanged-pad tracking or physical sensor latency. Mode order is sequential, not randomized.",
+          "process_isolation": "Fresh seeded Python backend and fresh temporary Edge profile per mode; private SQLite records; same production build, patient, injection stage, 1440x900 viewport and 1280x720 synthetic camera at 12 fps"
+        }
+      }
+    ],
+    "repeat_order": "Rotate the first mode on each repeat; each repeat otherwise sequential. No statistical randomization is claimed."
+  },
+  "physical_sensor_latency": {
+    "status": "not_measured",
+    "reason": "No physical ESP32 sampling/transport-to-display trial was performed."
+  },
+  "completed_at_utc": "2026-10-23T18:08:10.578113+00:00",
+  "comparison_scope": {
+    "designs": [
+      "aruco",
+      "orb",
+      "optical-flow"
+    ],
+    "normal_mode_included": false,
+    "shared_controls": [
+      "application infrastructure and assets",
+      "canine model geometry"
+    ]
+  },
+  "design_metrics": {
+    "scope": "Own tracker implementations for Designs 1, 2 and 3; shared application measurements are supplemental.",
+    "mb_definition": "1 MB = 1,000,000 bytes",
+    "shared_components_excluded": [
+      "designs/tracking_common.py",
+      "shared frontend, backend and tracking transport",
+      "canine models and rendering assets",
+      "dependencies, reference/marker artwork, documentation and tests"
+    ],
+    "designs": [
+      {
+        "id": "aruco",
+        "label": "Design 1: ArUco",
+        "path": "designs/design-1-aruco/tracker.py",
+        "storage": {
+          "status": "measured",
+          "bytes": 2890,
+          "mb": 0.00289,
+          "scope": "This design's tracker.py source file only; not standalone application or installed storage."
+        },
+        "maintainability": {
+          "status": "measured",
+          "score_0_100": 64.27222135536297,
+          "scope": "This design's tracker.py Python file only; not a whole-application Maintainability Index.",
+          "method": "Radon mi_visit(source, multi=True), per-file 0-100 Maintainability Index",
+          "radon_version": "6.0.1"
+        }
+      },
+      {
+        "id": "orb",
+        "label": "Design 2: ORB + RANSAC",
+        "path": "designs/design-2-orb-ransac/tracker.py",
+        "storage": {
+          "status": "measured",
+          "bytes": 7358,
+          "mb": 0.007358,
+          "scope": "This design's tracker.py source file only; not standalone application or installed storage."
+        },
+        "maintainability": {
+          "status": "measured",
+          "score_0_100": 32.98298077896209,
+          "scope": "This design's tracker.py Python file only; not a whole-application Maintainability Index.",
+          "method": "Radon mi_visit(source, multi=True), per-file 0-100 Maintainability Index",
+          "radon_version": "6.0.1"
+        }
+      },
+      {
+        "id": "optical-flow",
+        "label": "Design 3: Optical flow",
+        "path": "designs/design-3-optical-flow/tracker.py",
+        "storage": {
+          "status": "measured",
+          "bytes": 6090,
+          "mb": 0.00609,
+          "scope": "This design's tracker.py source file only; not standalone application or installed storage."
+        },
+        "maintainability": {
+          "status": "measured",
+          "score_0_100": 40.970676149074144,
+          "scope": "This design's tracker.py Python file only; not a whole-application Maintainability Index.",
+          "method": "Radon mi_visit(source, multi=True), per-file 0-100 Maintainability Index",
+          "radon_version": "6.0.1"
+        }
+      }
+    ],
+    "status": "measured"
+  },
+  "derived_from_report": "C:\\Users\\norud\\Desktop\\Veterinary-Anesthesia-AR-Starter\\Veterinary-Anesthesia-AR\\constraintv2\\results\\latest.json",
+  "report_generated_at_utc": "2026-10-23T19:02:09.516360+00:00"
+}

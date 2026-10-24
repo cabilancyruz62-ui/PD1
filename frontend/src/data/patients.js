@@ -1,8 +1,8 @@
 // Fictional training profiles for the three-breed demonstration.
 export const patients = [
-  { id: 'bella', breedId: 'labrador', Name: 'Bella', Breed: 'Labrador Retriever', Age: '3 years', Sex: 'Female', Weight: '24 kg', Procedure: 'Dental cleaning', Condition: 'Stable · simulated patient' },
-  { id: 'charlie', breedId: 'beagle', Name: 'Charlie', Breed: 'Beagle', Age: '7 years', Sex: 'Male', Weight: '12 kg', Procedure: 'Mass removal', Condition: 'Senior patient · simulated' },
-  { id: 'spot', breedId: 'dalmatian', Name: 'Spot', Breed: 'Dalmatian', Age: '4 years', Sex: 'Male', Weight: '22 kg', Procedure: 'Wound repair', Condition: 'Stable · simulated patient' },
+  { id: 'bella', breedId: 'labrador', Name: 'Bella', Breed: 'Labrador Retriever', Age: '3 years', Sex: 'Female', Weight: '24 kg', 'Procedure type': 'Dentistry', Procedure: 'Dental cleaning', Condition: 'Stable · simulated patient' },
+  { id: 'charlie', breedId: 'beagle', Name: 'Charlie', Breed: 'Beagle', Age: '7 years', Sex: 'Male', Weight: '12 kg', 'Procedure type': 'Surgery', Procedure: 'Mass removal', Condition: 'Senior patient · simulated' },
+  { id: 'spot', breedId: 'dalmatian', Name: 'Spot', Breed: 'Dalmatian', Age: '4 years', Sex: 'Male', Weight: '22 kg', 'Procedure type': 'Surgery', Procedure: 'Wound repair', Condition: 'Stable · simulated patient' },
 ];
 
 // Keep names and profile details available for assessments saved before this limit.

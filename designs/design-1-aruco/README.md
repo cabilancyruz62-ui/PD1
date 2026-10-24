@@ -4,6 +4,10 @@ Initial implementation: detect a configured OpenCV ArUco marker (`DICT_4X4_50`,
 IDs 0–49) and expose its four image corners to the shared preview. It needs no
 ML training or reference photographs.
 
+For the current injection pad, use the [printable target kit and mounting guide](../references/injection-pad/README.md). It includes marker 0 with a white margin and a print-scale check.
+
+The same detector also powers **Settings → Tracking mode → Design 1** in the frontend. The browser keeps ownership of its camera and the backend processes sampled frames to drive the dog's 2D alignment and visibility. See [frontend tracking](../../docs/TRACKING.md). Close the standalone preview before using the browser webcam.
+
 Run these commands from the repository root after installing
 `designs/requirements.txt`:
 

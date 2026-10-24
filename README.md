@@ -61,11 +61,13 @@ One of three fictional patients is assigned and locked for the current student: 
 - Optional wire-connection gate for monitor display. It is separate from injection confirmation and RFID input. See [wire controls](docs/patients-and-wire.md).
 - Three built-in breed models share a rig with standing/lying poses, breed-specific proportions and coat markings. Each breed keeps separate manual placement settings for the page session. The rotatable inspector also accepts optional breed-specific GLB exports. See [model and alignment instructions](docs/DOG_MODELS.md). Blender sources can go in `AR model/`.
 
-The interface is a screen overlay, not a spatially anchored model on the dummy. Marker/camera calibration, validated sensor transforms, real firmware, and licensed veterinary review remain future integration work. MPU6050 orientations do not prove injection completion. No Electron conversion has been made.
+Settings → Tracking mode now selects **Normal**, **Design 1 (ArUco)**, **Design 2 (ORB + RANSAC)**, or **Design 3 (optical flow)**. Normal retains manual placement. The tracked modes drive the dog's 2D screen position, size, rotation and visibility from the browser's camera feed. Designs 2 and 3 use manually selected original-pad details, without a texture helper. See [frontend tracking setup and limits](docs/TRACKING.md).
 
-Initial standalone OpenCV experiments for ArUco, ORB + RANSAC, and optical flow are available in **[designs/](designs/README.md)**. They can preview 2D tracking without a Blender model and are not yet connected to the website overlay.
+The same OpenCV engines remain available as standalone previews in **[designs/](designs/README.md)**. Close a standalone preview before using the browser webcam. Calibrated perspective-aware 3D anchoring, validated sensor transforms, real firmware, and licensed veterinary review remain future work. MPU6050 orientations do not prove injection completion. No Electron conversion has been made.
 
 **[Constraint benchmarks](constraint/README.md)** measure the three trackers' RAM, CPU, processing time, and correctness against synthetic ground truth. Each design has its own results folder; 3D rendering FPS remains unmeasured until renderer integration.
+
+**[Three-design constraints v2](constraintv2/README.md)** compares tracker source storage, simulated input-to-feedback latency, Python maintainability, runtime RAM and CPU utilization. Each design has separate numbered constraint files. The [overall comparison](constraintv2/resultsv2/comparison.md) sits beside the three design folders in `constraintv2/resultsv2/`. Acceptance limits remain unset.
 
 ## Validation commands
 

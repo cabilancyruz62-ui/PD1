@@ -1,5 +1,7 @@
 # Tracking constraints and measured results
 
+The revised three-design metrics are in [constraintv2](../constraintv2/README.md): storage, simulated input-to-feedback latency, Python maintainability, runtime RAM and CPU utilization. Each design has separate numbered result files. This folder retains the original tracker benchmark definitions and results.
+
 This folder benchmarks the existing tracking implementations in `designs/`. Each design has its own results folder:
 
 ```text

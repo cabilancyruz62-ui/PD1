@@ -1,0 +1,6 @@
+﻿Constraint,Design 1,Design 2,Design 3
+1. Storage Efficiency (Storage Consumption),0.002890 MB,0.007358 MB,0.006090 MB
+2. Performance (Latency),356.94 ms,376.30 ms,434.28 ms
+3. Maintainability (Maintainability Index Score),64.27 / 100,32.98 / 100,40.97 / 100
+4. Memory Efficiency (RAM Consumption),"1,427.70 MB","1,338.55 MB","1,413.62 MB"
+5. Computational Efficiency (CPU Utilization),49.00 %,50.76 %,47.20 %

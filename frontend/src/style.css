@@ -19,6 +19,21 @@
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 .dummy-overlay{position:fixed;z-index:1;pointer-events:none;aspect-ratio:1.7}.dummy-overlay-canvas{width:100%;height:100%}.dummy-overlay-canvas canvas{display:block;width:100%;height:100%}.dummy-overlay p{color:#ffe5cd;background:#34271e;padding:12px;font-size:12px}
+.tracked-overlay-plane{position:fixed;inset:0;z-index:1;pointer-events:none}
+.tracking-target-outline{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.tracking-target-outline polygon{fill:#85f5cf0c;stroke:#85f5cf;stroke-width:2;vector-effect:non-scaling-stroke}
+.tracking-settings{padding-bottom:18px;border-bottom:1px solid #b1d4c92e}
+.tracking-settings .settings-subtitle{margin-top:0}
+.tracking-state{display:grid;gap:6px;padding:12px;border:1px solid #e0ba7540;border-radius:8px;background:#e0ba7508;font-size:12px;margin-top:14px}
+.tracking-state small{color:#abc4b9;font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+.tracking-state.is-tracked{border-color:#85f5cf70;background:#85f5cf0a}
+.tracking-footer{margin-left:auto;text-align:right}
+.tracking-selection-screen{position:fixed;inset:0;z-index:30;background:#061314f2;display:grid;place-items:center;overflow:auto;padding:20px}
+.tracking-selection-card{max-width:100%;text-align:center;color:#d3e8dc}
+.tracking-selection-card h2{font:500 22px 'Space Grotesk',sans-serif}
+.tracking-selection-card p{font-size:12px;line-height:1.6}
+.tracking-selection-card canvas{display:block;margin:16px auto;max-width:100%;max-height:60dvh;touch-action:none;cursor:crosshair;border:1px solid #85f5cf55}
+.tracking-selection-card .action-row{justify-content:center}
 
 .camera-required-screen{position:fixed;inset:0;z-index:20;display:grid;place-items:center;overflow:auto;background:#071718ed;padding:24px;backdrop-filter:blur(12px)}.camera-required-card{width:100%;max-width:520px;max-height:calc(100dvh - 48px);overflow:auto;box-sizing:border-box;background:#0a1b1d;border:1px solid #bddfd12c;border-radius:16px;padding:28px;color:#d3e8dc}.camera-required-card>svg{color:#94f2d1}.camera-required-card h1{font:500 25px 'Space Grotesk',sans-serif}.camera-required-card>p{font-size:13px;line-height:1.7;color:#a6bfba}
 

@@ -1,0 +1,186 @@
+{
+  "target_id": "injection-pad-01",
+  "opencv_version": "4.14.0",
+  "analysis_type": "static_photo_intake",
+  "live_tracking_validated": false,
+  "metric_pose_calibrated": false,
+  "notes": [
+    "ROIs were manually selected inside the pad surface. Background, ruler, tubing, and pad boundaries are excluded.",
+    "A successful identical-frame optical-flow check cannot establish stability under camera movement, lighting changes, or occlusion.",
+    "Feature counts are image diagnostics, not constraint-benchmark results or proof of target identity.",
+    "No ArUco marker is attached in the supplied photographs, so no marker detection is expected."
+  ],
+  "photos": [
+    {
+      "id": "oblique",
+      "file": "photos/01-oblique.jpg",
+      "sha256": "425a1591cedf572a4cc1c4a793403ea92ce9b4b4a92183e464cb174c5409a3c0",
+      "image_width_px": 722,
+      "image_height_px": 960,
+      "surface_roi_xywh": [
+        200,
+        335,
+        235,
+        100
+      ],
+      "orb_reference_features": 0,
+      "orb_scene_features": 1800,
+      "orb_scene_features_inside_roi": 0,
+      "orb_same_photo_check": {
+        "status": "reference_rejected",
+        "detail": "The reference has too few features. Choose a larger, textured region.",
+        "metrics": {}
+      },
+      "flow_initialization": {
+        "status": "tracking",
+        "detail": "Selection initialized; follow the selected surface.",
+        "metrics": {
+          "features": 182
+        }
+      },
+      "flow_identical_frame_check": {
+        "status": "tracking",
+        "detail": "Following selected image features; target identity is not verified.",
+        "metrics": {
+          "features": 77,
+          "inliers": 77,
+          "inlier_ratio": 1.0,
+          "fb_error_px": 0.0
+        }
+      },
+      "flow_video_tracking_validated": false,
+      "aruco_unmarked_photo_check": {
+        "status": "searching",
+        "detail": "Show marker 0 attached to the dummy.",
+        "metrics": {
+          "marker_id": 0,
+          "detected_ids": []
+        }
+      }
+    },
+    {
+      "id": "working-view",
+      "file": "photos/02-working-view.jpg",
+      "sha256": "cc9d6bf2f32d06bdbc29250ed775032d060ce4dd8bafd527b630817efebbf7ba",
+      "image_width_px": 722,
+      "image_height_px": 960,
+      "surface_roi_xywh": [
+        280,
+        425,
+        280,
+        140
+      ],
+      "orb_reference_features": 0,
+      "orb_scene_features": 1800,
+      "orb_scene_features_inside_roi": 0,
+      "orb_same_photo_check": {
+        "status": "reference_rejected",
+        "detail": "The reference has too few features. Choose a larger, textured region.",
+        "metrics": {}
+      },
+      "flow_initialization": {
+        "status": "tracking",
+        "detail": "Selection initialized; follow the selected surface.",
+        "metrics": {
+          "features": 182
+        }
+      },
+      "flow_identical_frame_check": {
+        "status": "tracking",
+        "detail": "Following selected image features; target identity is not verified.",
+        "metrics": {
+          "features": 107,
+          "inliers": 107,
+          "inlier_ratio": 1.0,
+          "fb_error_px": 0.0
+        }
+      },
+      "flow_video_tracking_validated": false,
+      "aruco_unmarked_photo_check": {
+        "status": "searching",
+        "detail": "Show marker 0 attached to the dummy.",
+        "metrics": {
+          "marker_id": 0,
+          "detected_ids": []
+        }
+      }
+    },
+    {
+      "id": "ruler-view",
+      "file": "photos/03-ruler-view.jpg",
+      "sha256": "2d2438f29c4919e36196a8a1459a6279eddb0c876c6aa48bda95ca563d6bb046",
+      "image_width_px": 722,
+      "image_height_px": 960,
+      "surface_roi_xywh": [
+        150,
+        220,
+        170,
+        600
+      ],
+      "orb_reference_features": 214,
+      "orb_scene_features": 1800,
+      "orb_scene_features_inside_roi": 22,
+      "orb_same_photo_check": {
+        "status": "searching",
+        "detail": "Matches do not cover enough of the reference region.",
+        "metrics": {
+          "keypoints": 1800,
+          "matches": 16,
+          "inliers": 16,
+          "inlier_ratio": 1.0,
+          "reference_coverage": 0.017
+        }
+      },
+      "flow_initialization": {
+        "status": "tracking",
+        "detail": "Selection initialized; follow the selected surface.",
+        "metrics": {
+          "features": 200
+        }
+      },
+      "flow_identical_frame_check": {
+        "status": "tracking",
+        "detail": "Following selected image features; target identity is not verified.",
+        "metrics": {
+          "features": 200,
+          "inliers": 200,
+          "inlier_ratio": 1.0,
+          "fb_error_px": 0.0
+        }
+      },
+      "flow_video_tracking_validated": false,
+      "aruco_unmarked_photo_check": {
+        "status": "searching",
+        "detail": "Show marker 0 attached to the dummy.",
+        "metrics": {
+          "marker_id": 0,
+          "detected_ids": []
+        }
+      }
+    }
+  ],
+  "orb_cross_view_checks": [
+    {
+      "reference": "ruler-view",
+      "scene": "oblique",
+      "status": "searching",
+      "detail": "Not enough reliable matches to the reference.",
+      "metrics": {
+        "keypoints": 1800,
+        "matches": 0,
+        "inliers": 0
+      }
+    },
+    {
+      "reference": "ruler-view",
+      "scene": "working-view",
+      "status": "searching",
+      "detail": "Not enough reliable matches to the reference.",
+      "metrics": {
+        "keypoints": 1800,
+        "matches": 1,
+        "inliers": 0
+      }
+    }
+  ]
+}

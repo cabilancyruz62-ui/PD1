@@ -1,0 +1,72 @@
+{
+  "analysis_type": "synthetic_artwork_checks",
+  "opencv_version": "4.14.0",
+  "texture_helper_used_in_planned_pad_trials": false,
+  "physical_tracking_validated": false,
+  "metric_pose_calibrated": false,
+  "marker_ids_detected": [
+    0
+  ],
+  "texture_aruco_ids_detected": [],
+  "texture_reference_features": 1426,
+  "movement": {
+    "rotation_degrees": 3,
+    "scale": 0.96,
+    "translation_px": [
+      6,
+      -4
+    ]
+  },
+  "checks": {
+    "orb_stationary": {
+      "status": "tracking",
+      "metrics": {
+        "keypoints": 1459,
+        "matches": 647,
+        "inliers": 618,
+        "inlier_ratio": 0.955177743431221,
+        "reference_coverage": 0.788
+      },
+      "maximum_corner_error_px": 0.896
+    },
+    "orb_moved": {
+      "status": "tracking",
+      "metrics": {
+        "keypoints": 1800,
+        "matches": 395,
+        "inliers": 355,
+        "inlier_ratio": 0.8987341772151899,
+        "reference_coverage": 0.741
+      },
+      "maximum_corner_error_px": 1.391
+    },
+    "flow_initialized": {
+      "status": "tracking",
+      "metrics": {
+        "features": 200
+      },
+      "maximum_corner_error_px": 0.0
+    },
+    "flow_stationary": {
+      "status": "tracking",
+      "metrics": {
+        "features": 200,
+        "inliers": 200,
+        "inlier_ratio": 1.0,
+        "fb_error_px": 0.0
+      },
+      "maximum_corner_error_px": 0.0
+    },
+    "flow_moved": {
+      "status": "tracking",
+      "metrics": {
+        "features": 200,
+        "inliers": 200,
+        "inlier_ratio": 1.0,
+        "fb_error_px": 0.018124191090464592
+      },
+      "maximum_corner_error_px": 0.021
+    }
+  },
+  "note": "Digital artwork only; no printer, camera, lighting, hand occlusion, or physical pad was tested."
+}

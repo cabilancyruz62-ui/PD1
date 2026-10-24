@@ -1,0 +1,56 @@
+{
+  "target_id": "injection-pad-01",
+  "target_type": "injection_pad_used_as_dummy",
+  "surface_condition": "unmodified",
+  "reported_dimensions": {
+    "length": 4.5,
+    "width": 2.5,
+    "height": 0.5,
+    "units": {"length": null, "width": null, "height": "inch"},
+    "metric_scale_verified": false,
+    "note": "Length and width units were not explicitly confirmed. No metric pose calibration is inferred from the photographs."
+  },
+  "marker": {
+    "dictionary": "DICT_4X4_50",
+    "id": 0,
+    "physical_black_square_size_mm": null,
+    "attached_in_source_photos": false
+  },
+  "camera_calibration_verified": false,
+  "video_sequence_available": false,
+  "planned_mount": {
+    "texture_helper_used": false,
+    "test_order": ["aruco", "orb", "optical-flow"],
+    "condition": "removable_aruco_card_on_rigid_backing_for_design_1",
+    "source_photos_show_planned_mount": false,
+    "print_sheet": "targets/print-targets.pdf",
+    "proposed_marker_black_square_mm": 24,
+    "proposed_marker_white_margin_mm": 4,
+    "printed_dimensions_verified": false,
+    "design_1": "Expose marker 0 on a removable rigid tab outside the injection and sensor areas.",
+    "designs_2_and_3": "Remove printed targets and use only the original pad surface. No texture helper. Capture a natural-surface reference for ORB and manually select surface points for optical flow."
+  },
+  "photos": [
+    {
+      "id": "oblique",
+      "file": "photos/01-oblique.jpg",
+      "original_name": "b69bb9d9-003f-47ae-87ec-7b292819e9e5.jpg",
+      "surface_roi_xywh": [200, 335, 235, 100],
+      "note": "Interior pad region, excluding tubing, pad boundaries, and the patterned fabric."
+    },
+    {
+      "id": "working-view",
+      "file": "photos/02-working-view.jpg",
+      "original_name": "49213993-c811-45bd-8147-f1fd200a537a.jpg",
+      "surface_roi_xywh": [280, 425, 280, 140],
+      "note": "Interior top surface, excluding the pad edge and patterned fabric."
+    },
+    {
+      "id": "ruler-view",
+      "file": "photos/03-ruler-view.jpg",
+      "original_name": "ed1ca403-25e8-4790-aa38-633bd34f30e3.jpg",
+      "surface_roi_xywh": [150, 220, 170, 600],
+      "note": "Interior surface to the left of the ruler; the ruler is not a reference feature."
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+-r ../constraint/requirements.txt
+radon>=6,<7

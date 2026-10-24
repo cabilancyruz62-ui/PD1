@@ -6,17 +6,24 @@ import { getBreedProfile } from '../data/breeds.js';
 
 export { defaultPlacement } from '../lib/dogPlacement.js';
 
-export function DummyOverlayControls({ placement, setPlacement, preview, setPreview, pose, breedId }) {
+export function DummyOverlayControls({ placement, setPlacement, preview, setPreview, pose, breedId, tracked = false }) {
   const breed = getBreedProfile(breedId);
   const fields = [['x', 'Horizontal position', 0, 100, '%'], ['y', 'Vertical position', 0, 100, '%'], ['size', 'Size', 15, 100, '%'], ['rotation', 'Screen rotation', -180, 180, '°'], ['yaw', 'Turn left / right', -180, 180, '°'], ['pitch', 'Tilt forward / back', -45, 45, '°'], ['opacity', 'Opacity', 10, 100, '%']];
-  return <><h3 className="settings-subtitle">{breed.label} alignment</h3><p className="notice">Align the dog with the dummy. Each breed keeps its own placement for this page session.</p><label className="toggle-row"><span>Preview for alignment</span><input type="checkbox" checked={preview} onChange={e => setPreview(e.target.checked)}/><span className="switch" aria-hidden="true"/></label><p className="notice" role="status">{pose ? `Dog pose: ${pose === 'lying' ? 'lying down' : 'standing'}` : preview ? 'Alignment preview: standing' : 'Hidden until assessment starts'}</p>{fields.map(([key, label, min, max, unit]) => <label className="field" key={key}>{label}: {placement[key]}{unit}<input type="range" min={min} max={max} value={placement[key]} onChange={e => setPlacement(current => ({ ...current, [key]: Number(e.target.value) }))}/></label>)}<button className="secondary" onClick={() => setPlacement({ ...defaultPlacement })}>Reset this breed's placement</button><p className="notice">Keep the camera and dummy fixed. Realign after moving or mirroring the camera.</p></>;
+  return <><h3 className="settings-subtitle">{breed.label} alignment</h3>
+    <p className="notice">{tracked ? 'Use target alignment above for position, size and screen rotation. Adjust the dog’s viewing angle and opacity here.' : 'Align the dog with the dummy. Each breed keeps its own placement for this page session.'}</p>
+    {!tracked && <label className="toggle-row"><span>Preview for alignment</span><input type="checkbox" checked={preview} onChange={e => setPreview(e.target.checked)}/><span className="switch" aria-hidden="true"/></label>}
+    <p className="notice" role="status">{pose ? `Dog pose: ${pose === 'lying' ? 'lying down' : 'standing'}` : tracked ? 'Standing preview while the target is tracked' : preview ? 'Alignment preview: standing' : 'Hidden until assessment starts'}</p>
+    {fields.filter(([key]) => !tracked || ['yaw', 'pitch', 'opacity'].includes(key)).map(([key, label, min, max, unit]) => <label className="field" key={key}>{label}: {placement[key]}{unit}<input type="range" min={min} max={max} value={placement[key]} onChange={e => setPlacement(current => ({ ...current, [key]: Number(e.target.value) }))}/></label>)}
+    <button className="secondary" onClick={() => setPlacement({ ...defaultPlacement })}>Reset this breed's placement</button>
+    {!tracked && <p className="notice">Keep the camera and dummy fixed. Realign after moving or mirroring the camera.</p>}
+  </>;
 }
 
-export default function DummyOverlay({ placement, pose, breedId }) {
+export default function DummyOverlay({ placement, pose, breedId, visible = true }) {
   const breed = getBreedProfile(breedId);
-  const host = useRef(null), motion = useRef({ pose, placement });
+  const host = useRef(null), motion = useRef({ pose, placement, visible });
   const [error, setError] = useState('');
-  motion.current = { pose, placement };
+  motion.current = { pose, placement, visible };
   useEffect(() => {
     const element = host.current;
     const scene = new THREE.Scene(), orientation = new THREE.Group();
@@ -48,6 +55,7 @@ export default function DummyOverlay({ placement, pose, breedId }) {
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       function render(now) {
         frame = requestAnimationFrame(render);
+        if (!motion.current.visible) { previous = now; return; }
         const target = motion.current.pose === 'lying' ? 1 : 0;
         const delta = Math.max(0, (now - previous) / 1000); previous = now;
         blend = reducedMotion.matches ? target : THREE.MathUtils.lerp(blend, target, 1 - Math.exp(-3 * delta));
@@ -57,7 +65,7 @@ export default function DummyOverlay({ placement, pose, breedId }) {
       }
       frame = requestAnimationFrame(render);
     } catch { setError('The 3D dog needs WebGL. Try a browser with hardware acceleration enabled.'); }
-    return () => { cancelAnimationFrame(frame); observer?.disconnect(); dog?.dispose(); renderer?.dispose(); renderer?.domElement.remove(); };
+    return () => { cancelAnimationFrame(frame); observer?.disconnect(); dog?.dispose(); renderer?.dispose(); renderer?.forceContextLoss(); renderer?.domElement.remove(); };
   }, [breed]);
   return <div className="dummy-overlay" role="img" aria-label={`${breed.label} model: ${pose === 'lying' ? 'lying down' : 'standing'}`} style={{ left: `${placement.x}%`, top: `${placement.y}%`, width: `${placement.size}vw`, opacity: placement.opacity / 100, transform: `translate(-50%, -50%) rotate(${placement.rotation}deg)` }}><div ref={host} className="dummy-overlay-canvas"/>{error && <p role="alert">{error}</p>}</div>;
 }

@@ -6,6 +6,13 @@ import numpy as np
 from tracking_common import TrackingResult, valid_quad
 
 
+class ReferenceSelectionError(ValueError):
+    """Expose reference quality without weakening the matching checks."""
+    def __init__(self, detail, metrics):
+        super().__init__(detail)
+        self.metrics = metrics
+
+
 class OrbTracker:
     """Match a textured reference patch; this is not a trained dummy detector."""
 
@@ -36,11 +43,14 @@ class OrbTracker:
         if min(gray.shape) < 48:
             raise ValueError("Choose a larger reference region (at least 48 pixels per side).")
         keypoints, descriptors = self.orb.detectAndCompute(gray, None)
+        metrics = {"reference_features": len(keypoints), "required_reference_features": 24}
         if descriptors is None or len(keypoints) < 24:
-            raise ValueError("The reference has too few features. Choose a larger, textured region.")
+            raise ReferenceSelectionError("The reference has too few features. Choose a larger, textured region.", metrics)
         points = np.float32([point.pt for point in keypoints])
-        if self._coverage(points, gray.shape) < 0.08:
-            raise ValueError("Reference features are too clustered. Include texture across the region.")
+        coverage = self._coverage(points, gray.shape)
+        metrics.update(reference_coverage=round(coverage, 3), required_reference_coverage=0.08)
+        if coverage < 0.08:
+            raise ReferenceSelectionError("Reference features are too clustered. Include texture across the region.", metrics)
         self.reference = gray
         self.reference_points = points
         self.descriptors = descriptors
@@ -81,7 +91,8 @@ class OrbTracker:
             )
         gray = self._gray(frame)
         keypoints, descriptors = self.orb.detectAndCompute(gray, None)
-        metrics = {"keypoints": len(keypoints), "matches": 0, "inliers": 0}
+        metrics = {"keypoints": len(keypoints), "matches": 0, "inliers": 0,
+                   "reference_features": len(self.reference_points), "required_reference_features": 24}
         if descriptors is None or len(keypoints) < 12:
             return self._missing("Too few visible features; show the reference region.", metrics)
 

@@ -1,4 +1,4 @@
-"""Local training-station API; camera frames are never sent here."""
+"""Local training-station API with optional in-memory camera tracking."""
 import asyncio
 import os
 import json
@@ -12,6 +12,7 @@ from assessment import AssessmentService, AssessmentError
 from assessment_models import AssessmentCommand, HardwareEvent, WireSignal
 from assessment_store import AssessmentStore
 from wire import WireMonitor
+from tracking import TrackingConfig, TrackingEngine
 
 wire_monitor = WireMonitor()
 store = AssessmentStore(os.environ.get("ASSESSMENT_DB_PATH", str(Path(__file__).parent / "data/assessments.sqlite3")))
@@ -103,5 +104,32 @@ async def hardware_socket(websocket: WebSocket):
                 await websocket.send_json({"type": "accepted", "session_id": state["session_id"], "injection_stage_id": state["injection_stage_id"], "phase": state["phase"], "revision": state["revision"]})
             except (ValidationError, AssessmentError, ValueError) as error:
                 await websocket.send_json({"type": "error", "message": str(error)})
+    except (WebSocketDisconnect, RuntimeError, OSError):
+        pass
+
+
+@app.websocket("/api/ws/tracking")
+async def tracking_socket(websocket: WebSocket):
+    await websocket.accept()
+    try:
+        config_text = await asyncio.wait_for(websocket.receive_text(), timeout=10)
+        if len(config_text) > 8192:
+            raise ValueError("Tracking configuration is too large.")
+        config = TrackingConfig.model_validate_json(config_text)
+        try:
+            engine = await asyncio.to_thread(TrackingEngine, config)
+        except ImportError:
+            await websocket.send_json({"type": "error", "message": "Install tracking dependencies with: python -m pip install -r designs/requirements.txt"})
+            await websocket.close(code=1011)
+            return
+        await websocket.send_json(engine.ready())
+        while True:
+            jpeg = await websocket.receive_bytes()
+            # Tracking work must not block assessment timers or hardware traffic.
+            result = await asyncio.to_thread(engine.process, jpeg)
+            await websocket.send_json(result)
+    except (ValueError, ValidationError, asyncio.TimeoutError, KeyError) as error:
+        await websocket.send_json({"type": "error", "message": str(error)})
+        await websocket.close(code=1008)
     except (WebSocketDisconnect, RuntimeError, OSError):
         pass

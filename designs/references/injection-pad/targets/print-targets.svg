@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297">
+<rect width="210" height="297" fill="white"/>
+<g font-family="Arial, sans-serif" fill="#111">
+<text x="20" y="22" font-size="5" font-weight="700">PupVitals | Design 1: ArUco tracking</text>
+<text x="20" y="32" font-size="3.2">A4 paper. Print at 100% / Actual size. Turn off Fit to page.</text>
+<text x="20" y="39" font-size="3.2">Cut around the dashed outline. Preserve the complete white margin.</text>
+<text x="20" y="51" font-size="3.8" font-weight="700">ArUco DICT_4X4_50 / ID 0</text>
+<g transform="translate(20 57)"><rect width="32" height="32" fill="white"/>
+<rect x="4" y="4" width="4" height="4" fill="black"/>
+<rect x="8" y="4" width="4" height="4" fill="black"/>
+<rect x="12" y="4" width="4" height="4" fill="black"/>
+<rect x="16" y="4" width="4" height="4" fill="black"/>
+<rect x="20" y="4" width="4" height="4" fill="black"/>
+<rect x="24" y="4" width="4" height="4" fill="black"/>
+<rect x="4" y="8" width="4" height="4" fill="black"/>
+<rect x="12" y="8" width="4" height="4" fill="black"/>
+<rect x="24" y="8" width="4" height="4" fill="black"/>
+<rect x="4" y="12" width="4" height="4" fill="black"/>
+<rect x="8" y="12" width="4" height="4" fill="black"/>
+<rect x="16" y="12" width="4" height="4" fill="black"/>
+<rect x="24" y="12" width="4" height="4" fill="black"/>
+<rect x="4" y="16" width="4" height="4" fill="black"/>
+<rect x="8" y="16" width="4" height="4" fill="black"/>
+<rect x="12" y="16" width="4" height="4" fill="black"/>
+<rect x="24" y="16" width="4" height="4" fill="black"/>
+<rect x="4" y="20" width="4" height="4" fill="black"/>
+<rect x="8" y="20" width="4" height="4" fill="black"/>
+<rect x="12" y="20" width="4" height="4" fill="black"/>
+<rect x="20" y="20" width="4" height="4" fill="black"/>
+<rect x="24" y="20" width="4" height="4" fill="black"/>
+<rect x="4" y="24" width="4" height="4" fill="black"/>
+<rect x="8" y="24" width="4" height="4" fill="black"/>
+<rect x="12" y="24" width="4" height="4" fill="black"/>
+<rect x="16" y="24" width="4" height="4" fill="black"/>
+<rect x="20" y="24" width="4" height="4" fill="black"/>
+<rect x="24" y="24" width="4" height="4" fill="black"/></g>
+<g fill="none" stroke="#777" stroke-width="0.15" stroke-dasharray="1 1">
+<rect x="19.5" y="56.5" width="33" height="33"/>
+</g>
+<text x="65" y="66" font-size="3.2">Black square: 24 x 24 mm</text>
+<text x="65" y="74" font-size="3.2">White margin: 4 mm per side</text>
+<text x="65" y="82" font-size="3.2">Complete marker card: 32 x 32 mm</text>
+<text x="20" y="108" font-size="4" font-weight="700">Mount and test Design 1</text>
+<text x="20" y="118" font-size="3.2">1. Attach the marker to a removable rigid tab fixed to the pad.</text>
+<text x="20" y="126" font-size="3.2">2. Keep the injection area, tubes, and sensor positions clear.</text>
+<text x="20" y="134" font-size="3.2">3. Keep the complete marker flat, sharp, and visible to the camera.</text>
+<text x="20" y="142" font-size="3.2">4. Start the ArUco experiment with marker ID 0 and camera 0.</text>
+<text x="20" y="150" font-size="3.2">5. Show the marker, hide it, then uncover it to check reacquisition.</text>
+<text x="20" y="158" font-size="3.2">6. Keep the pad stationary; test small camera movements separately.</text>
+<text x="20" y="166" font-size="3.2">7. Press q or Esc in the preview to stop and release the camera.</text>
+<text x="20" y="184" font-size="3.5" font-weight="700">Later: Designs 2 and 3 use the unchanged pad.</text>
+<text x="20" y="192" font-size="3.2">Remove printed targets. No added texture helper is used in those trials.</text>
+<text x="20" y="207" font-size="4" font-weight="700">Print scale check</text>
+<text x="20" y="216" font-size="3.2">Measure between the end ticks: exactly 50 mm.</text>
+<path d="M20 226 H70 M20 223 V229 M70 223 V229" fill="none" stroke="black" stroke-width="0.3"/>
+<text x="20" y="241" font-size="3.2">Measure the printed black square before recording any physical scale.</text>
+<text x="20" y="249" font-size="3.2">Artwork sizes are proposals. Camera and 3D registration remain uncalibrated.</text>
+<text x="20" y="270" font-size="3">Digital artwork checks are synthetic; physical tracking still needs a camera trial.</text>
+</g>
+</svg>

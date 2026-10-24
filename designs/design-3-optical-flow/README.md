@@ -5,6 +5,10 @@ dummy, then follow Shi–Tomasi features with pyramidal Lucas–Kanade optical f
 No training dataset or reference photograph is required. This is sparse optical
 flow, rather than a full direct photometric pose-estimation implementation.
 
+For the current injection pad, the planned trial uses its original surface **without a texture helper**. Remove printed targets and select only existing pad-surface details. The pad can stay stationary. A real camera recording is still needed; initializing points in a still photo does not establish video stability. See the [pad test plan](../references/injection-pad/README.md).
+
+The same tracker also powers **Settings → Tracking mode → Design 3** in the frontend. Use **Select pad region** there to initialize the original surface, and select again after loss or stream interruption. See [frontend tracking](../../docs/TRACKING.md). Close the standalone preview before using the browser webcam.
+
 From the repository root, install the shared dependencies and run:
 
 ```powershell

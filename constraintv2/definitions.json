@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "mb_bytes": 1000000,
+  "comparison_designs": ["aruco", "orb", "optical-flow"],
+  "normal_mode_included": false,
+  "targets": {
+    "application_raw_storage_mb_max": null,
+    "simulated_input_to_display_p95_ms_max": null,
+    "python_maintainability_index_min": null,
+    "runtime_ram_peak_mb_max": null,
+    "normalized_cpu_mean_pct_max": null
+  },
+  "target_status": "not_set",
+  "notes": [
+    "The official comparison covers Designs 1, 2 and 3 only. Each calculation lives in constraints/constraint1.py through constraint5.py, with independently saved result records.",
+    "These are measurement definitions. No pass/fail limits have been supplied.",
+    "Raw application storage is different from dependencies, a production build, installed footprint, or a packaged Electron executable.",
+    "The Maintainability Index currently covers Python only; JavaScript/JSX is not assigned a fabricated equivalent score.",
+    "Simulated browser input-to-display latency does not include physical sensor sampling, USB/Wi-Fi delivery, or monitor scanout.",
+    "Runtime RAM is sampled resident memory for the isolated browser process group plus its backend process group; shared pages can be counted more than once.",
+    "Constraint 5 measures owned browser and backend CPU use normalized across logical CPUs. Old observations without CPU samples remain unmeasured.",
+    "Canine triangle counts are supplementary model information outside the five constraints."
+  ]
+}

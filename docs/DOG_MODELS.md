@@ -18,13 +18,13 @@ Open **Settings > 3D Patient**. **Inspect a breed** changes only the rotatable i
 
 ## Alignment
 
-Enable **Preview for alignment** and adjust horizontal/vertical placement, size, screen rotation, left/right turn, tilt, and opacity. Each breed has independent settings for the current page session. **Reset this breed's placement** leaves the other two settings intact. Refreshing resets all placements.
+In **Settings > Tracking mode > Normal**, enable **Preview for alignment** under 3D Patient and adjust horizontal/vertical placement, size, screen rotation, left/right turn, tilt, and opacity. Each breed has independent settings for the current page session. **Reset this breed's placement** leaves the other two settings intact. Refreshing resets all placements.
 
-Use the same fixed camera, dummy position, and viewport while tuning each breed. Matching the forelimb's visible length and injection location matters more than the breed label. The relative mesh proportions are not measurements of the physical dummy. This is manual screen alignment; the three standalone OpenCV trackers are not connected to it yet.
+Use the same fixed camera, dummy position, and viewport while tuning manual placement. Matching the forelimb's visible length and injection location matters more than the breed label. The relative mesh proportions are not measurements of the physical dummy. For target-driven placement, choose one of the three designs in Tracking mode and adjust its target-relative width, offsets and rotation. These control 2D screen alignment; calibrated perspective-aware 3D registration remains unimplemented. See [frontend tracking](TRACKING.md).
 
 ## Blender handoff
 
-Place optional exports in `frontend/public/models/` as `labrador.glb`, `beagle.glb`, and `dalmatian.glb`. The inspector loads the selected breed's file and otherwise retains its built-in model. It plays the first exported animation when one exists. The camera overlay currently keeps the procedural rig; imported-rig pose control and physical tracking integration remain future work.
+Place optional exports in `frontend/public/models/` as `labrador.glb`, `beagle.glb`, and `dalmatian.glb`. The inspector loads the selected breed's file and otherwise retains its built-in model. It plays the first exported animation when one exists. The camera overlay currently keeps the procedural rig; imported-rig pose control and calibrated physical registration remain future work.
 
 For the final assets, use consistent real-world scale (one exported unit per meter), a shared rig, applied object transforms, and embedded textures. In the exported glTF scene, use Y up, the head toward negative X, and the ground below the body as a consistent origin. Include named forelimb/injection anchors and standing/resting animations. Measure the actual dummy before selecting the final body and limb dimensions. The inspector automatically frames imports, so its on-screen size does not establish physical calibration.
 
