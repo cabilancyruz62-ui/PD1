@@ -174,7 +174,7 @@ export default function App() {
             <DummyOverlayControls breedId={breed.id} placement={placement} setPlacement={setPlacement} preview={previewDummy} setPreview={setPreviewDummy} pose={dummyPose} tracked={trackingMode !== 'normal'}/>
             <Toggle label="3D model visibility" checked={modelVisible} onChange={setModelVisible}/>
             {modelVisible && <Suspense fallback={<p className="notice">Loading 3D viewer…</p>}><ModelViewer breedId={breed.id}/></Suspense>}
-            <p className="notice">{trackingMode === 'normal' ? 'Built-in breed models use manual camera alignment.' : 'The camera dog follows the selected target while tracking is valid.'}</p>
+            <p className="notice">{trackingMode === 'normal' ? 'The randomly assigned patient breed loads its matching GLB. Manual placement is available for the current patient.' : 'The camera dog follows the selected target while tracking is valid.'}</p>
           </>}</details>
         </>}
       </section>}

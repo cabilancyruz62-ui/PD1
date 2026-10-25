@@ -1,11 +1,27 @@
 {
   "clinical_validation": false,
-  "patient_ids": ["bella", "charlie", "spot"],
+  "patient_ids": [
+    "patient_chihuahua",
+    "patient_golden",
+    "patient_saint"
+  ],
   "baseline_vital_ranges": {
-    "hr": {"min": 80, "max": 120},
-    "rr": {"min": 18, "max": 24},
-    "temp": {"min": 38.1, "max": 39.1},
-    "etco2": {"min": 35, "max": 45}
+    "hr": {
+      "min": 80,
+      "max": 120
+    },
+    "rr": {
+      "min": 18,
+      "max": 24
+    },
+    "temp": {
+      "min": 38.1,
+      "max": 39.1
+    },
+    "etco2": {
+      "min": 35,
+      "max": 45
+    }
   },
   "angle_min_deg": 15,
   "angle_max_deg": 30,
@@ -15,19 +31,71 @@
   "rfid_debounce_seconds": 1.5,
   "incorrect_attempt_penalty": 5,
   "weights": {
-    "full": {"initial_angle": 15, "initial_injection": 15, "recognition": 15, "drug": 25, "intervention_angle": 20, "intervention_completion": 10},
-    "direct": {"recognition": 20, "drug": 35, "intervention_angle": 30, "intervention_completion": 15}
+    "full": {
+      "initial_angle": 15,
+      "initial_injection": 15,
+      "recognition": 15,
+      "drug": 25,
+      "intervention_angle": 20,
+      "intervention_completion": 10
+    },
+    "direct": {
+      "recognition": 20,
+      "drug": 35,
+      "intervention_angle": 30,
+      "intervention_completion": 15
+    }
   },
   "scenarios": {
-    "hypotension": {"name": "Hypotension", "target": {"map": 50}, "expected_drug": "drug_1", "intervention_route": "injection", "injectable_expert_approved": false},
-    "hypoventilation": {"name": "Hypoventilation", "target": {"rr": 6, "etco2": 55}, "expected_drug": "drug_3", "intervention_route": "injection", "injectable_expert_approved": false},
-    "bradycardia": {"name": "Bradycardia", "target": {"hr": 45}, "expected_drug": "drug_2", "intervention_route": "injection", "injectable_expert_approved": false}
+    "hypotension": {
+      "name": "Hypotension",
+      "target": {
+        "map": 50
+      },
+      "expected_drug": "drug_1",
+      "intervention_route": "injection",
+      "injectable_expert_approved": false
+    },
+    "hypoventilation": {
+      "name": "Hypoventilation",
+      "target": {
+        "rr": 6,
+        "etco2": 55
+      },
+      "expected_drug": "drug_3",
+      "intervention_route": "injection",
+      "injectable_expert_approved": false
+    },
+    "bradycardia": {
+      "name": "Bradycardia",
+      "target": {
+        "hr": 45
+      },
+      "expected_drug": "drug_2",
+      "intervention_route": "injection",
+      "injectable_expert_approved": false
+    }
   },
   "rfid_registry": {
-    "RFID_TAG_001": {"id": "drug_1", "name": "Drug 1"},
-    "0414790A0F1390": {"id": "drug_2", "name": "Glycopyrrolate"},
-    "0418790A0F1390": {"id": "drug_1", "name": "Ephedrine"},
-    "RFID_TAG_002": {"id": "drug_2", "name": "Drug 2"},
-    "RFID_TAG_003": {"id": "drug_3", "name": "Drug 3"}
+    "RFID_TAG_001": {
+      "id": "drug_1",
+      "name": "Drug 1"
+    },
+    "0414790A0F1390": {
+      "id": "drug_2",
+      "name": "Glycopyrrolate"
+    },
+    "0418790A0F1390": {
+      "id": "drug_1",
+      "name": "Ephedrine"
+    },
+    "RFID_TAG_002": {
+      "id": "drug_2",
+      "name": "Drug 2"
+    },
+    "RFID_TAG_003": {
+      "id": "drug_3",
+      "name": "Drug 3"
+    }
   }
 }

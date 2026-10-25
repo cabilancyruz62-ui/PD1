@@ -8,9 +8,9 @@ test('three complete patient profiles use the supported demonstration breeds', (
   assert.equal(patients.length, 3);
   assert.equal(new Set(patients.map(p => p.id)).size, 3);
   assert.deepEqual(patients.map(({ id, breedId, Breed }) => ({ id, breedId, Breed })), [
-    { id: 'bella', breedId: 'labrador', Breed: 'Labrador Retriever' },
-    { id: 'charlie', breedId: 'beagle', Breed: 'Beagle' },
-    { id: 'spot', breedId: 'dalmatian', Breed: 'Dalmatian' },
+    { id: 'patient_chihuahua', breedId: 'chihuahua', Breed: 'Chihuahua' },
+    { id: 'patient_golden', breedId: 'golden_retriever', Breed: 'Golden Retriever' },
+    { id: 'patient_saint', breedId: 'saint_bernard', Breed: 'Saint Bernard' },
   ]);
   for (const patient of patients) {
     for (const key of ['Name','Breed','Age','Sex','Weight','Procedure','Condition']) assert.ok(patient[key]);
@@ -35,6 +35,7 @@ test('random assignment selects only active profiles and excludes the current pa
 
 test('inactive patients remain available by ID for historical report names', () => {
   const historical = {
+    bella: ['Bella', 'Labrador Retriever'], charlie: ['Charlie', 'Beagle'], spot: ['Spot', 'Dalmatian'],
     max: ['Max', 'Golden Retriever'], luna: ['Luna', 'Shih Tzu'],
     cooper: ['Cooper', 'German Shepherd'], daisy: ['Daisy', 'Poodle'],
     milo: ['Milo', 'Aspin'], coco: ['Coco', 'Dachshund'],
